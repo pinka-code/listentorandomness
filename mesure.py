@@ -30,7 +30,7 @@ def construire_mesure(instr, mesure_start, duree_mesure, config, rng):
             continue
 
         # note aléatoire
-        note_base = rng.choice(config.gamme_notes)
+        note_base = rng.choice(config.notes_gamme)
         octave = octaves.choisir_octave(rng)
         pitch = note_base + 12 * octave
         duration = rythme.choisir_duree(rng)

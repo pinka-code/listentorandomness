@@ -1,9 +1,10 @@
 from dataclasses import dataclass
+from armature import Armature
 
 @dataclass(frozen=True)
 class MusicConfig:
-    gamme_nom: str
-    gamme_notes: list
+    armature_nom: Armature
+    notes_gamme: list
     tempo_nom: str
     tempo_bpm: int
     signature_nom: str

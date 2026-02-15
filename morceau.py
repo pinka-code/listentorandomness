@@ -1,6 +1,6 @@
 import instruments, mesure
 
-def construire_morceau(midi, config, random_generator):
+def construire_morceau(midi, config, rng):
     """
     Construit toutes les pistes du morceau
     """
@@ -9,7 +9,7 @@ def construire_morceau(midi, config, random_generator):
 
     for piste_id in range(config.num_pistes):
 
-        instr, famille = instruments.choisir_instrument(random_generator)
+        instr, famille = instruments.choisir_instrument(rng)
         print(f"Piste {piste_id+1} → {famille}")
 
         time = 0.0
@@ -20,7 +20,7 @@ def construire_morceau(midi, config, random_generator):
                 time,
                 duree_mesure,
                 config,
-                random_generator
+                rng
             )
 
         midi.instruments.append(instr)

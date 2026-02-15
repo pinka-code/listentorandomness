@@ -11,7 +11,7 @@ random_generator = rng.DefaultRandom(seed=42)
 config = structure.generer_structure(random_generator)
 
 print("===== CONFIGURATION DU MORCEAU =====")
-print(f"Tonalité : {config.gamme_nom}")
+print(f"Tonalité : {config.armature_nom}")
 print(f"Tempo : {config.tempo_nom} → {config.tempo_bpm} BPM")
 print(f"Signature rythmique : {config.signature_nom}")
 print(f"Nombre de pistes : {config.num_pistes}")
