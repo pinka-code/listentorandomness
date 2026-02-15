@@ -12,11 +12,3 @@ def choisir_nuance(rng):
     Retourne une valeur MIDI aléatoire correspondant à une nuance.
     """
     return rng.choice(list(NUANCES.values()))
-
-def choisir_nuance_avec_nom(rng):
-    """
-    Retourne un tuple (nom, valeur) pour la nuance choisie aléatoirement.
-    Utile pour debug ou affichage.
-    """
-    nom, valeur = rng.choice(list(NUANCES.items()))
-    return nom, valeur
