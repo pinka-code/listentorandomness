@@ -1,11 +1,13 @@
-import instruments, mesure
+import instruments, phrase
 
 def construire_morceau(midi, config, rng):
     """
-    Construit toutes les pistes du morceau
+    Construit toutes les pistes du morceau avec phrases et motifs.
+    
+    - midi : PrettyMIDI object
+    - config : MusicConfig
+    - rng : générateur random personnalisé
     """
-
-    duree_mesure = mesure.calculer_duree_mesure(config.signature_num, config.signature_den)
 
     for piste_id in range(config.num_pistes):
 
@@ -15,10 +17,9 @@ def construire_morceau(midi, config, rng):
         time = 0.0
 
         while time < config.duree_totale:
-            time = mesure.construire_mesure(
+            time = phrase.construire_phrase(
                 instr,
                 time,
-                duree_mesure,
                 config,
                 rng
             )

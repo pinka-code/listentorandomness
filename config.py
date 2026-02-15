@@ -13,3 +13,7 @@ class MusicConfig:
     signature_type: str
     num_pistes: int
     duree_totale: float
+    longueur_phrase_min: int
+    longueur_phrase_max: int
+    variation_phrase_prob: float
+    prob_resolution_tonique: float

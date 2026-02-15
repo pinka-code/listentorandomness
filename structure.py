@@ -12,6 +12,11 @@ def generer_structure(rng):
     num_pistes = rng.randint(1, 5)
     duree_totale = rng.randint(30, 180)
 
+    longueur_phrase_min = 1
+    longueur_phrase_max = 4
+    variation_phrase_prob = 0.7   # 70 % de chance de varier le motif
+    prob_resolution_tonique = 0.5 # 50 % de chance de résoudre la phrase
+
     from config import MusicConfig
     return MusicConfig(
         armature_nom = nom_armature,
@@ -23,5 +28,9 @@ def generer_structure(rng):
         signature_den=sig_den,
         signature_type=sig_type,
         num_pistes=num_pistes,
-        duree_totale=duree_totale
+        duree_totale=duree_totale,
+        longueur_phrase_min=longueur_phrase_min,
+        longueur_phrase_max=longueur_phrase_max,
+        variation_phrase_prob=variation_phrase_prob,
+        prob_resolution_tonique=prob_resolution_tonique
     )
