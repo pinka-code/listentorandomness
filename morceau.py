@@ -10,12 +10,10 @@ def construire_morceau(midi, config, rng):
     """
 
     for piste_id in range(config.num_pistes):
-
         instr, famille = instruments.choisir_instrument(rng)
         print(f"Piste {piste_id+1} → {famille}")
 
         time = 0.0
-
         while time < config.duree_totale:
             time = phrase.construire_phrase(
                 instr,
