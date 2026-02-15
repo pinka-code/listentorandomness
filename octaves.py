@@ -1,5 +1,3 @@
-import rng
-
 OCTAVES = {
     "OCTAVE_3": 3,
     "OCTAVE_4": 4,

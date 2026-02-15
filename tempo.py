@@ -1,5 +1,3 @@
-import rng
-
 TEMPOS = {
     "LARGO": 50,       # très lent
     "ADAGIO": 70,      # lent

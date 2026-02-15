@@ -1,5 +1,3 @@
-import rng
-
 DUREES = {
     "QUADRUPLE_CROCHE": 0.125,
     "DOUBLE_CROCHE": 0.25,
