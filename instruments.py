@@ -1,36 +1,41 @@
-import pretty_midi # type: ignore
-
 INSTRUMENTS = {
-    "Piano": range(0, 8),
-    "Chromatic_Percussion": range(8, 16),
-    "Organ": range(16, 24),
-    "Guitar": range(24, 32),
-    "Bass": range(32, 40),
-    "Strings": range(40, 48),
-    "Ensemble": range(48, 56),
-    "Brass": range(56, 64),
-    "Reed": range(64, 72),
-    "Pipe": range(72, 80),
-    "Synth_Lead": range(80, 88),
-    "Synth_Pad": range(88, 96),
-    "Synth_Effects": range(96, 104),
-    "Ethnic": range(104, 112),
-    "Percussive": range(112, 120),
-    "Sound_Effects": range(120, 128)
-}
+    # Piano
+    "Acoustic Grand Piano": 0,
+    "Bright Acoustic Piano": 1,
 
-def choisir_instrument(rng):
-    """
-    Retourne un objet Instrument aléatoire choisi dans une famille.
-    Choisit d'abord une famille, puis un instrument dans la plage.
-    """
-    # Choisir une famille aléatoire
-    famille, plage = rng.choice(list(INSTRUMENTS.items()))
-    
-    # Choisir un instrument dans cette famille
-    instrument_num = rng.choice(list(plage))
-    
-    # Créer l'objet PrettyMIDI Instrument
-    instrument = pretty_midi.Instrument(program=instrument_num)
-    
-    return instrument, famille
+    # Guitare
+    "Acoustic Guitar (nylon)": 24,
+    "Acoustic Guitar (steel)": 25,
+    "Electric Guitar (jazz)": 26,
+
+    # Basse
+    "Acoustic Bass": 32,
+    "Electric Bass (finger)": 33,
+
+    # Cordes
+    "Violin": 40,
+    "Viola": 41,
+    "Cello": 42,
+    "Contrabass": 43,
+    "String Ensemble 1": 48,
+
+    # Bois
+    "Flute": 73,
+    "Oboe": 68,
+    "Clarinet": 71,
+    "Bassoon": 70,
+    "Piccolo": 72,
+
+    # Cuivres
+    "Trumpet": 56,
+    "Trombone": 57,
+    "French Horn": 60,
+    "Tuba": 58,
+
+    # Claviers / orgues
+    "Church Organ": 19,
+
+    # Synthés utiles
+    "Lead 1 (square)": 80,
+    "Pad 1 (new age)": 88,
+}

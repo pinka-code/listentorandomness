@@ -1,11 +1,14 @@
 import octaves, rythme, pretty_midi, nuances
+from orchestration import ajuster_pitch_au_registre
 
 class Mesure:
-    def __init__(self, motif, motif_rythmique, config, rng):
+    def __init__(self, motif, motif_rythmique, role, nom_instrument, config, rng):
         self.motif = motif
         self.motif_rythmique = motif_rythmique
         self.config = config
         self.rng = rng
+        self.role = role
+        self.nom_instrument = nom_instrument
 
     def jouer(self, instr, time_start, nuance_phrase):
         time = time_start
@@ -21,6 +24,7 @@ class Mesure:
             note_base = self.config.notes_gamme[degre]
             octave = octaves.choisir_octave(self.rng)
             pitch = note_base + 12 * octave
+            pitch = ajuster_pitch_au_registre(pitch, self.nom_instrument)
 
             # ajuster durée si dépassement mesure
             duree_mesure = sum(self.motif_rythmique)

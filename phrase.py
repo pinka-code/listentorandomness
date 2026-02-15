@@ -1,14 +1,11 @@
 import mesure, nuances, rythme
 
 class Phrase:
-    def __init__(self, config, rng):
-        """
-        Initialise une phrase avec :
-        - config : MusicConfig
-        - rng : générateur random
-        """
+    def __init__(self, config, rng, role, nom_instrument):
         self.config = config
         self.rng = rng
+        self.role = role
+        self.nom_instrument = nom_instrument
         self.nb_mesures = rng.randint(config.longueur_phrase_min, config.longueur_phrase_max)
         self.motif = self.generer_motif()
         self.motif_rythmique = self.generer_motif_rythmique()
@@ -35,7 +32,7 @@ class Phrase:
             if i > 0 and self.rng.random() < self.config.variation_phrase_prob:
                 motif_courant = self.varier_motif()
 
-            m = mesure.Mesure(motif_courant, self.motif_rythmique, self.config, self.rng)
+            m = mesure.Mesure(motif_courant, self.motif_rythmique, self.role, self.nom_instrument, self.config, self.rng)
             time_depart = m.jouer(instr, time_depart, self.nuance)
 
         # résolution tonique
