@@ -1,10 +1,11 @@
-import mesure, nuances, rythme
+import mesure, nuances, rythme, roles
+from mesure import Mesure
 
 class Phrase:
     def __init__(self, config, rng, role, nom_instrument):
         self.config = config
         self.rng = rng
-        self.role = role
+        self.role = roles.creer_role(role)
         self.nom_instrument = nom_instrument
         self.nb_mesures = rng.randint(config.longueur_phrase_min, config.longueur_phrase_max)
         self.motif = self.generer_motif_melodique()
@@ -23,7 +24,7 @@ class Phrase:
 
     def generer_motif_rythmique(self):
         """Génère le motif rythmique de la phrase"""
-        duree_mesure = mesure.calculer_duree(self.config.signature_num, self.config.signature_den)
+        duree_mesure = Mesure.calculer_duree(self.config.signature_num, self.config.signature_den)
         return rythme.generer_motif_rythmique_pour_role(duree_mesure, self.rng, self.role)
     
     def jouer(self, instr, time_depart):
@@ -37,7 +38,7 @@ class Phrase:
 
         # résolution tonique
         if self.rng.random() < self.config.prob_resolution_tonique:
-            time_depart = mesure.ajouter_tonique(instr, time_depart, self.config, self.rng, fraction_duree=0.5, nuance_phrase=self.nuance)
+            time_depart = m.ajouter_tonique(instr, time_depart, fraction_duree=0.5, nuance_phrase=self.nuance)
 
         return time_depart
 
