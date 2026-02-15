@@ -1,5 +1,6 @@
 import pretty_midi  # type: ignore
-import rng, structure, octaves, rythme, instruments, nuances
+import rng, structure
+import morceau
 
 # Choix du générateur
 random_generator = rng.DefaultRandom(seed=42)
@@ -28,41 +29,11 @@ midi.time_signature_changes.append(
     )
 )
 
-for piste_id in range(config.num_pistes):
-
-    instr, famille = instruments.choisir_instrument(random_generator)
-    print(f"Piste {piste_id+1} → {famille}")
-
-    time = 0.0
-
-    while time < config.duree_totale:
-
-        if rythme.generer_silence(random_generator):
-            duration = rythme.choisir_duree(random_generator)
-            time += duration
-            continue
-
-        note_base = random_generator.choice(config.gamme_notes)
-        octave = octaves.choisir_octave(random_generator)
-
-        pitch = note_base + 12 * octave
-        duration = rythme.choisir_duree(random_generator)
-        velocity = nuances.choisir_nuance(random_generator)
-
-        if time + duration > config.duree_totale:
-            duration = config.duree_totale - time
-
-        note = pretty_midi.Note(
-            velocity=velocity,
-            pitch=pitch,
-            start=time,
-            end=time + duration
-        )
-
-        instr.notes.append(note)
-        time += duration
-
-    midi.instruments.append(instr)
+morceau.construire_morceau(
+    midi,
+    config,
+    random_generator
+)
 
 midi.write('generative_structured.mid')
 print("MIDI généré ! 🎶")
