@@ -1,5 +1,3 @@
-import rng
-
 NUANCES = {
     "PP": 10,    # Pianissimo, très doux
     "P": 30,     # Piano, calme

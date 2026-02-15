@@ -1,4 +1,3 @@
-import rng
 import pretty_midi # type: ignore
 
 INSTRUMENTS = {

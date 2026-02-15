@@ -1,4 +1,5 @@
 # listentorandomness
+
 Music program based on random generation
 
 | Élément       | Exemple d’aléatoire                  |
@@ -13,3 +14,6 @@ Music program based on random generation
 | Articulations | staccato / legato / trills           |
 | Structure     | motifs, sections, progressions       |
 | Tempo         | 60–180 BPM, ou variations            |
+
+🎼 Ajouter signature rythmique (4/4, 3/4, 6/8)
+🎵 Ajouter forme musicale (AABA, ABA, etc.)

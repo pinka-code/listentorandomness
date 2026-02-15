@@ -1,5 +1,3 @@
-import rng
-
 NOTE = {
     "C": 0,
     "C#": 1,
