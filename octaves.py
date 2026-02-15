@@ -1,5 +1,4 @@
-# octaves.py
-import random
+import rng
 
 OCTAVES = {
     "OCTAVE_3": 3,
@@ -8,8 +7,8 @@ OCTAVES = {
     "OCTAVE_6": 6
 }
 
-def choisir_octave():
+def choisir_octave(rng):
     """
     Retourne une octave aléatoire (valeur entière)
     """
-    return random.choice(list(OCTAVES.values()))
+    return rng.choice(list(OCTAVES.values()))

@@ -1,5 +1,4 @@
-# instruments.py
-import random
+import rng
 import pretty_midi # type: ignore
 
 INSTRUMENTS = {
@@ -21,16 +20,16 @@ INSTRUMENTS = {
     "Sound_Effects": range(120, 128)
 }
 
-def choisir_instrument():
+def choisir_instrument(rng):
     """
     Retourne un objet Instrument aléatoire choisi dans une famille.
     Choisit d'abord une famille, puis un instrument dans la plage.
     """
     # Choisir une famille aléatoire
-    famille, plage = random.choice(list(INSTRUMENTS.items()))
+    famille, plage = rng.choice(list(INSTRUMENTS.items()))
     
     # Choisir un instrument dans cette famille
-    instrument_num = random.choice(list(plage))
+    instrument_num = rng.choice(list(plage))
     
     # Créer l'objet PrettyMIDI Instrument
     instrument = pretty_midi.Instrument(program=instrument_num)
