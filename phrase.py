@@ -1,8 +1,9 @@
-import mesure
+import mesure, rythme
 
 def construire_phrase(instr, time_depart, config, rng):
     """
-    Construit une phrase musicale pour un instrument.
+    Construit une phrase musicale pour un instrument avec motif mélodique
+    et motif rythmique réutilisable sur plusieurs mesures.
 
     - instr : PrettyMIDI Instrument
     - time_depart : temps de départ de la phrase (en beats)
@@ -12,22 +13,26 @@ def construire_phrase(instr, time_depart, config, rng):
 
     duree_mesure = mesure.calculer_duree_mesure(config.signature_num, config.signature_den)
     nb_mesures = rng.randint(config.longueur_phrase_min, config.longueur_phrase_max)
-    motif = generer_motif(config, rng)
+    motif_melodie = generer_motif(config, rng)
+    motif_rythmique = rythme.generer_motif_rythmique(duree_mesure, rng)  # premier motif rythmique
 
     for i in range(nb_mesures):
+        # variation mélodique ou rythmique
         if i > 0 and rng.random() < config.variation_phrase_prob:
-            motif = varier_motif(motif, rng)
+            motif_melodie = varier_motif(motif_melodie, rng)
+            motif_rythmique = rythme.generer_motif_rythmique(duree_mesure, rng)
 
         time_depart = mesure.construire_mesure_avec_motif(
             instr,
             time_depart,
             duree_mesure,
-            motif,
+            motif_melodie,
             config,
-            rng
+            rng,
+            motif_rythmique
         )
-    
-    # Possibilité de résoudre la tonique à la fin de la phrase
+
+    # Résolution tonique finale
     if rng.random() < config.prob_resolution_tonique:
         time_depart = mesure.ajouter_tonique(instr, time_depart, config, rng)
 

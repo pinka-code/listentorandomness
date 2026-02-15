@@ -39,29 +39,35 @@ def ajouter_tonique(instr, time_start, config, rng, fraction_duree=0.5):
 
     return time_start + duration
 
-def construire_mesure_avec_motif(instr, mesure_start, duree_mesure, motif, config, rng):
+def construire_mesure_avec_motif(instr, mesure_start, duree_mesure, motif, config, rng, motif_rythmique=None):
     """
-    Remplit une mesure en suivant un motif (liste de degrés).
-    
+    Remplit une mesure en suivant un motif (liste de degrés) et un motif rythmique optionnel.
+
     - instr : PrettyMIDI Instrument
     - mesure_start : début de la mesure (en beats)
     - duree_mesure : durée totale de la mesure (en beats)
     - motif : liste de degrés (indices dans config.notes_gamme)
     - config : configuration globale du morceau
     - rng : générateur random personnalisé
+    - motif_rythmique : liste de durées pour chaque note (facultatif)
     """
+
+    if motif_rythmique is None:
+        motif_rythmique = rythme.generer_motif_rythmique(duree_mesure, rng)
+
     time = mesure_start
     motif_idx = 0
     nb_notes_motif = len(motif)
+    nb_notes_rythme = len(motif_rythmique)
 
-    while time - mesure_start < duree_mesure:
-
+    for i in range(nb_notes_rythme):
+        duration = motif_rythmique[i]
+        
         # silence aléatoire
         if rythme.generer_silence(rng, probabilite=0.1):
-            duration = rythme.choisir_duree(rng)
-            if time + duration > mesure_start + duree_mesure:
-                duration = mesure_start + duree_mesure - time
             time += duration
+            if time > mesure_start + duree_mesure:
+                time = mesure_start + duree_mesure
             continue
 
         # note selon le motif
@@ -71,7 +77,7 @@ def construire_mesure_avec_motif(instr, mesure_start, duree_mesure, motif, confi
         octave = octaves.choisir_octave(rng)
         pitch = note_base + 12 * octave
 
-        duration = rythme.choisir_duree(rng)
+        # Ajuster la durée si on dépasse la mesure
         if time + duration > mesure_start + duree_mesure:
             duration = mesure_start + duree_mesure - time
 
@@ -90,5 +96,8 @@ def construire_mesure_avec_motif(instr, mesure_start, duree_mesure, motif, confi
 
         time += duration
         motif_idx += 1
+
+        if time >= mesure_start + duree_mesure:
+            break  # sécurité pour ne pas dépasser la mesure
 
     return time

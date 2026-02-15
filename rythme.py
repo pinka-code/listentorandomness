@@ -16,16 +16,26 @@ def choisir_duree(rng):
     """
     return rng.choice(list(DUREES.values()))
 
-def choisir_duree_avec_nom(rng):
-    """
-    Retourne un tuple (nom, valeur) pour la durée choisie aléatoirement.
-    Utile pour debug ou affichage.
-    """
-    nom, valeur = rng.choice(list(DUREES.items()))
-    return nom, valeur
-
 def generer_silence(rng, probabilite=0.2):
     """
     Retourne True si on doit mettre un silence (probabilite 0..1)
     """
     return rng.random() < probabilite
+
+def generer_motif_rythmique(longueur_beats, rng):
+    """
+    Génère un motif rythmique pour une mesure ou une phrase.
+    - longueur_beats : durée totale de la mesure/phrase en beats
+    - rng : générateur random
+    Retourne une liste de durées qui s'additionnent à longueur_beats
+    """
+    motif = []
+    restant = longueur_beats
+
+    while restant > 0:
+        possibles = [v for v in DUREES.values() if v <= restant]
+        d = rng.choice(possibles)
+        motif.append(d)
+        restant -= d
+
+    return motif
