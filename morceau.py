@@ -1,4 +1,5 @@
-import instruments, phrase
+import instruments
+from phrase import Phrase
 
 def construire_morceau(midi, config, rng):
     """
@@ -15,11 +16,8 @@ def construire_morceau(midi, config, rng):
 
         time = 0.0
         while time < config.duree_totale:
-            time = phrase.construire_phrase(
-                instr,
-                time,
-                config,
-                rng
-            )
+            phrase_obj = Phrase(config, rng)
+            time = phrase_obj.jouer(instr, time)
 
-        midi.instruments.append(instr)
+    midi.instruments.append(instr)
+

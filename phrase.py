@@ -1,54 +1,85 @@
-import mesure, rythme, nuances
+import mesure, nuances, rythme
 
-def construire_phrase(instr, time_depart, config, rng):
-    """
-    Construit une phrase musicale pour un instrument avec motif mélodique
-    et motif rythmique réutilisable sur plusieurs mesures.
+class Phrase:
+    def __init__(self, config, rng):
+        """
+        Initialise une phrase avec :
+        - config : MusicConfig
+        - rng : générateur random
+        """
+        self.config = config
+        self.rng = rng
 
-    - instr : PrettyMIDI Instrument
-    - time_depart : temps de départ de la phrase (en beats)
-    - config : configuration globale du morceau
-    - rng : générateur random personnalisé
-    """
+        # Nombre de mesures dans la phrase
+        self.nb_mesures = rng.randint(config.longueur_phrase_min, config.longueur_phrase_max)
 
-    duree_mesure = mesure.calculer_duree_mesure(config.signature_num, config.signature_den)
-    nb_mesures = rng.randint(config.longueur_phrase_min, config.longueur_phrase_max)
-    motif = generer_motif(config, rng)
-    nuance_phrase = nuances.choisir_nuance(rng)
+        # Motif mélodique et rythmique
+        self.motif = self.generer_motif()
+        self.motif_rythmique = self.generer_motif_rythmique()
 
-    for i in range(nb_mesures):
-        if i > 0 and rng.random() < config.variation_phrase_prob:
-            motif = varier_motif(motif, rng)
+        # Nuance unique pour toute la phrase
+        self.nuance = nuances.choisir_nuance(rng)
 
-        time_depart = mesure.construire_mesure_avec_motif(
-            instr,
-            time_depart,
-            duree_mesure,
-            motif,
-            config,
-            rng,
-            nuance_phrase=nuance_phrase
+    def generer_motif(self):
+        """Génère le motif mélodique de la phrase"""
+        motif = []
+
+        for _ in range(4):  # 4 notes par mesure
+            degre = self.rng.randint(0, len(self.config.notes_gamme)-1)
+            motif.append(degre)
+
+        return motif
+
+    def generer_motif_rythmique(self):
+        """Génère le motif rythmique de la phrase"""
+        duree_mesure = mesure.calculer_duree_mesure(
+            self.config.signature_num, self.config.signature_den
         )
+        return rythme.generer_motif_rythmique(duree_mesure, self.rng)
+    
+    def jouer(self, instr, time_depart):
+        """
+        Remplit l'instrument avec la phrase à partir de time_depart
+        """
+        for i in range(self.nb_mesures):
+            # possibilité de variation sur les mesures suivantes
+            if i > 0 and self.rng.random() < self.config.variation_phrase_prob:
+                motif_courant = self.varier_motif()
+            else:
+                motif_courant = self.motif
 
-    # Résolution tonique finale
-    if rng.random() < config.prob_resolution_tonique:
-        time_depart = mesure.ajouter_tonique(instr, time_depart, config, rng, nuance_phrase=nuance_phrase)
+            duree_mesure = mesure.calculer_duree_mesure(
+                self.config.signature_num, self.config.signature_den
+            )
 
-    return time_depart
+            time_depart = mesure.construire_mesure_avec_motif(
+                instr,
+                time_depart,
+                duree_mesure,
+                motif_courant,
+                self.config,
+                self.rng,
+                motif_rythmique=self.motif_rythmique,
+                nuance_phrase=self.nuance
+            )
 
-def generer_motif(config, rng):
-    motif = []
+        # possibilité de résoudre la tonique à la fin de la phrase
+        if self.rng.random() < self.config.prob_resolution_tonique:
+            time_depart = mesure.ajouter_tonique(
+                instr,
+                time_depart,
+                self.config,
+                self.rng,
+                nuance_phrase=self.nuance
+            )
 
-    for _ in range(4):  # 4 notes par mesure
-        degre = rng.randint(0, len(config.notes_gamme)-1)
-        motif.append(degre)
+        return time_depart
 
-    return motif
+    def varier_motif(self):
+        """Retourne une version légèrement modifiée du motif"""
+        nouveau = self.motif.copy()
 
-def varier_motif(motif, rng):
-    nouveau = motif.copy()
+        index = self.rng.randint(0, len(nouveau)-1)
+        nouveau[index] = self.rng.randint(0, len(nouveau)-1)
 
-    index = rng.randint(0, len(nouveau)-1)
-    nouveau[index] = rng.randint(0, len(nouveau)-1)
-
-    return nouveau
+        return nouveau
