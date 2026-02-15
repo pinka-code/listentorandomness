@@ -48,6 +48,9 @@ def choisir_instrument_pour_role(rng, role):
     return instrument, nom
 
 def ajuster_pitch_au_registre(pitch, instrument_name):
+    if instrument_name not in REGISTRES:
+        return pitch
+
     bas, haut = REGISTRES[instrument_name]
 
     while pitch < bas:

@@ -22,6 +22,49 @@ def generer_silence(rng, probabilite=0.2):
     """
     return rng.random() < probabilite
 
+def generer_motif_rythmique_pour_role(duree_mesure, rng, role):
+    """
+    Génère un motif rythmique adapté au rôle musical.
+    La somme des durées = durée mesure.
+    """
+
+    if role == "pad":
+        # Une seule note longue
+        return [duree_mesure]
+
+    elif role == "basse":
+        # Notes sur les temps forts
+        # exemple 4/4 → 4 noires
+        nb_temps = int(duree_mesure)
+        return [1.0 for _ in range(nb_temps)]
+
+    elif role == "harmonie":
+        # demi-notes ou noires régulières
+        if rng.random() < 0.5:
+            return [duree_mesure / 2, duree_mesure / 2]
+        else:
+            nb = int(duree_mesure)
+            return [1.0 for _ in range(nb)]
+
+    elif role == "contrechant":
+        # motif modéré
+        return generer_motif_rythmique(duree_mesure, rng)
+
+    elif role == "melodie":
+        # plus mobile → subdivisions
+        motif = []
+        temps_restant = duree_mesure
+        while temps_restant > 0:
+            val = rng.choice([0.25, 0.5, 0.5, 1.0])
+            if val > temps_restant:
+                val = temps_restant
+            motif.append(val)
+            temps_restant -= val
+        return motif
+
+    else:
+        return generer_motif_rythmique(duree_mesure, rng)
+
 def generer_motif_rythmique(longueur_beats, rng):
     """
     Génère un motif rythmique pour une mesure ou une phrase.

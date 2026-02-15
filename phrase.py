@@ -7,11 +7,11 @@ class Phrase:
         self.role = role
         self.nom_instrument = nom_instrument
         self.nb_mesures = rng.randint(config.longueur_phrase_min, config.longueur_phrase_max)
-        self.motif = self.generer_motif()
+        self.motif = self.generer_motif_melodique()
         self.motif_rythmique = self.generer_motif_rythmique()
         self.nuance = nuances.choisir_nuance(rng)
 
-    def generer_motif(self):
+    def generer_motif_melodique(self):
         """Génère le motif mélodique de la phrase"""
         motif = []
 
@@ -24,7 +24,7 @@ class Phrase:
     def generer_motif_rythmique(self):
         """Génère le motif rythmique de la phrase"""
         duree_mesure = mesure.calculer_duree(self.config.signature_num, self.config.signature_den)
-        return rythme.generer_motif_rythmique(duree_mesure, self.rng)
+        return rythme.generer_motif_rythmique_pour_role(duree_mesure, self.rng, self.role)
     
     def jouer(self, instr, time_depart):
         for i in range(self.nb_mesures):

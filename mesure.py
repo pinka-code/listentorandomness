@@ -14,18 +14,6 @@ class Mesure:
         time = time_start
         motif_idx = 0
         for duration in self.motif_rythmique:
-
-            if self.role == "basse":
-                # ne joue que sur temps forts
-                if int(time - time_start) % 1 != 0:
-                    time += duration
-                    continue
-            if self.role == "pad":
-                # ne joue qu'une note par mesure
-                if motif_idx > 0:
-                    time += duration
-                    continue
-
             # silence aléatoire
             if rythme.generer_silence(self.rng, probabilite=0.1):
                 time += duration
