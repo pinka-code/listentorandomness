@@ -1,4 +1,3 @@
-import pretty_midi  # type: ignore
 import rng, config
 import morceau
 
@@ -16,21 +15,7 @@ print(f"Nombre de pistes : {cfg.num_pistes}")
 print(f"Durée totale cible : {cfg.duree_totale} sec")
 print("=====================================")
 
-midi = pretty_midi.PrettyMIDI()
-midi._PrettyMIDI__initial_tempo = cfg.tempo_bpm
-midi.time_signature_changes.append(
-    pretty_midi.TimeSignature(
-        cfg.signature_num,
-        cfg.signature_den,
-        0  # début du morceau
-    )
-)
-
-morceau.construire_morceau(
-    midi,
-    cfg,
-    random_generator
-)
-
+part = morceau.Morceau(cfg, random_generator)
+midi = part.generer()
 midi.write('generative_structured.mid')
 print("MIDI généré ! 🎶")

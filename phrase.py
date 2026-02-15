@@ -9,15 +9,9 @@ class Phrase:
         """
         self.config = config
         self.rng = rng
-
-        # Nombre de mesures dans la phrase
         self.nb_mesures = rng.randint(config.longueur_phrase_min, config.longueur_phrase_max)
-
-        # Motif mélodique et rythmique
         self.motif = self.generer_motif()
         self.motif_rythmique = self.generer_motif_rythmique()
-
-        # Nuance unique pour toute la phrase
         self.nuance = nuances.choisir_nuance(rng)
 
     def generer_motif(self):
@@ -32,46 +26,21 @@ class Phrase:
 
     def generer_motif_rythmique(self):
         """Génère le motif rythmique de la phrase"""
-        duree_mesure = mesure.calculer_duree_mesure(
-            self.config.signature_num, self.config.signature_den
-        )
+        duree_mesure = mesure.calculer_duree(self.config.signature_num, self.config.signature_den)
         return rythme.generer_motif_rythmique(duree_mesure, self.rng)
     
     def jouer(self, instr, time_depart):
-        """
-        Remplit l'instrument avec la phrase à partir de time_depart
-        """
         for i in range(self.nb_mesures):
-            # possibilité de variation sur les mesures suivantes
+            motif_courant = self.motif
             if i > 0 and self.rng.random() < self.config.variation_phrase_prob:
                 motif_courant = self.varier_motif()
-            else:
-                motif_courant = self.motif
 
-            duree_mesure = mesure.calculer_duree_mesure(
-                self.config.signature_num, self.config.signature_den
-            )
+            m = mesure.Mesure(motif_courant, self.motif_rythmique, self.config, self.rng)
+            time_depart = m.jouer(instr, time_depart, self.nuance)
 
-            time_depart = mesure.construire_mesure_avec_motif(
-                instr,
-                time_depart,
-                duree_mesure,
-                motif_courant,
-                self.config,
-                self.rng,
-                motif_rythmique=self.motif_rythmique,
-                nuance_phrase=self.nuance
-            )
-
-        # possibilité de résoudre la tonique à la fin de la phrase
+        # résolution tonique
         if self.rng.random() < self.config.prob_resolution_tonique:
-            time_depart = mesure.ajouter_tonique(
-                instr,
-                time_depart,
-                self.config,
-                self.rng,
-                nuance_phrase=self.nuance
-            )
+            time_depart = mesure.ajouter_tonique(instr, time_depart, self.config, self.rng, fraction_duree=0.5, nuance_phrase=self.nuance)
 
         return time_depart
 

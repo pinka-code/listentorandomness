@@ -1,23 +1,19 @@
-import instruments
-from phrase import Phrase
+import pretty_midi
+from piste import Piste
 
-def construire_morceau(midi, config, rng):
-    """
-    Construit toutes les pistes du morceau avec phrases et motifs.
-    
-    - midi : PrettyMIDI object
-    - config : MusicConfig
-    - rng : générateur random personnalisé
-    """
+class Morceau:
+    def __init__(self, config, rng):
+        self.config = config
+        self.rng = rng
+        self.pistes = []
 
-    for piste_id in range(config.num_pistes):
-        instr, famille = instruments.choisir_instrument(rng)
-        print(f"Piste {piste_id+1} → {famille}")
-
-        time = 0.0
-        while time < config.duree_totale:
-            phrase_obj = Phrase(config, rng)
-            time = phrase_obj.jouer(instr, time)
-
-    midi.instruments.append(instr)
-
+    def generer(self):
+        midi = pretty_midi.PrettyMIDI()
+        midi._PrettyMIDI__initial_tempo = self.config.tempo_bpm
+        for i in range(self.config.num_pistes):
+            piste = Piste(self.config, self.rng)
+            print(f"Piste {piste.famille}")
+            piste.generer_phrases()
+            midi.instruments.append(piste.instr)
+            self.pistes.append(piste)
+        return midi
