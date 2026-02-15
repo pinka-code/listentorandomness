@@ -35,10 +35,7 @@ class Phrase:
 
             m = mesure.Mesure(motif_courant, self.motif_rythmique, self.role, self.nom_instrument, self.config, self.rng)
             time_depart = m.jouer(instr, time_depart, self.nuance)
-
-        # résolution tonique
-        if self.rng.random() < self.config.prob_resolution_tonique:
-            time_depart = m.ajouter_tonique(instr, time_depart, fraction_duree=0.5, nuance_phrase=self.nuance)
+            time_depart = m.ajouter_tonique(instr, time_depart, nuance_phrase=self.nuance)
 
         return time_depart
 
