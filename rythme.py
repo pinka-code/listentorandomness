@@ -1,5 +1,4 @@
-# rythme.py
-import random
+import rng
 
 DUREES = {
     "QUADRUPLE_CROCHE": 0.125,
@@ -12,23 +11,23 @@ DUREES = {
     "RONDE": 4.0
 }
 
-def choisir_duree():
+def choisir_duree(rng):
     """
     Retourne une durée aléatoire (valeur en beats).
     Utilise les valeurs du dictionnaire DUREES.
     """
-    return random.choice(list(DUREES.values()))
+    return rng.choice(list(DUREES.values()))
 
-def choisir_duree_avec_nom():
+def choisir_duree_avec_nom(rng):
     """
     Retourne un tuple (nom, valeur) pour la durée choisie aléatoirement.
     Utile pour debug ou affichage.
     """
-    nom, valeur = random.choice(list(DUREES.items()))
+    nom, valeur = rng.choice(list(DUREES.items()))
     return nom, valeur
 
-def generer_silence(probabilite=0.2):
+def generer_silence(rng, probabilite=0.2):
     """
     Retourne True si on doit mettre un silence (probabilite 0..1)
     """
-    return random.random() < probabilite
+    return rng.random() < probabilite

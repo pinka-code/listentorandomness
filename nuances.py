@@ -1,5 +1,4 @@
-# nuances.py
-import random
+import rng
 
 NUANCES = {
     "PP": 10,    # Pianissimo, très doux
@@ -10,16 +9,16 @@ NUANCES = {
     "FF": 110    # Fortissimo, très accentué
 }
 
-def choisir_nuance():
+def choisir_nuance(rng):
     """
     Retourne une valeur MIDI aléatoire correspondant à une nuance.
     """
-    return random.choice(list(NUANCES.values()))
+    return rng.choice(list(NUANCES.values()))
 
-def choisir_nuance_avec_nom():
+def choisir_nuance_avec_nom(rng):
     """
     Retourne un tuple (nom, valeur) pour la nuance choisie aléatoirement.
     Utile pour debug ou affichage.
     """
-    nom, valeur = random.choice(list(NUANCES.items()))
+    nom, valeur = rng.choice(list(NUANCES.items()))
     return nom, valeur

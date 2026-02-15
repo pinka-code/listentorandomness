@@ -1,4 +1,4 @@
-import random
+import rng
 
 TEMPOS = {
     "LARGO": 50,       # très lent
@@ -9,15 +9,15 @@ TEMPOS = {
     "PRESTO": 160      # très rapide
 }
 
-def choisir_tempo():
+def choisir_tempo(rng):
     """
     Retourne un tempo aléatoire (BPM) parmi TEMPOS
     """
-    return random.choice(list(TEMPOS.values()))
+    return rng.choice(list(TEMPOS.values()))
 
-def choisir_tempo_avec_nom():
+def choisir_tempo_avec_nom(rng):
     """
     Retourne un tuple (nom, BPM) pour le tempo choisi aléatoirement
     """
-    nom, bpm = random.choice(list(TEMPOS.items()))
+    nom, bpm = rng.choice(list(TEMPOS.items()))
     return nom, bpm

@@ -1,5 +1,4 @@
-# gammes.py
-import random
+import rng
 
 NOTE = {
     "C": 0,
@@ -46,10 +45,10 @@ GAMMES = {
     "B_minor": [NOTE["B"], NOTE["C#"], NOTE["D"], NOTE["E"], NOTE["F#"], NOTE["G"], NOTE["A"]]
 }
 
-def choisir_gamme():
+def choisir_gamme(rng):
     """Retourne (nom_gamme, notes_gamme)"""
-    return random.choice(list(GAMMES.items()))
+    return rng.choice(list(GAMMES.items()))
 
-def choisir_note(gamme_notes):
+def choisir_note(rng, gamme_notes):
     """Retourne une note de la gamme"""
-    return random.choice(gamme_notes)
+    return rng.choice(gamme_notes)
