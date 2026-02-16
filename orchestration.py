@@ -1,4 +1,4 @@
-import pretty_midi
+import pretty_midi # type: ignore
 from instruments import INSTRUMENTS
 
 ROLES = [

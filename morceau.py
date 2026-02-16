@@ -1,4 +1,4 @@
-import pretty_midi
+import pretty_midi # type: ignore
 from piste import Piste
 from orchestration import choisir_instrument_pour_role
 

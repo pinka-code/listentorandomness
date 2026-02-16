@@ -1,4 +1,5 @@
-import rythme, pretty_midi, orchestration, octaves, nuances
+import rythme, orchestration, nuances
+import pretty_midi # type: ignore
 
 class Mesure:
     def __init__(self, motif, motif_rythmique, role, nom_instrument, config, rng):
@@ -67,7 +68,9 @@ class Mesure:
         note_base = self.config.notes_gamme[degre]
         octave = self.role.choisir_octave(self)
         pitch = note_base + 12 * octave
-        return orchestration.ajuster_pitch_au_registre(pitch, self.nom_instrument)
+        pitch = orchestration.ajuster_pitch_au_registre(pitch, self.nom_instrument)
+        pitch = max(0, min(127, pitch))
+        return pitch
 
     def _corriger_duree(self, time, time_start, duration, duree_mesure):
         """Ajuste la durée pour ne pas dépasser la mesure"""
