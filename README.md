@@ -17,3 +17,7 @@ Music program based on random generation
 
 🎼 Ajouter signature rythmique (4/4, 3/4, 6/8)
 🎵 Ajouter forme musicale (AABA, ABA, etc.)
+
+python -m pytest
+
+python main.py

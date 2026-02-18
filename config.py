@@ -19,6 +19,7 @@ class MusicConfig:
     longueur_phrase_max: int
     variation_phrase_prob: float
     prob_resolution_tonique: float
+    tonique_midi: int
 
 def generer_structure(rng):
     tempo_nom, tempo_bpm = tempo.choisir_tempo_avec_nom(rng)
@@ -34,6 +35,8 @@ def generer_structure(rng):
     variation_phrase_prob = 0.7   # 70 % de chance de varier le motif
     prob_resolution_tonique = 0.5 # 50 % de chance de résoudre la phrase
 
+    tonique_midi = armature_obj.tonique()
+
     return MusicConfig(
         armature_nom = nom_armature,
         notes_gamme = notes_gamme,
@@ -48,5 +51,6 @@ def generer_structure(rng):
         longueur_phrase_min=longueur_phrase_min,
         longueur_phrase_max=longueur_phrase_max,
         variation_phrase_prob=variation_phrase_prob,
-        prob_resolution_tonique=prob_resolution_tonique
+        prob_resolution_tonique=prob_resolution_tonique,
+        tonique_midi=tonique_midi
     )

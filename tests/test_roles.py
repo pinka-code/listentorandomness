@@ -1,77 +1,84 @@
 import pytest # type: ignore
-import types
 import random
 
-from roles import (
-    RoleComportement,
-    RoleMelodie,
-    RoleBasse,
-    RolePad,
-    RoleContrechant,
-    creer_role
-)
+from roles import RoleMelodie, RoleBasse, RolePad, RoleContrechant
 
-class FakeMesure:
-    """Mesure factice pour tests de rôle"""
-    def __init__(self, motif=[0,1,2], rng=None):
-        self.motif = motif
-        self.rng = rng or random.Random()
+class FakeConfig:
+    # notes_gamme modulo 12
+    notes_gamme = [0, 2, 4, 5, 7, 9, 11]
+    tempo_bpm = 120
+    signature_num = 4
+    signature_den = 4
+    duree_totale = 16.0
+    longueur_phrase_min = 1
+    longueur_phrase_max = 2
+    variation_phrase_prob = 0.5
+    prob_resolution_tonique = 0.5
+    tonique_midi = 60
 
 @pytest.fixture
 def rng():
     return random.Random(42)
 
 @pytest.fixture
-def mesure_factice(rng):
-    return FakeMesure(rng=rng)
+def config():
+    return FakeConfig()
 
-def test_creer_role_instancie_le_bon_role():
-    r1 = creer_role("melodie")
-    r2 = creer_role("basse")
-    r3 = creer_role("pad")
-    r4 = creer_role("contrechant")
-    r_default = creer_role("inconnu")
+@pytest.mark.parametrize("RoleClass", [RoleMelodie, RoleBasse, RolePad, RoleContrechant])
+def test_role_generer_pitch_octave_et_velocity(config, rng, RoleClass):
+    role = RoleClass(config=config, rng=rng)
 
-    assert isinstance(r1, RoleMelodie)
-    assert isinstance(r2, RoleBasse)
-    assert isinstance(r3, RolePad)
-    assert isinstance(r4, RoleContrechant)
-    assert isinstance(r_default, RoleComportement)
+    for _ in range(20):
+        degre = rng.randint(0, len(config.notes_gamme)-1)
+        octave = role.choisir_octave()
+        pitch = role.choisir_pitch(degre, octave)
+        velocity = role.ajuster_velocity(80)
 
-def test_choisir_degre_rol_comportement(mesure_factice):
-    role = RoleComportement()
-    motif_idx = 0
-    degre = role.choisir_degre(mesure_factice, motif_idx)
-    assert degre in mesure_factice.motif
+        # pitch doit être dans la gamme relative modulo 12
+        intervalle = (pitch - config.tonique_midi) % 12
+        assert intervalle in config.notes_gamme, f"Intervalle {intervalle} pas dans la gamme {config.notes_gamme}"
 
-def test_choisir_octave_range(mesure_factice):
-    roles = [RoleComportement(), RoleMelodie(), RoleBasse(), RolePad(), RoleContrechant()]
-    for role in roles:
-        octave = role.choisir_octave(mesure_factice)
-        assert 0 <= octave <= 5  # plage réaliste pour tests
+        # pitch MIDI valide
+        assert 0 <= pitch <= 127
 
-def test_ajuster_velocity(mesure_factice):
-    roles = [RoleComportement(), RoleMelodie(), RoleBasse(), RolePad(), RoleContrechant()]
-    for role in roles:
-        v = 64
-        v2 = role.ajuster_velocity(v)
-        assert 0 <= v2 <= 127
-        # tests spécifiques aux rôles
-        if isinstance(role, RoleMelodie):
-            assert v2 == min(127, v + 10)
-        elif isinstance(role, RoleBasse):
-            assert v2 == min(127, v + 5)
-        elif isinstance(role, RolePad):
-            assert v2 == max(20, v - 10)
-        elif isinstance(role, RoleContrechant):
-            assert v2 == min(127, v + 5)
-        else:
-            assert v2 == v
+        # velocity valide
+        assert 0 <= velocity <= 127
 
-def test_choisir_note_finale(mesure_factice, rng):
-    roles = [RoleMelodie(), RoleBasse(), RolePad(), RoleContrechant(), RoleComportement()]
-    for role in roles:
-        degre, octave, fraction_duree = role.choisir_note_finale(mesure_factice, config=types.SimpleNamespace(notes_gamme=list(range(12))), rng=rng)
-        assert degre in range(12)
-        assert 0 <= octave <= 5
-        assert 0.0 < fraction_duree <= 1.0
+def test_role_note_finale(config, rng):
+    role = RoleMelodie(config=config, rng=rng)
+
+    for _ in range(20):
+        pitch, fraction = role.choisir_note_finale()
+
+        intervalle = (pitch - config.tonique_midi) % 12
+        assert intervalle in config.notes_gamme
+
+        # fraction doit être positive et <=1
+        assert 0 < fraction <= 1
+
+def test_role_octave_variation(config, rng):
+    role = RoleBasse(config=config, rng=rng)
+    octaves = set(role.choisir_octave() for _ in range(50))
+    # on attend plusieurs octaves possibles pour ce rôle
+    assert octaves <= {1, 2}
+
+def test_role_velocity_adjustment(config, rng):
+    role = RolePad(config=config, rng=rng)
+
+    # velocity de base 80 → doit diminuer de 10 pour pad
+    v = role.ajuster_velocity(80)
+    assert v == 70
+
+def test_role_pitch_deterministe(config):
+    # Avec un rng fixé, le pitch doit être déterministe
+    rng1 = random.Random(123)
+    rng2 = random.Random(123)
+    role1 = RoleMelodie(config=config, rng=rng1)
+    role2 = RoleMelodie(config=config, rng=rng2)
+
+    degre = 2
+    octave = role1.choisir_octave()
+    pitch1 = role1.choisir_pitch(degre, octave)
+    pitch2 = role2.choisir_pitch(degre, octave)
+
+    assert pitch1 == pitch2

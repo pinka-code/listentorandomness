@@ -1,49 +1,75 @@
-import mesure, nuances, rythme, roles
-from mesure import Mesure
+from note import Note
 
 class Phrase:
-    def __init__(self, config, rng, role, nom_instrument):
+    """
+    Responsabilités :
+    - Orchestrer plusieurs mesures
+    - Appliquer variation du motif mélodique
+    - Ajouter la note finale
+    """
+
+    def __init__(
+        self,
+        config,
+        motif_melodique,
+        motif_rythmique,
+        nb_mesures,
+        role,
+        mesure_class,
+        rng,
+    ):
         self.config = config
+        self.motif_melodique = motif_melodique
+        self.motif_rythmique = motif_rythmique
+        self.nb_mesures = nb_mesures
+        self.role = role
+        self.mesure_class = mesure_class
         self.rng = rng
-        self.role = roles.creer_role(role)
-        self.nom_instrument = nom_instrument
-        self.nb_mesures = rng.randint(config.longueur_phrase_min, config.longueur_phrase_max)
-        self.motif = self.generer_motif_melodique()
-        self.motif_rythmique = self.generer_motif_rythmique()
-        self.nuance = nuances.choisir_nuance(rng)
 
-    def generer_motif_melodique(self):
-        """Génère le motif mélodique de la phrase"""
-        motif = []
+    def _varier_motif(self, motif):
+        return [
+            degre + self.rng.choice([-1, 0, 1])
+            for degre in motif
+        ]
 
-        for _ in range(4):  # 4 notes par mesure
-            degre = self.rng.randint(0, len(self.config.notes_gamme)-1)
-            motif.append(degre)
+    def _ajouter_note_finale(self, notes, nuance):
+        pitch, fraction_duree = self.role.choisir_note_finale()
 
-        return motif
+        last_time = max(n.start + n.duration for n in notes)
 
-    def generer_motif_rythmique(self):
-        """Génère le motif rythmique de la phrase"""
-        duree_mesure = Mesure.calculer_duree(self.config.signature_num, self.config.signature_den)
-        return rythme.generer_motif_rythmique_pour_role(duree_mesure, self.rng, self.role)
-    
-    def jouer(self, instr, time_depart):
+        notes.append(
+            Note(
+                pitch=pitch,
+                start=last_time,
+                duration=fraction_duree,
+                velocity=nuance,
+            )
+        )
+
+    def jouer(self, time_depart: float, nuance: int):
+        notes = []
+        current_time = time_depart
+        motif_courant = self.motif_melodique
+
         for i in range(self.nb_mesures):
-            motif_courant = self.motif
+
             if i > 0 and self.rng.random() < self.config.variation_phrase_prob:
-                motif_courant = self.varier_motif()
+                motif_courant = self._varier_motif(motif_courant)
 
-            m = mesure.Mesure(motif_courant, self.motif_rythmique, self.role, self.nom_instrument, self.config, self.rng)
-            time_depart = m.jouer(instr, time_depart, self.nuance)
-            time_depart = m.ajouter_tonique(instr, time_depart, nuance_phrase=self.nuance)
+            mesure = self.mesure_class(
+                self.config,
+                motif_courant,
+                self.motif_rythmique,
+                self.role,
+            )
 
-        return time_depart
+            notes_mesure = mesure.jouer(current_time, nuance)
 
-    def varier_motif(self):
-        """Retourne une version légèrement modifiée du motif"""
-        nouveau = self.motif.copy()
+            notes.extend(notes_mesure)
 
-        index = self.rng.randint(0, len(nouveau)-1)
-        nouveau[index] = self.rng.randint(0, len(nouveau)-1)
+            duree_mesure = sum(n.duration for n in notes_mesure)
+            current_time += duree_mesure
 
-        return nouveau
+        self._ajouter_note_finale(notes, nuance)
+
+        return notes
