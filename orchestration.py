@@ -1,23 +1,23 @@
-import pretty_midi # type: ignore
+import pretty_midi  # type: ignore
 from instruments import INSTRUMENTS
 
 ROLES = [
-    "melodie",
-    "contrechant",
-    "harmonie",
-    "basse",
+    "melody",
+    "countermelody",
+    "harmony",
+    "bass",
     "pad"
 ]
 
 ORCHESTRATION = {
-    "melodie": ["Violin", "Flute", "Oboe", "Clarinet", "Trumpet"],
-    "contrechant": ["Viola", "Clarinet", "French Horn"],
-    "harmonie": ["Acoustic Grand Piano", "String Ensemble 1", "Church Organ"],
-    "basse": ["Cello", "Contrabass", "Electric Bass (finger)", "Acoustic Bass"],
+    "melody": ["Violin", "Flute", "Oboe", "Clarinet", "Trumpet"],
+    "countermelody": ["Viola", "Clarinet", "French Horn"],
+    "harmony": ["Acoustic Grand Piano", "String Ensemble 1", "Church Organ"],
+    "bass": ["Cello", "Contrabass", "Electric Bass (finger)", "Acoustic Bass"],
     "pad": ["Pad 1 (new age)", "String Ensemble 1"]
 }
 
-REGISTRES = {
+RANGES = {
     "Violin": (55, 103),
     "Viola": (48, 88),
     "Cello": (36, 76),
@@ -41,21 +41,8 @@ REGISTRES = {
     "Acoustic Bass": (28, 60),
 }
 
-def choisir_instrument_pour_role(rng, role):
-    nom = rng.choice(ORCHESTRATION[role])
-    programme = INSTRUMENTS[nom]
-    instrument = pretty_midi.Instrument(program=programme)
-    return instrument, nom
-
-def ajuster_pitch_au_registre(pitch, instrument_name):
-    if instrument_name not in REGISTRES:
-        return pitch
-
-    bas, haut = REGISTRES[instrument_name]
-
-    while pitch < bas:
-        pitch += 12
-    while pitch > haut:
-        pitch -= 12
-
-    return pitch
+def choose_instrument_for_role(rng, role):
+    name = rng.choice(ORCHESTRATION[role])
+    program = INSTRUMENTS[name]
+    instrument = pretty_midi.Instrument(program=program)
+    return instrument, name

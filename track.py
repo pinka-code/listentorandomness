@@ -1,7 +1,6 @@
 from phrase import Phrase
-from note import Note
 
-class Piste:
+class Track:
     """
     Responsabilité :
     - Générer des phrases successives
@@ -15,51 +14,51 @@ class Piste:
         rng,
         role,
         instrument,
-        nom_instrument,
-        mesure_class,
+        instrument_name,
+        measure_class,
     ):
         self.config = config
         self.rng = rng
         self.role = role
         self.instrument = instrument
-        self.nom_instrument = nom_instrument
-        self.mesure_class = mesure_class
+        self.instrument_name = instrument_name
+        self.measure_class = measure_class
 
-    def _generer_motif(self):
+    def _generate_pattern(self):
         return [
-            self.rng.randint(0, len(self.config.notes_gamme) - 1)
+            self.rng.randint(0, len(self.config.scale_notes) - 1)
             for _ in range(self.rng.randint(
-                self.config.longueur_phrase_min,
-                self.config.longueur_phrase_max
+                self.config.phrase_length_min,
+                self.config.phrase_length_max
             ))
         ]
 
-    def _generer_rythme(self, taille):
-        return [1.0 for _ in range(taille)]
+    def _generate_rhythm(self, size):
+        return [1.0 for _ in range(size)]
 
-    def generer(self):
+    def generate(self):
         time = 0.0
 
-        while time < self.config.duree_totale:
-            motif_melodique = self._generer_motif()
-            rythme = self._generer_rythme(len(motif_melodique))
+        while time < self.config.total_duration:
+            melodic_pattern = self._generate_pattern()
+            rhythm = self._generate_rhythm(len(melodic_pattern))
 
             phrase = Phrase(
                 config=self.config,
-                motif_melodique=motif_melodique,
-                motif_rythmique=rythme,
-                nb_mesures=1,
+                melodic_pattern=melodic_pattern,
+                rhythmic_pattern=rhythm,
+                measure_count=1,
                 role=self.role,
-                mesure_class=self.mesure_class,
+                measure_class=self.measure_class,
                 rng=self.rng,
             )
 
-            notes = phrase.jouer(time_depart=time, nuance=80) #TODO config ici
+            notes = phrase.play(start_time=time, velocity=80) #TODO config ici
 
             for note in notes:
                 end_time = note.start + note.duration
 
-                if end_time <= self.config.duree_totale:
+                if end_time <= self.config.total_duration:
                     self.instrument.notes.append(note.to_midi())
 
             if notes:

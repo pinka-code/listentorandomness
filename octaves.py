@@ -5,8 +5,8 @@ OCTAVES = {
     "OCTAVE_6": 6
 }
 
-def choisir_octave(rng):
+def choose_octave(rng):
     """
-    Retourne une octave aléatoire (valeur entière)
+    Returns a random octave (integer value).
     """
     return rng.choice(list(OCTAVES.values()))

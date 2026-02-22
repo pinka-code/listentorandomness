@@ -1,21 +1,21 @@
 import rng, config
-import morceau
+import composition
 
-# Choix du générateur
+# Generator choice
 random_generator = rng.DefaultRandom(seed=42)
 # random_generator = rng.BiasedRandom(seed=42)
 
-cfg = config.generer_structure(random_generator)
+cfg = config.generate_structure(random_generator)
 
-print("===== CONFIGURATION DU MORCEAU =====")
-print(f"Tonalité : {cfg.armature_nom}")
-print(f"Tempo : {cfg.tempo_nom} → {cfg.tempo_bpm} BPM")
-print(f"Signature rythmique : {cfg.signature_nom}")
-print(f"Nombre de pistes : {cfg.num_pistes}")
-print(f"Durée totale cible : {cfg.duree_totale} sec")
+print("===== COMPOSITION CONFIGURATION =====")
+print(f"Key signature: {cfg.key_name}")
+print(f"Tempo: {cfg.tempo_name} → {cfg.tempo_bpm} BPM")
+print(f"Time signature: {cfg.time_signature_name}")
+print(f"Number of tracks: {cfg.num_tracks}")
+print(f"Target total duration: {cfg.total_duration} sec")
 print("=====================================")
 
-part = morceau.Morceau(cfg, random_generator)
-midi = part.generer()
+part = composition.Composition(cfg, random_generator)
+midi = part.generate()
 midi.write('generative_structured.mid')
-print("MIDI généré ! 🎶")
+print("MIDI generated ! 🎶")

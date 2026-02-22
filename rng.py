@@ -35,7 +35,7 @@ class BiasedRandom(RandomInterface):
         self._random = random.Random(seed)
 
     def choice(self, seq):
-        return seq[0]  # toujours premier élément
+        return seq[0]  # always first element
 
     def randint(self, a, b):
         return int(a + (b - a) * (self._random.random() ** 2))

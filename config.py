@@ -1,56 +1,56 @@
 from dataclasses import dataclass
 import tempo
-import signature
-from armature import Armature
+import time_signature
+from key_signature import KeySignature
 
 @dataclass(frozen=True)
 class MusicConfig:
-    armature_nom: Armature
-    notes_gamme: list
-    tempo_nom: str
+    key_name: KeySignature
+    scale_notes: list
+    tempo_name: str
     tempo_bpm: int
-    signature_nom: str
-    signature_num: int
-    signature_den: int
-    signature_type: str
-    num_pistes: int
-    duree_totale: float
-    longueur_phrase_min: int
-    longueur_phrase_max: int
-    variation_phrase_prob: float
-    prob_resolution_tonique: float
-    tonique_midi: int
+    time_signature_name: str
+    time_signature_num: int
+    time_signature_den: int
+    time_signature_type: str
+    num_tracks: int
+    total_duration: float
+    phrase_length_min: int
+    phrase_length_max: int
+    phrase_variation_prob: float
+    tonic_resolution_prob: float
+    tonic_midi: int
 
-def generer_structure(rng):
-    tempo_nom, tempo_bpm = tempo.choisir_tempo_avec_nom(rng)
-    armature_obj = Armature.choisir_armature(rng)
-    nom_armature = armature_obj.name
-    notes_gamme = armature_obj.generer_gamme()
-    signature_nom, sig_num, sig_den, sig_type = signature.choisir_signature(rng)
-    num_pistes = rng.randint(1, 5)
-    duree_totale = rng.randint(30, 180)
+def generate_structure(rng):
+    tempo_name, tempo_bpm = tempo.choose_tempo_with_name(rng)
+    key_obj = KeySignature.choose_key_signature(rng)
+    key_name = key_obj.name
+    scale_notes = key_obj.generate_scale()
+    time_signature_name, sig_num, sig_den, sig_type = time_signature.choose_time_signature(rng)
+    num_tracks = rng.randint(1, 5)
+    total_duration = rng.randint(30, 180)
 
-    longueur_phrase_min = 1
-    longueur_phrase_max = 4
-    variation_phrase_prob = 0.7   # 70 % de chance de varier le motif
-    prob_resolution_tonique = 0.5 # 50 % de chance de résoudre la phrase
+    phrase_length_min = 1
+    phrase_length_max = 4
+    phrase_variation_prob = 0.7   # 70% chance to vary the motif
+    tonic_resolution_prob = 0.5   # 50% chance to resolve the phrase
 
-    tonique_midi = armature_obj.tonique()
+    tonic_midi = key_obj.tonic()
 
     return MusicConfig(
-        armature_nom = nom_armature,
-        notes_gamme = notes_gamme,
-        tempo_nom=tempo_nom,
+        key_name=key_name,
+        scale_notes=scale_notes,
+        tempo_name=tempo_name,
         tempo_bpm=tempo_bpm,
-        signature_nom=signature_nom,
-        signature_num=sig_num,
-        signature_den=sig_den,
-        signature_type=sig_type,
-        num_pistes=num_pistes,
-        duree_totale=duree_totale,
-        longueur_phrase_min=longueur_phrase_min,
-        longueur_phrase_max=longueur_phrase_max,
-        variation_phrase_prob=variation_phrase_prob,
-        prob_resolution_tonique=prob_resolution_tonique,
-        tonique_midi=tonique_midi
+        time_signature_name=time_signature_name,
+        time_signature_num=sig_num,
+        time_signature_den=sig_den,
+        time_signature_type=sig_type,
+        num_tracks=num_tracks,
+        total_duration=total_duration,
+        phrase_length_min=phrase_length_min,
+        phrase_length_max=phrase_length_max,
+        phrase_variation_prob=phrase_variation_prob,
+        tonic_resolution_prob=tonic_resolution_prob,
+        tonic_midi=tonic_midi
     )

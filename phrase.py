@@ -2,38 +2,38 @@ from note import Note
 
 class Phrase:
     """
-    Responsabilités :
-    - Orchestrer plusieurs mesures
-    - Appliquer variation du motif mélodique
-    - Ajouter la note finale
+    Responsibilities:
+    - Orchestrate multiple measures
+    - Apply melodic pattern variations
+    - Add the final note
     """
 
     def __init__(
         self,
         config,
-        motif_melodique,
-        motif_rythmique,
-        nb_mesures,
+        melodic_pattern,
+        rhythmic_pattern,
+        measure_count,
         role,
-        mesure_class,
+        measure_class,
         rng,
     ):
         self.config = config
-        self.motif_melodique = motif_melodique
-        self.motif_rythmique = motif_rythmique
-        self.nb_mesures = nb_mesures
+        self.melodic_pattern = melodic_pattern
+        self.rhythmic_pattern = rhythmic_pattern
+        self.measure_count = measure_count
         self.role = role
-        self.mesure_class = mesure_class
+        self.measure_class = measure_class
         self.rng = rng
 
-    def _varier_motif(self, motif):
+    def _change_pattern(self, motif):
         return [
             degre + self.rng.choice([-1, 0, 1])
             for degre in motif
         ]
 
-    def _ajouter_note_finale(self, notes, nuance):
-        pitch, fraction_duree = self.role.choisir_note_finale()
+    def _add_final_note(self, notes, velocity):
+        pitch, fraction_duree = self.role.choose_final_note()
 
         last_time = max(n.start + n.duration for n in notes)
 
@@ -42,34 +42,34 @@ class Phrase:
                 pitch=pitch,
                 start=last_time,
                 duration=fraction_duree,
-                velocity=nuance,
+                velocity=velocity,
             )
         )
 
-    def jouer(self, time_depart: float, nuance: int):
+    def play(self, start_time: float, velocity: int):
         notes = []
-        current_time = time_depart
-        motif_courant = self.motif_melodique
+        current_time = start_time
+        current_pattern = self.melodic_pattern
 
-        for i in range(self.nb_mesures):
+        for i in range(self.measure_count):
 
-            if i > 0 and self.rng.random() < self.config.variation_phrase_prob:
-                motif_courant = self._varier_motif(motif_courant)
+            if i > 0 and self.rng.random() < self.config.phrase_variation_prob:
+                current_pattern = self._change_pattern(current_pattern)
 
-            mesure = self.mesure_class(
+            measure = self.measure_class(
                 self.config,
-                motif_courant,
-                self.motif_rythmique,
+                current_pattern,
+                self.melodic_pattern,
                 self.role,
             )
 
-            notes_mesure = mesure.jouer(current_time, nuance)
+            measure_notes = measure.play(current_time, velocity)
 
-            notes.extend(notes_mesure)
+            notes.extend(measure_notes)
 
-            duree_mesure = sum(n.duration for n in notes_mesure)
-            current_time += duree_mesure
+            measure_duration = sum(n.duration for n in measure_notes)
+            current_time += measure_duration
 
-        self._ajouter_note_finale(notes, nuance)
+        self._add_final_note(notes, velocity)
 
         return notes

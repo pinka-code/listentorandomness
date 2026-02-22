@@ -2,6 +2,7 @@ import pytest
 from phrase import Phrase
 from note import Note
 
+
 class DummyRandom:
     def __init__(self):
         self._random_value = 0.0
@@ -18,31 +19,31 @@ class DummyRandom:
 
 
 class DummyRole:
-    def choisir_pitch(self, degre, index_note):
-        return 60 + degre
+    def choose_pitch(self, degree, note_index):
+        return 60 + degree
 
-    def ajuster_velocity(self, velocity, index_note):
+    def adjust_velocity(self, velocity, note_index):
         return velocity
 
-    def choisir_note_finale(self):
-        degre = 0
+    def choose_final_note(self):
+        degree = 0
         octave = 3
-        fraction_duree = 0.5
-        pitch = self.choisir_pitch(degre, octave)
-        return pitch, fraction_duree
+        duration_ratio = 0.5
+        pitch = self.choose_pitch(degree, octave)
+        return pitch, duration_ratio
 
 
-class DummyMesure:
-    def __init__(self, config, motif, rythme, role):
-        self.rythme = rythme
+class DummyMeasure:
+    def __init__(self, config, melodic_pattern, rhythmic_pattern, role):
+        self.rhythm = rhythmic_pattern
 
-    def jouer(self, time_depart, nuance):
+    def play(self, start_time, dynamic):
         return [
             Note(
                 pitch=60,
-                start=time_depart,
+                start=start_time,
                 duration=1.0,
-                velocity=nuance,
+                velocity=dynamic,
             )
         ]
 
@@ -50,45 +51,45 @@ class DummyMesure:
 @pytest.fixture
 def config():
     class DummyConfig:
-        variation_phrase_prob = 0.5
+        phrase_variation_prob = 0.5
     return DummyConfig()
 
 
-def test_phrase_ajoute_note_finale(config):
+def test_phrase_adds_final_note(config):
     role = DummyRole()
     rnd = DummyRandom()
 
     phrase = Phrase(
         config=config,
-        motif_melodique=[0],
-        motif_rythmique=[1],
-        nb_mesures=1,
+        melodic_pattern=[0],
+        rhythmic_pattern=[1],
+        measure_count=1,
         role=role,
-        mesure_class=DummyMesure,
+        measure_class=DummyMeasure,
         rng=rnd,
     )
 
-    notes = phrase.jouer(time_depart=0, nuance=80)
+    notes = phrase.play(start_time=0, velocity=80)
 
     assert len(notes) == 2
     assert notes[-1].pitch == 60
 
 
-def test_phrase_applique_variation(config):
+def test_phrase_applies_variation(config):
     role = DummyRole()
     rnd = DummyRandom()
-    rnd._random_value = 0.1  # inférieur à 0.5 → variation
+    rnd._random_value = 0.1  # less than 0.5 → apply variation
 
     phrase = Phrase(
         config=config,
-        motif_melodique=[0],
-        motif_rythmique=[1],
-        nb_mesures=2,
+        melodic_pattern=[0],
+        rhythmic_pattern=[1],
+        measure_count=2,
         role=role,
-        mesure_class=DummyMesure,
+        measure_class=DummyMeasure,
         rng=rnd,
     )
 
-    notes = phrase.jouer(time_depart=0, nuance=80)
+    notes = phrase.play(start_time=0, velocity=80)
 
-    assert len(notes) == 3  # 2 mesures + note finale
+    assert len(notes) == 3  # 2 measures + final note

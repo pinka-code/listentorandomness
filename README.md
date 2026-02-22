@@ -2,22 +2,26 @@
 
 Music program based on random generation
 
-| Élément       | Exemple d’aléatoire                  |
-| ------------- | ------------------------------------ |
-| Notes         | dans une gamme ou libre              |
-| Octaves       | 3 à 6, pondérées par rôle            |
-| Rythme        | durées variables, silences, syncopes |
-| Nuances       | 40–127, crescendos                   |
-| Instruments   | par piste, rôle musical              |
-| Type d’onde   | sine / square / saw / triangle       |
-| ADSR          | attaque, decay, sustain, release     |
-| Articulations | staccato / legato / trills           |
-| Structure     | motifs, sections, progressions       |
-| Tempo         | 60–180 BPM, ou variations            |
+| Element       | Example of randomness                   |
+| ------------- | --------------------------------------- |
+| Notes         | within a scale or free                  |
+| Octaves       | 3 to 6, weighted by role                |
+| Rhythm        | variable durations, rests, syncopations |
+| Dynamics      | 40–127, crescendos                      |
+| Instruments   | per track, according to musical role    |
+| Wave Type     | sine / square / saw / triangle          |
+| ADSR          | attack, decay, sustain, release         |
+| Articulations | staccato / legato / trills              |
+| Structure     | motifs, sections, progressions          |
+| Tempo         | 60–180 BPM, or variations               |
+| Musical Form  | AABA, ABA, etc.                         |
 
-🎼 Ajouter signature rythmique (4/4, 3/4, 6/8)
-🎵 Ajouter forme musicale (AABA, ABA, etc.)
+# Launch
 
+```bash
 python -m pytest
+```
 
+```bash
 python main.py
+```

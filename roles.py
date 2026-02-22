@@ -1,124 +1,124 @@
-class RoleComportement:
+class RoleBehavior:
     """
-    Responsabilité :
-    - Déterminer le pitch à partir d'un degré musical
-    - Adapter la vélocité selon le contexte musical
-    - Fournir la note de résolution finale
-    - Encapsuler le comportement musical spécifique d'un rôle (mélodie, basse, accompagnement, etc.)
+    Responsibility:
+    - Determine the pitch from a musical degree
+    - Adjust velocity according to musical context
+    - Provide the final resolution note
+    - Encapsulate specific musical behavior for a role (melody, bass, accompaniment, etc.)
     """
 
-    nom = "default"
+    name = "default"
 
     def __init__(self, config, rng=None):
         self.config = config
         self.rng = rng
 
-    def choisir_degre(self, mesure=None, motif_idx=0):
-        """Choisit le degré dans le motif (par défaut motif cyclique)."""
-        if mesure:
-            return mesure.motif[motif_idx % len(mesure.motif)]
+    def choose_degree(self, measure=None, motif_idx=0):
+        """Chooses the degree in the pattern (default: cyclic)."""
+        if measure:
+            return measure.motif[motif_idx % len(measure.motif)]
         return 0
 
-    def choisir_octave(self):
-        """Octave par défaut (3 ou 4)."""
+    def choose_octave(self):
+        """Default octave (3 or 4)."""
         return self.rng.choice([3, 4])
 
-    def ajuster_velocity(self, velocity: int, idx=0) -> int:
-        """Ajuste la vélocité selon le rôle (pas de changement par défaut)."""
+    def adjust_velocity(self, velocity: int, idx=0) -> int:
+        """Adjust velocity based on the role (no change by default)."""
         return velocity
 
-    def choisir_pitch(self, degre: int, octave: int) -> int:
-        """Retourne le pitch MIDI final en fonction du degré et de l'octave."""
-        note_base = self.config.notes_gamme[degre % len(self.config.notes_gamme)]
-        return note_base + 12 * octave
+    def choose_pitch(self, degree: int, octave: int) -> int:
+        """Returns the final MIDI pitch based on degree and octave."""
+        base_note = self.config.scale_notes[degree % len(self.config.scale_notes)]
+        return base_note + 12 * octave
 
-    def choisir_note_finale(self):
-        """Retourne un tuple (pitch, fraction_duree) pour la note finale."""
-        degre = 0
-        octave = self.choisir_octave()
-        fraction_duree = 0.5
-        pitch = self.choisir_pitch(degre, octave)
-        return pitch, fraction_duree
+    def choose_final_note(self):
+        """Returns a tuple (pitch, duration_ratio) for the final note."""
+        degree = 0
+        octave = self.choose_octave()
+        duration_ratio = 0.5
+        pitch = self.choose_pitch(degree, octave)
+        return pitch, duration_ratio
 
 
-class RoleMelodie(RoleComportement):
-    nom = "melodie"
+class RoleMelody(RoleBehavior):
+    name = "melody"
 
-    def choisir_octave(self):
+    def choose_octave(self):
         return self.rng.choice([4, 5])
 
-    def ajuster_velocity(self, velocity: int, idx=0) -> int:
+    def adjust_velocity(self, velocity: int, idx=0) -> int:
         return min(127, velocity + 10)
 
-    def choisir_note_finale(self):
-        degre = 0
-        octave = self.choisir_octave()
-        fraction_duree = 0.5
-        pitch = self.choisir_pitch(degre, octave)
-        return pitch, fraction_duree
+    def choose_final_note(self):
+        degree = 0
+        octave = self.choose_octave()
+        duration_ratio = 0.5
+        pitch = self.choose_pitch(degree, octave)
+        return pitch, duration_ratio
 
 
-class RoleBasse(RoleComportement):
-    nom = "basse"
+class RoleBass(RoleBehavior):
+    name = "bass"
 
-    def choisir_degre(self, mesure=None, motif_idx=0):
-        return self.rng.choice([0, 4])  # tonique ou quinte
+    def choose_degree(self, measure=None, motif_idx=0):
+        return self.rng.choice([0, 4])  # tonic or fifth
 
-    def choisir_octave(self):
+    def choose_octave(self):
         return self.rng.choice([1, 2])
 
-    def ajuster_velocity(self, velocity: int, idx=0) -> int:
+    def adjust_velocity(self, velocity: int, idx=0) -> int:
         return min(127, velocity + 5)
 
-    def choisir_note_finale(self):
-        degre = 0
+    def choose_final_note(self):
+        degree = 0
         octave = self.rng.choice([1, 2])
-        fraction_duree = 0.5
-        pitch = self.choisir_pitch(degre, octave)
-        return pitch, fraction_duree
+        duration_ratio = 0.5
+        pitch = self.choose_pitch(degree, octave)
+        return pitch, duration_ratio
 
 
-class RolePad(RoleComportement):
-    nom = "pad"
+class RolePad(RoleBehavior):
+    name = "pad"
 
-    def choisir_octave(self):
+    def choose_octave(self):
         return self.rng.choice([3, 4])
 
-    def ajuster_velocity(self, velocity: int, idx=0) -> int:
+    def adjust_velocity(self, velocity: int, idx=0) -> int:
         return max(20, velocity - 10)
 
-    def choisir_note_finale(self):
-        degre = 0
-        octave = self.choisir_octave()
-        fraction_duree = 1.0
-        pitch = self.choisir_pitch(degre, octave)
-        return pitch, fraction_duree
+    def choose_final_note(self):
+        degree = 0
+        octave = self.choose_octave()
+        duration_ratio = 1.0
+        pitch = self.choose_pitch(degree, octave)
+        return pitch, duration_ratio
 
 
-class RoleContrechant(RoleComportement):
-    nom = "contrechant"
+class RoleCountermelody(RoleBehavior):
+    name = "countermelody"
 
-    def choisir_octave(self):
+    def choose_octave(self):
         return self.rng.choice([3, 4])
 
-    def ajuster_velocity(self, velocity: int, idx=0) -> int:
+    def adjust_velocity(self, velocity: int, idx=0) -> int:
         return min(127, velocity + 5)
 
-    def choisir_note_finale(self):
-        degre = 0
-        octave = self.choisir_octave()
-        fraction_duree = 0.5
-        pitch = self.choisir_pitch(degre, octave)
-        return pitch, fraction_duree
+    def choose_final_note(self):
+        degree = 0
+        octave = self.choose_octave()
+        duration_ratio = 0.5
+        pitch = self.choose_pitch(degree, octave)
+        return pitch, duration_ratio
 
 
-def creer_role(role_nom: str, config=None, rng=None) -> RoleComportement:
-    """Renvoie l'objet rôle correspondant au nom et l'instancie."""
+def create_role(role_name: str, config=None, rng=None) -> RoleBehavior:
+    """Returns the role object corresponding to the name and instantiates it."""
     mapping = {
-        "melodie": RoleMelodie,
-        "basse": RoleBasse,
+        "melody": RoleMelody,
+        "bass": RoleBass,
         "pad": RolePad,
-        "contrechant": RoleContrechant,
+        "countermelody": RoleCountermelody,
     }
-    RoleClass = mapping.get(role_nom.lower(), RoleComportement)
+    RoleClass = mapping.get(role_name.lower(), RoleBehavior)
     return RoleClass(config=config, rng=rng)
