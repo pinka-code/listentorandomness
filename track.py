@@ -1,4 +1,5 @@
 from phrase import Phrase
+import dynamics
 
 class Track:
     """
@@ -42,6 +43,7 @@ class Track:
         while time < self.config.total_duration:
             melodic_pattern = self._generate_pattern()
             rhythm = self._generate_rhythm(len(melodic_pattern))
+            velocity = dynamics.choose_dynamic(self.rng)
 
             phrase = Phrase(
                 config=self.config,
@@ -49,11 +51,12 @@ class Track:
                 rhythmic_pattern=rhythm,
                 measure_count=1,
                 role=self.role,
+                velocity=velocity,
                 measure_class=self.measure_class,
                 rng=self.rng,
             )
 
-            notes = phrase.play(start_time=time, velocity=80) #TODO config ici
+            notes = phrase.play(start_time=time)
 
             for note in notes:
                 end_time = note.start + note.duration

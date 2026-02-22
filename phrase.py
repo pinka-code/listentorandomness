@@ -15,6 +15,7 @@ class Phrase:
         rhythmic_pattern,
         measure_count,
         role,
+        velocity,
         measure_class,
         rng,
     ):
@@ -23,6 +24,7 @@ class Phrase:
         self.rhythmic_pattern = rhythmic_pattern
         self.measure_count = measure_count
         self.role = role
+        self.velocity = velocity
         self.measure_class = measure_class
         self.rng = rng
 
@@ -46,7 +48,7 @@ class Phrase:
             )
         )
 
-    def play(self, start_time: float, velocity: int):
+    def play(self, start_time: float):
         notes = []
         current_time = start_time
         current_pattern = self.melodic_pattern
@@ -63,13 +65,13 @@ class Phrase:
                 self.role,
             )
 
-            measure_notes = measure.play(current_time, velocity)
+            measure_notes = measure.play(current_time, self.velocity)
 
             notes.extend(measure_notes)
 
             measure_duration = sum(n.duration for n in measure_notes)
             current_time += measure_duration
 
-        self._add_final_note(notes, velocity)
+        self._add_final_note(notes, self.velocity)
 
         return notes

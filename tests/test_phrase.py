@@ -65,11 +65,12 @@ def test_phrase_adds_final_note(config):
         rhythmic_pattern=[1],
         measure_count=1,
         role=role,
+        velocity=80,
         measure_class=DummyMeasure,
         rng=rnd,
     )
 
-    notes = phrase.play(start_time=0, velocity=80)
+    notes = phrase.play(start_time=0)
 
     assert len(notes) == 2
     assert notes[-1].pitch == 60
@@ -86,10 +87,11 @@ def test_phrase_applies_variation(config):
         rhythmic_pattern=[1],
         measure_count=2,
         role=role,
+        velocity=80,
         measure_class=DummyMeasure,
         rng=rnd,
     )
 
-    notes = phrase.play(start_time=0, velocity=80)
+    notes = phrase.play(start_time=0)
 
     assert len(notes) == 3  # 2 measures + final note
