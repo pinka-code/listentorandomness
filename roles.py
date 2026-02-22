@@ -1,4 +1,5 @@
 from orchestration import Role
+import octaves
 
 class RoleBehavior:
     """
@@ -23,7 +24,8 @@ class RoleBehavior:
 
     def choose_octave(self):
         """Default octave (3 or 4)."""
-        return self.rng.choice([3, 4])
+        oct = [octaves.Octave.OCTAVE_3, octaves.Octave.OCTAVE_4]
+        return octaves.choose_octave(self.rng, oct)
 
     def adjust_velocity(self, velocity: int, idx=0) -> int:
         """Adjust velocity based on the role (no change by default)."""
@@ -47,7 +49,8 @@ class RoleMelody(RoleBehavior):
     name = Role.MELODY
 
     def choose_octave(self):
-        return self.rng.choice([4, 5])
+        oct = [octaves.Octave.OCTAVE_4, octaves.Octave.OCTAVE_5]
+        return octaves.choose_octave(self.rng, oct)
 
     def adjust_velocity(self, velocity: int, idx=0) -> int:
         return min(127, velocity + 10)
@@ -67,7 +70,8 @@ class RoleBass(RoleBehavior):
         return self.rng.choice([0, 4])  # tonic or fifth
 
     def choose_octave(self):
-        return self.rng.choice([1, 2])
+        oct = [octaves.Octave.OCTAVE_1, octaves.Octave.OCTAVE_2]
+        return octaves.choose_octave(self.rng, oct)
 
     def adjust_velocity(self, velocity: int, idx=0) -> int:
         return min(127, velocity + 5)
@@ -84,7 +88,8 @@ class RolePad(RoleBehavior):
     name = Role.PAD
 
     def choose_octave(self):
-        return self.rng.choice([3, 4])
+        oct = [octaves.Octave.OCTAVE_3, octaves.Octave.OCTAVE_4]
+        return octaves.choose_octave(self.rng, oct)
 
     def adjust_velocity(self, velocity: int, idx=0) -> int:
         return max(20, velocity - 10)
@@ -101,7 +106,8 @@ class RoleCountermelody(RoleBehavior):
     name = Role.COUNTERMELODY
 
     def choose_octave(self):
-        return self.rng.choice([3, 4])
+        oct = [octaves.Octave.OCTAVE_3, octaves.Octave.OCTAVE_4]
+        return octaves.choose_octave(self.rng, oct)
 
     def adjust_velocity(self, velocity: int, idx=0) -> int:
         return min(127, velocity + 5)
