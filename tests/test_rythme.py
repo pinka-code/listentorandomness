@@ -1,6 +1,7 @@
 import pytest  # type: ignore
 import random
 import rhythm
+from orchestration import Role
 
 
 @pytest.fixture
@@ -32,7 +33,7 @@ def test_generate_rhythmic_pattern_sum_correct(rng, length_beats):
     assert all(d in rhythm.DURATIONS.values() for d in pattern)
 
 
-@pytest.mark.parametrize("role", ["pad", "bass", "harmony", "counterpoint", "melody"])
+@pytest.mark.parametrize("role", [Role.PAD, Role.BASS, Role.HARMONY, Role.COUNTERMELODY, Role.MELODY])
 def test_generate_rhythmic_pattern_for_role_sum_correct(rng, role):
     measure_length = 4.0
     pattern = rhythm.generate_rhythmic_pattern_for_role(measure_length, rng, role)
@@ -40,17 +41,17 @@ def test_generate_rhythmic_pattern_for_role_sum_correct(rng, role):
     assert abs(total - measure_length) < 1e-6
 
     # role-specific checks
-    if role == "pad":
+    if role == Role.PAD:
         assert len(pattern) == 1
         assert pattern[0] == measure_length
-    elif role == "bass":
+    elif role == Role.BASS:
         assert all(d == 1.0 for d in pattern)
         assert len(pattern) == int(measure_length)
-    elif role == "harmony":
+    elif role == Role.HARMONY:
         assert all(d > 0 for d in pattern)
         assert total == pytest.approx(measure_length, abs=1e-6)
-    elif role == "melody":
+    elif role == Role.MELODY:
         assert all(d <= 1.0 for d in pattern)
-    elif role == "counterpoint":
+    elif role == Role.COUNTERMELODY:
         assert all(d > 0 for d in pattern)
         assert total == pytest.approx(measure_length, abs=1e-6)

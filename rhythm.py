@@ -1,3 +1,5 @@
+from orchestration import Role
+
 DURATIONS = {
     "SIXTEENTH_NOTE": 0.125,
     "THIRTY_SECOND_NOTE": 0.25,
@@ -28,17 +30,17 @@ def generate_rhythmic_pattern_for_role(measure_duration, rng, role):
     The sum of durations equals the measure duration.
     """
 
-    if role == "pad":
+    if role == Role.PAD:
         # Single long note
         return [measure_duration]
 
-    elif role == "bass":
+    elif role == Role.BASS:
         # Notes on strong beats
         # example 4/4 → 4 quarter notes
         beats = int(measure_duration)
         return [1.0 for _ in range(beats)]
 
-    elif role == "harmony":
+    elif role == Role.HARMONY:
         # Half notes or regular quarter notes
         if rng.random() < 0.5:
             return [measure_duration / 2, measure_duration / 2]
@@ -46,11 +48,11 @@ def generate_rhythmic_pattern_for_role(measure_duration, rng, role):
             beats = int(measure_duration)
             return [1.0 for _ in range(beats)]
 
-    elif role == "countermelody":
+    elif role == Role.COUNTERMELODY:
         # Moderate pattern
         return generate_rhythmic_pattern(measure_duration, rng)
 
-    elif role == "melody":
+    elif role == Role.MELODY:
         # More movement → subdivisions
         pattern = []
         remaining = measure_duration

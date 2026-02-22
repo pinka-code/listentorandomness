@@ -3,6 +3,7 @@ import pretty_midi  # type: ignore
 from track import Track
 from orchestration import choose_instrument_for_role
 from roles import create_role
+from orchestration import Role
 from measure import Measure
 
 
@@ -21,13 +22,13 @@ class Composition:
         self.tracks = []
 
     def _used_roles(self):
-        roles = ["melody", "harmony", "bass"]
+        roles = [Role.MELODY, Role.HARMONY, Role.BASS]
 
         if self.rng.random() < 0.5:
-            roles.append("countermelody")
+            roles.append(Role.COUNTERMELODY)
 
         if self.rng.random() < 0.3:
-            roles.append("pad")
+            roles.append(Role.PAD)
 
         return roles
 

@@ -1,3 +1,5 @@
+from orchestration import Role
+
 class RoleBehavior:
     """
     Responsibilities:
@@ -42,7 +44,7 @@ class RoleBehavior:
 
 
 class RoleMelody(RoleBehavior):
-    name = "melody"
+    name = Role.MELODY
 
     def choose_octave(self):
         return self.rng.choice([4, 5])
@@ -59,7 +61,7 @@ class RoleMelody(RoleBehavior):
 
 
 class RoleBass(RoleBehavior):
-    name = "bass"
+    name = Role.BASS
 
     def choose_degree(self, measure=None, motif_idx=0):
         return self.rng.choice([0, 4])  # tonic or fifth
@@ -79,7 +81,7 @@ class RoleBass(RoleBehavior):
 
 
 class RolePad(RoleBehavior):
-    name = "pad"
+    name = Role.PAD
 
     def choose_octave(self):
         return self.rng.choice([3, 4])
@@ -96,7 +98,7 @@ class RolePad(RoleBehavior):
 
 
 class RoleCountermelody(RoleBehavior):
-    name = "countermelody"
+    name = Role.COUNTERMELODY
 
     def choose_octave(self):
         return self.rng.choice([3, 4])
@@ -115,10 +117,10 @@ class RoleCountermelody(RoleBehavior):
 def create_role(role_name: str, config=None, rng=None) -> RoleBehavior:
     """Returns the role object corresponding to the name and instantiates it."""
     mapping = {
-        "melody": RoleMelody,
-        "bass": RoleBass,
-        "pad": RolePad,
-        "countermelody": RoleCountermelody,
+        Role.MELODY: RoleMelody,
+        Role.BASS: RoleBass,
+        Role.PAD: RolePad,
+        Role.COUNTERMELODY: RoleCountermelody,
     }
-    RoleClass = mapping.get(role_name.lower(), RoleBehavior)
+    RoleClass = mapping.get(role_name, RoleBehavior)
     return RoleClass(config=config, rng=rng)

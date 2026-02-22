@@ -1,20 +1,21 @@
 import pretty_midi  # type: ignore
 from instruments import INSTRUMENTS
 
-ROLES = [
-    "melody",
-    "countermelody",
-    "harmony",
-    "bass",
-    "pad"
-]
+from enum import Enum
+
+class Role(Enum):
+    MELODY = "melody"
+    COUNTERMELODY = "countermelody"
+    HARMONY = "harmony"
+    BASS = "bass"
+    PAD = "pad"
 
 ORCHESTRATION = {
-    "melody": ["Violin", "Flute", "Oboe", "Clarinet", "Trumpet"],
-    "countermelody": ["Viola", "Clarinet", "French Horn"],
-    "harmony": ["Acoustic Grand Piano", "String Ensemble 1", "Church Organ"],
-    "bass": ["Cello", "Contrabass", "Electric Bass (finger)", "Acoustic Bass"],
-    "pad": ["Pad 1 (new age)", "String Ensemble 1"]
+    Role.MELODY: ["Violin", "Flute", "Oboe", "Clarinet", "Trumpet"],
+    Role.COUNTERMELODY: ["Viola", "Clarinet", "French Horn"],
+    Role.HARMONY: ["Acoustic Grand Piano", "String Ensemble 1", "Church Organ"],
+    Role.BASS: ["Cello", "Contrabass", "Electric Bass (finger)", "Acoustic Bass"],
+    Role.PAD: ["Pad 1 (new age)", "String Ensemble 1"]
 }
 
 RANGES = {
