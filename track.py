@@ -3,10 +3,10 @@ import dynamics
 
 class Track:
     """
-    Responsabilité :
-    - Générer des phrases successives
-    - Remplir l'instrument avec les notes produites
-    - Respecter la durée totale du morceau
+    Responsibilities:
+    - Generate successive phrases
+    - Fill the instrument with the produced notes
+    - Respect the total duration of the composition
     """
 
     def __init__(

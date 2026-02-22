@@ -1,6 +1,6 @@
 class RoleBehavior:
     """
-    Responsibility:
+    Responsibilities:
     - Determine the pitch from a musical degree
     - Adjust velocity according to musical context
     - Provide the final resolution note

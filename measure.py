@@ -2,7 +2,7 @@ from note import Note
 
 class Measure:
     """
-    Responsibility:
+    Responsibilities:
     - Generate the notes of a measure
     - Apply melodic + rhythmic pattern
     - Delegate pitch and velocity decisions to the Role

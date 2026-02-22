@@ -8,7 +8,7 @@ from measure import Measure
 
 class Composition:
     """
-    Responsibility:
+    Responsibilities:
     - Orchestrate the tracks
     - Create MIDI instruments
     - Instantiate musical roles
