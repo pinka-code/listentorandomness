@@ -43,6 +43,7 @@ class Composition:
                 self.rng,
                 role_name,
             )
+            print(f"Instrument: {instrument_name}")
 
             role = create_role(
                 role_name=role_name,

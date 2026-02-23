@@ -24,6 +24,15 @@ class DummyRole:
 
     def adjust_velocity(self, velocity, note_index):
         return velocity
+    
+    def generate_rhythm(self, measure_duration):
+        pattern = []
+        remaining = measure_duration
+        while remaining > 0:
+            dur = 1.0 if remaining >= 1.0 else remaining
+            pattern.append((dur, False))  # False = no silence
+            remaining -= dur
+        return pattern
 
     def choose_final_note(self):
         degree = 0
@@ -52,6 +61,8 @@ class DummyMeasure:
 def config():
     class DummyConfig:
         phrase_variation_prob = 0.5
+        time_signature_num = 4
+        time_signature_den = 4
     return DummyConfig()
 
 
@@ -62,7 +73,6 @@ def test_phrase_adds_final_note(config):
     phrase = Phrase(
         config=config,
         melodic_pattern=[0],
-        rhythmic_pattern=[1],
         measure_count=1,
         role=role,
         velocity=80,
@@ -84,7 +94,6 @@ def test_phrase_applies_variation(config):
     phrase = Phrase(
         config=config,
         melodic_pattern=[0],
-        rhythmic_pattern=[1],
         measure_count=2,
         role=role,
         velocity=80,

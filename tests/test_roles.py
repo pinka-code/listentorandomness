@@ -43,6 +43,9 @@ def test_role_final_note(config, rng):
         assert interval in config.scale_notes
         assert 0 < fraction <= 1
 
+def test_default_role_phrase_length(config):
+    role = RoleBehavior(config=config, rng=None)
+    assert role.phrase_length() == 4
 
 def test_role_generate_rhythm_structure(config, rng):
     roles = [RoleMelody, RoleBass, RolePad, RoleCountermelody]

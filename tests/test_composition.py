@@ -39,6 +39,15 @@ class DummyRole(RoleBehavior):
 
     def adjust_velocity(self, velocity, idx):
         return velocity
+    
+    def generate_rhythm(self, measure_duration):
+        pattern = []
+        remaining = measure_duration
+        while remaining > 0:
+            dur = 1.0 if remaining >= 1.0 else remaining
+            pattern.append((dur, False))  # False = no silence
+            remaining -= dur
+        return pattern
 
     def choose_pitch(self, degree, index):
         """For tests, just return tonic + octave*12 + degree modulo scale"""
@@ -56,6 +65,8 @@ def config():
         scale_notes = [0, 2, 4, 5, 7]
         phrase_variation_prob = 0.0
         tonic_midi = 60
+        time_signature_num = 4
+        time_signature_den = 4
     return DummyConfig()
 
 

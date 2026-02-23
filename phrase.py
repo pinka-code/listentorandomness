@@ -12,7 +12,6 @@ class Phrase:
         self,
         config,
         melodic_pattern,
-        rhythmic_pattern,
         measure_count,
         role,
         velocity,
@@ -21,7 +20,6 @@ class Phrase:
     ):
         self.config = config
         self.melodic_pattern = melodic_pattern
-        self.rhythmic_pattern = rhythmic_pattern
         self.measure_count = measure_count
         self.role = role
         self.velocity = velocity
@@ -33,6 +31,16 @@ class Phrase:
             degre + self.rng.choice([-1, 0, 1])
             for degre in motif
         ]
+    
+    def _compute_measure_duration(self) -> float:
+        """
+        Compute measure duration in quarter-note units.
+        (1.0 = quarter note)
+        """
+        num = self.config.time_signature_num
+        den = self.config.time_signature_den
+
+        return num * (4 / den)
 
     def _add_final_note(self, notes, velocity):
         pitch, fraction_duree = self.role.choose_final_note()
@@ -58,19 +66,23 @@ class Phrase:
             if i > 0 and self.rng.random() < self.config.phrase_variation_prob:
                 current_pattern = self._change_pattern(current_pattern)
 
+            measure_duration = self._compute_measure_duration()
+            rhythmic_pattern = self.role.generate_rhythm(measure_duration)
+
             measure = self.measure_class(
                 self.config,
                 current_pattern,
-                self.melodic_pattern,
+                rhythmic_pattern,
                 self.role,
             )
 
             measure_notes = measure.play(current_time, self.velocity)
-
             notes.extend(measure_notes)
 
-            measure_duration = sum(n.duration for n in measure_notes)
-            current_time += measure_duration
+            measure_duration_sum = sum(
+                dur if isinstance(dur, float) else dur[0] for dur in rhythmic_pattern
+            )
+            current_time += measure_duration_sum
 
         self._add_final_note(notes, self.velocity)
 

@@ -18,7 +18,6 @@ class MusicConfig:
     phrase_length_min: int
     phrase_length_max: int
     phrase_variation_prob: float
-    tonic_resolution_prob: float
     tonic_midi: int
 
 def generate_structure(rng):
@@ -33,7 +32,6 @@ def generate_structure(rng):
     phrase_length_min = 1
     phrase_length_max = 4
     phrase_variation_prob = 0.7   # 70% chance to vary the motif
-    tonic_resolution_prob = 0.5   # 50% chance to resolve the phrase
 
     tonic_midi = key_obj.tonic()
 
@@ -51,6 +49,5 @@ def generate_structure(rng):
         phrase_length_min=phrase_length_min,
         phrase_length_max=phrase_length_max,
         phrase_variation_prob=phrase_variation_prob,
-        tonic_resolution_prob=tonic_resolution_prob,
         tonic_midi=tonic_midi
     )

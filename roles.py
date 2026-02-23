@@ -4,10 +4,12 @@ import octaves, rhythm
 class RoleBehavior:
     """
     Responsibilities:
-    - Determine the pitch from a musical degree
-    - Adjust velocity according to musical context
-    - Provide the final resolution note
-    - Encapsulate specific musical behavior for a role (melody, bass, accompaniment, etc.)
+    - Define musical identity of a role (melody, harmony, bass, pad, etc.)
+    - Control pitch selection (degree + octave)
+    - Control expressive parameters (velocity shaping)
+    - Define rhythmic behavior
+    - Define phrase structure length
+    - Provide a final resolution note behavior
     """
 
     name = "default"
@@ -42,6 +44,9 @@ class RoleBehavior:
             self.rng,
             rest_probability=0.0
         )
+    
+    def phrase_length(self):
+        return 4
 
     def choose_final_note(self):
         """Returns a tuple (pitch, duration_ratio) for the final note."""
@@ -68,6 +73,9 @@ class RoleMelody(RoleBehavior):
             self.rng,
             rest_probability=0.15
         )
+    
+    def phrase_length(self):
+        return 4
 
     def choose_final_note(self):
         degree = 0
@@ -76,6 +84,32 @@ class RoleMelody(RoleBehavior):
         pitch = self.choose_pitch(degree, octave)
         return pitch, duration_ratio
 
+class RoleHarmony(RoleBehavior):
+    name = Role.HARMONY
+
+    def choose_octave(self):
+        oct = [octaves.Octave.OCTAVE_3, octaves.Octave.OCTAVE_4]
+        return octaves.choose_octave(self.rng, oct)
+
+    def adjust_velocity(self, velocity: int, idx=0) -> int:
+        return velocity
+
+    def generate_rhythm(self, measure_duration):
+        return rhythm.generate_rhythmic_pattern(
+            measure_duration,
+            self.rng,
+            rest_probability=0.05
+        )
+    
+    def phrase_length(self):
+        return 2
+
+    def choose_final_note(self):
+        degree = 0
+        octave = self.choose_octave()
+        duration_ratio = 1.0
+        pitch = self.choose_pitch(degree, octave)
+        return pitch, duration_ratio
 
 class RoleBass(RoleBehavior):
     name = Role.BASS
@@ -92,6 +126,9 @@ class RoleBass(RoleBehavior):
     
     def generate_rhythm(self, measure_duration):
         return [(1.0, False) for _ in range(int(measure_duration))]
+    
+    def phrase_length(self):
+        return 8
 
     def choose_final_note(self):
         degree = 0
@@ -113,6 +150,9 @@ class RolePad(RoleBehavior):
     
     def generate_rhythm(self, measure_duration):
         return [measure_duration]
+    
+    def phrase_length(self):
+        return 8
 
     def choose_final_note(self):
         degree = 0
@@ -138,6 +178,9 @@ class RoleCountermelody(RoleBehavior):
             self.rng,
             rest_probability=0.25
         )
+    
+    def phrase_length(self):
+        return 4
 
     def choose_final_note(self):
         degree = 0
@@ -151,6 +194,7 @@ def create_role(role_name: str, config=None, rng=None) -> RoleBehavior:
     """Returns the role object corresponding to the name and instantiates it."""
     mapping = {
         Role.MELODY: RoleMelody,
+        Role.HARMONY: RoleHarmony,
         Role.BASS: RoleBass,
         Role.PAD: RolePad,
         Role.COUNTERMELODY: RoleCountermelody,
