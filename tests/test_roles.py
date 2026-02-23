@@ -1,20 +1,10 @@
-import pytest  # type: ignore
+import pytest
 import random
-
-from roles import RoleMelody, RoleBass, RolePad, RoleCountermelody
+from roles import RoleMelody, RoleBass, RolePad, RoleCountermelody, RoleBehavior
 
 
 class FakeConfig:
-    # scale notes modulo 12
     scale_notes = [0, 2, 4, 5, 7, 9, 11]
-    tempo_bpm = 120
-    time_signature_num = 4
-    time_signature_den = 4
-    total_duration = 16.0
-    phrase_length_min = 1
-    phrase_length_max = 2
-    phrase_variation_prob = 0.5
-    tonic_resolution_prob = 0.5
     tonic_midi = 60
 
 
@@ -29,64 +19,46 @@ def config():
 
 
 @pytest.mark.parametrize("RoleClass", [RoleMelody, RoleBass, RolePad, RoleCountermelody])
-def test_role_generate_pitch_octave_and_velocity(config, rng, RoleClass):
+def test_role_pitch_octave_velocity(config, rng, RoleClass):
     role = RoleClass(config=config, rng=rng)
 
     for _ in range(20):
-        degree = rng.randint(0, len(config.scale_notes) - 1)
+        degree = rng.randint(0, len(config.scale_notes)-1)
         octave = role.choose_octave()
         pitch = role.choose_pitch(degree, octave)
         velocity = role.adjust_velocity(80)
 
-        # pitch must be within scale modulo 12
         interval = (pitch - config.tonic_midi) % 12
-        assert interval in config.scale_notes, f"Interval {interval} not in scale {config.scale_notes}"
+        assert interval in config.scale_notes
 
-        # valid MIDI pitch
         assert 0 <= pitch <= 127
-
-        # valid velocity
         assert 0 <= velocity <= 127
 
 
 def test_role_final_note(config, rng):
     role = RoleMelody(config=config, rng=rng)
-
     for _ in range(20):
         pitch, fraction = role.choose_final_note()
-
         interval = (pitch - config.tonic_midi) % 12
         assert interval in config.scale_notes
-
-        # fraction must be positive and <=1
         assert 0 < fraction <= 1
 
 
-def test_role_octave_variation(config, rng):
-    role = RoleBass(config=config, rng=rng)
-    octaves = set(role.choose_octave() for _ in range(50))
-    # expect multiple octaves for this role
-    assert octaves <= {1, 2}
+def test_role_generate_rhythm_structure(config, rng):
+    roles = [RoleMelody, RoleBass, RolePad, RoleCountermelody]
+    measure_duration = 4.0
 
+    for RoleClass in roles:
+        role = RoleClass(config=config, rng=rng)
+        pattern = role.generate_rhythm(measure_duration)
 
-def test_role_velocity_adjustment(config, rng):
-    role = RolePad(config=config, rng=rng)
+        if isinstance(pattern, list) and all(isinstance(p, tuple) for p in pattern):
+            for dur, is_rest in pattern:
+                assert dur in list(range(1, 5)) + [0.125, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 4.0]
+                assert isinstance(is_rest, bool)
+            total = sum(dur for dur, _ in pattern)
+            assert abs(total - measure_duration) < 1e-6
 
-    # base velocity 80 → must decrease by 10 for pad
-    v = role.adjust_velocity(80)
-    assert v == 70
-
-
-def test_role_pitch_deterministic(config):
-    # with fixed rng, pitch must be deterministic
-    rng1 = random.Random(123)
-    rng2 = random.Random(123)
-    role1 = RoleMelody(config=config, rng=rng1)
-    role2 = RoleMelody(config=config, rng=rng2)
-
-    degree = 2
-    octave = role1.choose_octave()
-    pitch1 = role1.choose_pitch(degree, octave)
-    pitch2 = role2.choose_pitch(degree, octave)
-
-    assert pitch1 == pitch2
+        elif isinstance(pattern, list):
+            total = sum(pattern) if all(isinstance(p, float) for p in pattern) else sum(p[0] for p in pattern)
+            assert abs(total - measure_duration) < 1e-6

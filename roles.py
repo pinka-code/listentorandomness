@@ -1,5 +1,5 @@
 from orchestration import Role
-import octaves
+import octaves, rhythm
 
 class RoleBehavior:
     """
@@ -35,6 +35,13 @@ class RoleBehavior:
         """Returns the final MIDI pitch based on degree and octave."""
         base_note = self.config.scale_notes[degree % len(self.config.scale_notes)]
         return base_note + 12 * octave
+    
+    def generate_rhythm(self, measure_duration):
+        return rhythm.generate_rhythmic_pattern(
+            measure_duration,
+            self.rng,
+            rest_probability=0.0
+        )
 
     def choose_final_note(self):
         """Returns a tuple (pitch, duration_ratio) for the final note."""
@@ -54,6 +61,13 @@ class RoleMelody(RoleBehavior):
 
     def adjust_velocity(self, velocity: int, idx=0) -> int:
         return min(127, velocity + 10)
+    
+    def generate_rhythm(self, measure_duration):
+        return rhythm.generate_rhythmic_pattern(
+            measure_duration,
+            self.rng,
+            rest_probability=0.15
+        )
 
     def choose_final_note(self):
         degree = 0
@@ -75,6 +89,9 @@ class RoleBass(RoleBehavior):
 
     def adjust_velocity(self, velocity: int, idx=0) -> int:
         return min(127, velocity + 5)
+    
+    def generate_rhythm(self, measure_duration):
+        return [(1.0, False) for _ in range(int(measure_duration))]
 
     def choose_final_note(self):
         degree = 0
@@ -93,6 +110,9 @@ class RolePad(RoleBehavior):
 
     def adjust_velocity(self, velocity: int, idx=0) -> int:
         return max(20, velocity - 10)
+    
+    def generate_rhythm(self, measure_duration):
+        return [measure_duration]
 
     def choose_final_note(self):
         degree = 0
@@ -111,6 +131,13 @@ class RoleCountermelody(RoleBehavior):
 
     def adjust_velocity(self, velocity: int, idx=0) -> int:
         return min(127, velocity + 5)
+    
+    def generate_rhythm(self, measure_duration):
+        return rhythm.generate_rhythmic_pattern(
+            measure_duration,
+            self.rng,
+            rest_probability=0.25
+        )
 
     def choose_final_note(self):
         degree = 0
