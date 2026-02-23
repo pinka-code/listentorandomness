@@ -76,6 +76,29 @@ class RoleMelody(RoleBehavior):
         pitch = self.choose_pitch(degree, octave)
         return pitch, duration_ratio
 
+class RoleHarmony(RoleBehavior):
+    name = Role.HARMONY
+
+    def choose_octave(self):
+        oct = [octaves.Octave.OCTAVE_3, octaves.Octave.OCTAVE_4]
+        return octaves.choose_octave(self.rng, oct)
+
+    def adjust_velocity(self, velocity: int, idx=0) -> int:
+        return velocity
+
+    def generate_rhythm(self, measure_duration):
+        return rhythm.generate_rhythmic_pattern(
+            measure_duration,
+            self.rng,
+            rest_probability=0.05
+        )
+
+    def choose_final_note(self):
+        degree = 0
+        octave = self.choose_octave()
+        duration_ratio = 1.0
+        pitch = self.choose_pitch(degree, octave)
+        return pitch, duration_ratio
 
 class RoleBass(RoleBehavior):
     name = Role.BASS
@@ -151,6 +174,7 @@ def create_role(role_name: str, config=None, rng=None) -> RoleBehavior:
     """Returns the role object corresponding to the name and instantiates it."""
     mapping = {
         Role.MELODY: RoleMelody,
+        Role.HARMONY: RoleHarmony,
         Role.BASS: RoleBass,
         Role.PAD: RolePad,
         Role.COUNTERMELODY: RoleCountermelody,

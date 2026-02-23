@@ -20,7 +20,7 @@ def config():
 
 def test_measure_generates_notes_from_pattern(config):
     pattern = [0, 2, 4]
-    rhythm = [1, 1, 1]
+    rhythm = [(1, False), (1, False), (1, False)]  # tuples (duration, is_rest)
 
     role = DummyRole()
     measure = Measure(config, pattern, rhythm, role)
@@ -35,7 +35,7 @@ def test_measure_generates_notes_from_pattern(config):
 
 def test_measure_applies_role_velocity(config):
     pattern = [0]
-    rhythm = [1]
+    rhythm = [(1, False)]
 
     role = DummyRole()
     measure = Measure(config, pattern, rhythm, role)
@@ -47,7 +47,7 @@ def test_measure_applies_role_velocity(config):
 
 def test_measure_respects_timing(config):
     pattern = [0, 1]
-    rhythm = [1, 2]
+    rhythm = [(1, False), (2, False)]
 
     role = DummyRole()
     measure = Measure(config, pattern, rhythm, role)

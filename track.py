@@ -34,21 +34,16 @@ class Track:
             ))
         ]
 
-    def _generate_rhythm(self, size):
-        return [1.0 for _ in range(size)]
-
     def generate(self):
         time = 0.0
 
         while time < self.config.total_duration:
             melodic_pattern = self._generate_pattern()
-            rhythm = self._generate_rhythm(len(melodic_pattern))
             velocity = dynamics.choose_dynamic(self.rng)
 
             phrase = Phrase(
                 config=self.config,
                 melodic_pattern=melodic_pattern,
-                rhythmic_pattern=rhythm,
                 measure_count=1,
                 role=self.role,
                 velocity=velocity,
