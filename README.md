@@ -101,4 +101,5 @@ python -m pytest
 
 🎹 Example Output
 
-*Under construction*
+- MID: generative_structured.mid
+- Visualisation: *Under construction*
