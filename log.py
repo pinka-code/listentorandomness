@@ -10,8 +10,6 @@ logging.basicConfig(
     filemode="w",
 )
 
-log = logging.getLogger(__name__)
-
 def midi_to_name(pitch):
     note = NOTE_NAMES[pitch % 12]
     octave = pitch // 12 - 1
@@ -26,24 +24,25 @@ def debug_notes(midi, logger=None):
         logger = logging.getLogger(__name__)
 
     if not midi.instruments:
-        log.debug("--- MIDI EVENTS (no instruments) ---")
+        logger.debug("--- MIDI EVENTS (no instruments) ---")
         return
 
-    log.debug("--- MIDI EVENTS ---")
+    logger.debug("--- MIDI EVENTS ---")
 
     for instrument in midi.instruments:
         instrument_name = instrument.name or "Unnamed Instrument"
-        log.debug(f"Instrument: {instrument_name}")
+        logger.debug(f"Instrument: {instrument_name}")
 
         notes_sorted = sorted(instrument.notes, key=lambda n: n.start)
 
         for n in notes_sorted:
             name = midi_to_name(n.pitch)
-            log.debug(
+            logger.debug(
                 f"start={n.start:6.2f} | "
                 f"dur={n.end - n.start:6.2f} | "
                 f"pitch={name:4} | "
                 f"vel={n.velocity:3}"
             )
 
-    log.debug("-------------------")
+
+    logger.debug("-------------------")
