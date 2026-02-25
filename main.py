@@ -1,5 +1,6 @@
 import rng, config
 import composition
+import log
 
 # Generator choice
 random_generator = rng.DefaultRandom(seed=42)
@@ -17,5 +18,6 @@ print("=====================================")
 
 part = composition.Composition(cfg, random_generator)
 midi = part.generate()
+log.debug_notes(midi)
 midi.write('generative_structured.mid')
 print("MIDI generated ! 🎶")

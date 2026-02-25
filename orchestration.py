@@ -45,5 +45,5 @@ RANGES = {
 def choose_instrument_for_role(rng, role):
     name = rng.choice(ORCHESTRATION[role])
     program = INSTRUMENTS[name]
-    instrument = pretty_midi.Instrument(program=program)
+    instrument = pretty_midi.Instrument(program=program, name=name)
     return instrument, name
