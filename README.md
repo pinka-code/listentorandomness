@@ -93,6 +93,7 @@ python -m pip install -e .
 ```bash
 python -m listener_to_randomness.cli.generate_midi
 ltr-generate-midi # post install
+python -m listener_to_randomness.cli.visualize generative_structured.mid
 ```
 
 Launch unit tests
