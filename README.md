@@ -93,7 +93,8 @@ python -m pip install -e .
 ```bash
 python -m listener_to_randomness.cli.generate_midi
 ltr-generate-midi # post install
-python -m listener_to_randomness.cli.visualize generative_structured.mid
+python -m listener_to_randomness.cli.visualize generative_structured.mid src/listener_to_randomness/visualisation/plots --mode timeline
+python -m listener_to_randomness.cli.visualize generative_structured.mid src/listener_to_randomness/visualisation/plots/midi_analysis --mode analysis
 ```
 
 Launch unit tests

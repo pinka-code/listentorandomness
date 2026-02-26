@@ -92,10 +92,104 @@ def plot_midi_pitch_time_velocity(midi_path, output_dir="src/listener_to_randomn
         print(f"Saved {file_path}")
         fig_count += 1
 
-if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python midi_visualizer.py fichier.mid outputdir")
-        sys.exit(1)
 
-    midi_file = sys.argv[1]
-    plot_midi_pitch_time_velocity(midi_file)
+def analyze_midi_tracks(midi_path, output_dir="midi_analysis", time_bin=0.1):
+    """
+    Analyze each track of a MIDI file and generate multiple plots per instrument:
+        - Melody contour (pitch vs time)
+        - Pitch histogram
+        - Duration histogram
+        - Rhythmic density (notes per time window)
+        - Velocity over time
+
+    Files are saved in a dedicated folder per instrument.
+
+    Parameters:
+        midi_path (str): path to the MIDI file
+        output_dir (str): output directory
+        time_bin (float): bin size (seconds) for rhythmic density histogram
+    """
+    pm = pretty_midi.PrettyMIDI(midi_path)
+    instruments = [inst for inst in pm.instruments if inst.notes]
+
+    if not instruments:
+        print("No tracks with notes found.")
+        return
+
+    os.makedirs(output_dir, exist_ok=True)
+
+    for inst in instruments:
+        inst_name = inst.name or f"Instrument_{inst.program}"
+        safe_name = "".join(c if c.isalnum() else "_" for c in inst_name)
+        inst_dir = os.path.join(output_dir, safe_name)
+        os.makedirs(inst_dir, exist_ok=True)
+
+        times = np.array([note.start for note in inst.notes])
+        pitches = np.array([note.pitch for note in inst.notes])
+        velocities = np.array([note.velocity for note in inst.notes])
+        durations = np.array([note.end - note.start for note in inst.notes])
+
+        # Melody contour (Pitch vs Time)
+        plt.figure(figsize=(12, 4))
+        plt.plot(times, pitches, marker='o', linestyle='-')
+        plt.xlabel("Time (s)")
+        plt.ylabel("MIDI Pitch")
+        plt.title(f"Melody contour - {inst_name}")
+        plt.grid(True)
+        plt.tight_layout()
+        plt.savefig(os.path.join(inst_dir, "melody.png"), dpi=150)
+        plt.close()
+
+        # Pitch histogram
+        plt.figure(figsize=(12, 4))
+        plt.hist(pitches, bins=np.arange(0, 128) - 0.5,
+                 color="skyblue", edgecolor="black")
+        plt.xlabel("MIDI Pitch")
+        plt.ylabel("Note count")
+        plt.title(f"Pitch distribution - {inst_name}")
+        plt.grid(True)
+        plt.tight_layout()
+        plt.savefig(os.path.join(inst_dir, "pitch_hist.png"), dpi=150)
+        plt.close()
+
+        # Duration histogram
+        plt.figure(figsize=(12, 4))
+        plt.hist(durations, bins=20,
+                 color="lightgreen", edgecolor="black")
+        plt.xlabel("Duration (s)")
+        plt.ylabel("Note count")
+        plt.title(f"Note duration distribution - {inst_name}")
+        plt.grid(True)
+        plt.tight_layout()
+        plt.savefig(os.path.join(inst_dir, "duration_hist.png"), dpi=150)
+        plt.close()
+
+        # Rhythmic density
+        bins = np.arange(0, times.max() + time_bin, time_bin)
+        plt.figure(figsize=(12, 4))
+        plt.hist(times, bins=bins,
+                 color="salmon", edgecolor="black")
+        plt.xlabel("Time (s)")
+        plt.ylabel(f"Notes per {time_bin}s")
+        plt.title(f"Rhythmic density - {inst_name}")
+        plt.grid(True)
+        plt.tight_layout()
+        plt.savefig(os.path.join(inst_dir, "rhythm_density.png"), dpi=150)
+        plt.close()
+
+        # Velocity over time
+        plt.figure(figsize=(12, 4))
+        scatter = plt.scatter(times, pitches,
+                              c=velocities,
+                              cmap="magma",
+                              s=velocities)
+        plt.colorbar(scatter, label="Velocity")
+        plt.xlabel("Time (s)")
+        plt.ylabel("MIDI Pitch")
+        plt.title(f"Velocity over time - {inst_name}")
+        plt.grid(True)
+        plt.tight_layout()
+        plt.savefig(os.path.join(inst_dir, "velocity.png"), dpi=150)
+        plt.close()
+
+        print(f"Saved analysis for {inst_name} in {inst_dir}")
