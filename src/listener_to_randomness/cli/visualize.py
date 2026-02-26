@@ -17,7 +17,7 @@ def main():
         "--mode",
         type=str,
         default="timeline",
-        choices=["timeline", "piano_roll", "stats"],
+        choices=["timeline", "todo"],
         help="Visualization mode"
     )
 
@@ -26,11 +26,8 @@ def main():
     if args.mode == "timeline":
         plot_midi_pitch_time_velocity(args.midi_file)
 
-    elif args.mode == "piano_roll":
-        print("⚠ Piano roll mode not implemented yet.")
-
-    elif args.mode == "stats":
-        print("⚠ Stats mode not implemented yet.")
+    elif args.mode == "todo":
+        print("not implemented yet.")
 
 
 if __name__ == "__main__":

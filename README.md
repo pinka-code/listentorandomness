@@ -105,4 +105,4 @@ python -m pytest
 🎹 Example Output
 
 - MID: generative_structured.mid
-- Visualisation: *Under construction*
+- Visualisation: ![Visualisation](src\listener_to_randomness\visualisation\plots\midi_plot_2.png)
