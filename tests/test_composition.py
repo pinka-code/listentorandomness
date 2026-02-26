@@ -1,6 +1,6 @@
 import pytest
-from composition import Composition
-from roles import RoleBehavior
+from listener_to_randomness.core.composition import Composition
+from listener_to_randomness.core.roles import RoleBehavior
 
 
 class DummyInstrument:
@@ -76,7 +76,7 @@ def dummy_choose_instrument_for_role(rng, role):
 
 def test_composition_generates_tracks(monkeypatch, config):
     monkeypatch.setattr(
-        "composition.create_role",
+        "listener_to_randomness.core.composition.create_role",
         lambda **kwargs: DummyRole()
     )
 

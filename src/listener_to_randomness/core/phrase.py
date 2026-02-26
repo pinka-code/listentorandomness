@@ -1,4 +1,4 @@
-from note import Note
+from listener_to_randomness.midi.note import Note
 
 class Phrase:
     """

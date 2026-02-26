@@ -85,12 +85,14 @@ it is about exploring the boundary between randomness and intention.
 ```bash
 git clone https://github.com/pinka-code/listentorandomness.git
 cd listentorandomness
+python -m pip install -e .
 ```
 
 ▶️ Usage
 
 ```bash
-python main.py
+python -m listener_to_randomness.cli.generate_midi
+ltr-generate-midi # post install
 ```
 
 Launch unit tests

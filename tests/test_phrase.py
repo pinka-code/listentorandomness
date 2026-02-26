@@ -1,6 +1,6 @@
 import pytest
-from phrase import Phrase
-from note import Note
+from listener_to_randomness.core.phrase import Phrase
+from listener_to_randomness.midi.note import Note
 
 
 class DummyRandom:

@@ -1,5 +1,5 @@
-from orchestration import Role
-import octaves, rhythm
+from listener_to_randomness.midi.orchestration import Role
+from . import octaves, rhythm
 
 class RoleBehavior:
     """

@@ -1,5 +1,5 @@
 import pytest
-from measure import Measure
+from listener_to_randomness.core.measure import Measure
 
 
 class DummyRole:

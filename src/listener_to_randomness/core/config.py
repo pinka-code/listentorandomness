@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-import tempo
-import time_signature
-from key_signature import KeySignature
+from . import tempo
+from . import time_signature
+from .key_signature import KeySignature
 
 @dataclass(frozen=True)
 class MusicConfig:

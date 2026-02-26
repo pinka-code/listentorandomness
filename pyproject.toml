@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "listener-to-randomness"
+version = "0.1.0"
+description = "Experimental generative music framework to listen to randomness"
+authors = [
+    { name = "pinka-code" }
+]
+readme = "README.md"
+requires-python = ">=3.9"
+
+dependencies = []
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+ltr-generate-midi = "listener_to_randomness.cli.generate_midi:main"
+ltr-generate-score = "listener_to_randomness.cli.generate_score:main"
+ltr-visualize = "listener_to_randomness.cli.visualize:main"

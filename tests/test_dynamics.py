@@ -1,6 +1,6 @@
 import pytest  # type: ignore
 import random
-import dynamics
+from listener_to_randomness.core import dynamics
 
 @pytest.fixture
 def rng():

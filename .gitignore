@@ -2,5 +2,7 @@
 __pycache__/
 *.pyc
 
+listener_to_randomness.egg-info/
+
 todo.md
 .midi_debug.log

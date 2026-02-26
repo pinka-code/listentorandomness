@@ -1,5 +1,5 @@
 import pretty_midi  # type: ignore
-from instruments import INSTRUMENTS
+from listener_to_randomness.midi.instruments import INSTRUMENTS
 
 from enum import Enum
 

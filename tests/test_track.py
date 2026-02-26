@@ -1,6 +1,6 @@
 import pytest
-from track import Track
-from note import Note
+from listener_to_randomness.core.track import Track
+from listener_to_randomness.midi.note import Note
 
 
 class DummyInstrument:

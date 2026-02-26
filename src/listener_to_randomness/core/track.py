@@ -1,5 +1,5 @@
-from phrase import Phrase
-import dynamics
+from .phrase import Phrase
+from . import dynamics
 
 class Track:
     """

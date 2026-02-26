@@ -1,434 +1,434 @@
-2026-02-25 21:02:10,955 [DEBUG] --- MIDI EVENTS ---
-2026-02-25 21:02:10,955 [DEBUG] Instrument: Trumpet
-2026-02-25 21:02:10,955 [DEBUG] start=  0.00 | dur=  0.12 | pitch=E-1  | vel= 80
-2026-02-25 21:02:10,955 [DEBUG] start=  2.00 | dur=  0.50 | pitch=F#-1 | vel= 80
-2026-02-25 21:02:10,955 [DEBUG] start=  4.00 | dur=  1.00 | pitch=F#-1 | vel= 80
-2026-02-25 21:02:10,955 [DEBUG] start=  6.00 | dur=  1.00 | pitch=G#-1 | vel= 80
-2026-02-25 21:02:10,955 [DEBUG] start=  7.00 | dur=  0.50 | pitch=A3   | vel= 70
-2026-02-25 21:02:10,955 [DEBUG] start=  7.50 | dur=  0.75 | pitch=A-1  | vel= 20
-2026-02-25 21:02:10,955 [DEBUG] start=  8.25 | dur=  0.50 | pitch=G#0  | vel= 20
-2026-02-25 21:02:10,955 [DEBUG] start=  8.75 | dur=  0.50 | pitch=B1   | vel= 20
-2026-02-25 21:02:10,955 [DEBUG] start=  9.50 | dur=  0.25 | pitch=G#-1 | vel= 20
-2026-02-25 21:02:10,955 [DEBUG] start=  9.75 | dur=  0.25 | pitch=A0   | vel= 20
-2026-02-25 21:02:10,955 [DEBUG] start= 10.00 | dur=  0.75 | pitch=C#1  | vel= 20
-2026-02-25 21:02:10,955 [DEBUG] start= 11.50 | dur=  0.25 | pitch=A-1  | vel= 20
-2026-02-25 21:02:10,955 [DEBUG] start= 11.75 | dur=  0.75 | pitch=B0   | vel= 20
-2026-02-25 21:02:10,955 [DEBUG] start= 12.50 | dur=  0.75 | pitch=C#1  | vel= 20
-2026-02-25 21:02:10,956 [DEBUG] start= 13.50 | dur=  0.25 | pitch=B-1  | vel= 20
-2026-02-25 21:02:10,956 [DEBUG] start= 13.75 | dur=  0.25 | pitch=B0   | vel= 20
-2026-02-25 21:02:10,956 [DEBUG] start= 14.00 | dur=  0.12 | pitch=C#1  | vel= 20
-2026-02-25 21:02:10,956 [DEBUG] start= 14.12 | dur=  0.50 | pitch=A4   | vel= 10
-2026-02-25 21:02:10,956 [DEBUG] start= 14.62 | dur=  1.50 | pitch=E-1  | vel=120
-2026-02-25 21:02:10,956 [DEBUG] start= 16.12 | dur=  0.50 | pitch=G#0  | vel=120
-2026-02-25 21:02:10,956 [DEBUG] start= 16.62 | dur=  0.50 | pitch=E-1  | vel=120
-2026-02-25 21:02:10,956 [DEBUG] start= 17.12 | dur=  0.75 | pitch=G#0  | vel=120
-2026-02-25 21:02:10,956 [DEBUG] start= 17.88 | dur=  0.12 | pitch=A1   | vel=120
-2026-02-25 21:02:10,956 [DEBUG] start= 18.62 | dur=  1.00 | pitch=F#-1 | vel=120
-2026-02-25 21:02:10,956 [DEBUG] start= 19.62 | dur=  0.25 | pitch=G#0  | vel=120
-2026-02-25 21:02:10,956 [DEBUG] start= 19.88 | dur=  0.25 | pitch=B1   | vel=120
-2026-02-25 21:02:10,956 [DEBUG] start= 20.62 | dur=  0.50 | pitch=F#-1 | vel=120
-2026-02-25 21:02:10,956 [DEBUG] start= 21.12 | dur=  0.50 | pitch=F#0  | vel=120
-2026-02-25 21:02:10,956 [DEBUG] start= 21.62 | dur=  0.25 | pitch=A1   | vel=120
-2026-02-25 21:02:10,956 [DEBUG] start= 21.88 | dur=  0.50 | pitch=A3   | vel=110
-2026-02-25 21:02:10,956 [DEBUG] start= 22.38 | dur=  0.25 | pitch=E-1  | vel= 80
-2026-02-25 21:02:10,956 [DEBUG] start= 22.62 | dur=  1.50 | pitch=G#0  | vel= 80
-2026-02-25 21:02:10,956 [DEBUG] start= 24.12 | dur=  0.25 | pitch=E1   | vel= 80
-2026-02-25 21:02:10,956 [DEBUG] start= 24.38 | dur=  0.75 | pitch=E-1  | vel= 80
-2026-02-25 21:02:10,956 [DEBUG] start= 25.12 | dur=  0.25 | pitch=G#0  | vel= 80
-2026-02-25 21:02:10,956 [DEBUG] start= 25.38 | dur=  0.12 | pitch=F#1  | vel= 80
-2026-02-25 21:02:10,956 [DEBUG] start= 26.38 | dur=  1.00 | pitch=D-1  | vel= 80
-2026-02-25 21:02:10,956 [DEBUG] start= 27.38 | dur=  0.75 | pitch=G#0  | vel= 80
-2026-02-25 21:02:10,956 [DEBUG] start= 28.12 | dur=  0.12 | pitch=E1   | vel= 80
-2026-02-25 21:02:10,956 [DEBUG] start= 28.38 | dur=  0.12 | pitch=D-1  | vel= 80
-2026-02-25 21:02:10,956 [DEBUG] start= 28.50 | dur=  0.50 | pitch=F#0  | vel= 80
-2026-02-25 21:02:10,956 [DEBUG] start= 29.00 | dur=  0.75 | pitch=D1   | vel= 80
-2026-02-25 21:02:10,956 [DEBUG] start= 29.75 | dur=  0.50 | pitch=A4   | vel= 70
-2026-02-25 21:02:10,956 [DEBUG] start= 30.25 | dur=  0.25 | pitch=G#-1 | vel= 40
-2026-02-25 21:02:10,956 [DEBUG] start= 30.50 | dur=  0.75 | pitch=G#0  | vel= 40
-2026-02-25 21:02:10,956 [DEBUG] start= 31.25 | dur=  0.25 | pitch=A1   | vel= 40
-2026-02-25 21:02:10,956 [DEBUG] start= 32.25 | dur=  0.25 | pitch=F#-1 | vel= 40
-2026-02-25 21:02:10,956 [DEBUG] start= 32.50 | dur=  0.75 | pitch=G#0  | vel= 40
-2026-02-25 21:02:10,956 [DEBUG] start= 33.25 | dur=  0.75 | pitch=G#1  | vel= 40
-2026-02-25 21:02:10,957 [DEBUG] start= 34.25 | dur=  1.00 | pitch=E-1  | vel= 40
-2026-02-25 21:02:10,957 [DEBUG] start= 35.25 | dur=  0.50 | pitch=A0   | vel= 40
-2026-02-25 21:02:10,957 [DEBUG] start= 35.75 | dur=  0.50 | pitch=A1   | vel= 40
-2026-02-25 21:02:10,957 [DEBUG] start= 36.25 | dur=  1.00 | pitch=E-1  | vel= 40
-2026-02-25 21:02:10,957 [DEBUG] start= 37.25 | dur=  1.00 | pitch=A0   | vel= 40
-2026-02-25 21:02:10,957 [DEBUG] start= 38.25 | dur=  0.50 | pitch=A3   | vel= 30
-2026-02-25 21:02:10,957 [DEBUG] start= 38.75 | dur=  1.50 | pitch=E-1  | vel= 20
-2026-02-25 21:02:10,957 [DEBUG] start= 40.75 | dur=  1.00 | pitch=F#-1 | vel= 20
-2026-02-25 21:02:10,957 [DEBUG] start= 42.75 | dur=  1.50 | pitch=E-1  | vel= 20
-2026-02-25 21:02:10,957 [DEBUG] start= 44.75 | dur=  0.25 | pitch=E-1  | vel= 20
-2026-02-25 21:02:10,957 [DEBUG] start= 45.00 | dur=  0.50 | pitch=A4   | vel= 10
-2026-02-25 21:02:10,957 [DEBUG] start= 45.50 | dur=  0.12 | pitch=B-1  | vel= 60
-2026-02-25 21:02:10,957 [DEBUG] start= 47.50 | dur=  2.00 | pitch=C#-1 | vel= 60
-2026-02-25 21:02:10,957 [DEBUG] start= 49.50 | dur=  0.12 | pitch=B-1  | vel= 60
-2026-02-25 21:02:10,957 [DEBUG] start= 51.50 | dur=  0.25 | pitch=C#-1 | vel= 60
-2026-02-25 21:02:10,957 [DEBUG] start= 51.75 | dur=  0.50 | pitch=A4   | vel= 50
-2026-02-25 21:02:10,957 [DEBUG] start= 52.25 | dur=  2.00 | pitch=B-1  | vel= 40
-2026-02-25 21:02:10,957 [DEBUG] start= 54.25 | dur=  0.12 | pitch=B-1  | vel= 40
-2026-02-25 21:02:10,957 [DEBUG] start= 54.38 | dur=  0.50 | pitch=G#0  | vel= 40
-2026-02-25 21:02:10,957 [DEBUG] start= 56.25 | dur=  0.75 | pitch=B-1  | vel= 40
-2026-02-25 21:02:10,957 [DEBUG] start= 57.00 | dur=  0.75 | pitch=G#0  | vel= 40
-2026-02-25 21:02:10,957 [DEBUG] start= 58.25 | dur=  0.50 | pitch=A-1  | vel= 40
-2026-02-25 21:02:10,957 [DEBUG] start= 58.75 | dur=  0.75 | pitch=G#0  | vel= 40
-2026-02-25 21:02:10,957 [DEBUG] start= 59.50 | dur=  0.50 | pitch=A4   | vel= 30
-2026-02-25 21:02:10,957 [DEBUG] start= 60.00 | dur=  0.75 | pitch=A-1  | vel=100
-2026-02-25 21:02:10,957 [DEBUG] start= 62.00 | dur=  1.50 | pitch=B-1  | vel=100
-2026-02-25 21:02:10,957 [DEBUG] start= 64.00 | dur=  0.12 | pitch=B-1  | vel=100
-2026-02-25 21:02:10,957 [DEBUG] start= 66.00 | dur=  0.25 | pitch=C#-1 | vel=100
-2026-02-25 21:02:10,957 [DEBUG] start= 66.25 | dur=  0.50 | pitch=A3   | vel= 90
-2026-02-25 21:02:10,957 [DEBUG] start= 66.75 | dur=  1.00 | pitch=C#-1 | vel=100
-2026-02-25 21:02:10,957 [DEBUG] start= 67.75 | dur=  0.75 | pitch=B0   | vel=100
-2026-02-25 21:02:10,957 [DEBUG] start= 68.50 | dur=  0.12 | pitch=D1   | vel=100
-2026-02-25 21:02:10,957 [DEBUG] start= 68.75 | dur=  0.50 | pitch=D-1  | vel=100
-2026-02-25 21:02:10,957 [DEBUG] start= 69.25 | dur=  0.25 | pitch=C#0  | vel=100
-2026-02-25 21:02:10,957 [DEBUG] start= 69.50 | dur=  0.25 | pitch=E1   | vel=100
-2026-02-25 21:02:10,957 [DEBUG] start= 70.75 | dur=  0.25 | pitch=D-1  | vel=100
-2026-02-25 21:02:10,958 [DEBUG] start= 71.00 | dur=  0.75 | pitch=D0   | vel=100
-2026-02-25 21:02:10,958 [DEBUG] start= 71.75 | dur=  0.25 | pitch=F#1  | vel=100
-2026-02-25 21:02:10,958 [DEBUG] start= 72.75 | dur=  1.00 | pitch=C#-1 | vel=100
-2026-02-25 21:02:10,958 [DEBUG] start= 73.75 | dur=  1.00 | pitch=D0   | vel=100
-2026-02-25 21:02:10,958 [DEBUG] start= 74.75 | dur=  0.50 | pitch=A4   | vel= 90
-2026-02-25 21:02:10,958 [DEBUG] start= 75.25 | dur=  2.00 | pitch=G#-1 | vel=120
-2026-02-25 21:02:10,958 [DEBUG] start= 77.25 | dur=  0.75 | pitch=F#-1 | vel=120
-2026-02-25 21:02:10,958 [DEBUG] start= 78.00 | dur=  0.50 | pitch=F#0  | vel=120
-2026-02-25 21:02:10,958 [DEBUG] start= 78.50 | dur=  0.50 | pitch=D1   | vel=120
-2026-02-25 21:02:10,958 [DEBUG] start= 79.00 | dur=  0.25 | pitch=C#2  | vel=120
-2026-02-25 21:02:10,958 [DEBUG] start= 79.25 | dur=  1.50 | pitch=E-1  | vel=120
-2026-02-25 21:02:10,958 [DEBUG] start= 80.75 | dur=  0.12 | pitch=E0   | vel=120
-2026-02-25 21:02:10,958 [DEBUG] start= 80.88 | dur=  0.25 | pitch=C#1  | vel=120
-2026-02-25 21:02:10,958 [DEBUG] start= 81.12 | dur=  0.12 | pitch=C#2  | vel=120
-2026-02-25 21:02:10,958 [DEBUG] start= 81.25 | dur=  0.12 | pitch=E-1  | vel=120
-2026-02-25 21:02:10,958 [DEBUG] start= 81.38 | dur=  1.00 | pitch=E0   | vel=120
-2026-02-25 21:02:10,958 [DEBUG] start= 82.38 | dur=  0.12 | pitch=D1   | vel=120
-2026-02-25 21:02:10,958 [DEBUG] start= 82.50 | dur=  0.50 | pitch=D2   | vel=120
-2026-02-25 21:02:10,958 [DEBUG] start= 83.00 | dur=  0.50 | pitch=A3   | vel=110
-2026-02-25 21:02:10,958 [DEBUG] start= 83.50 | dur=  0.75 | pitch=B-1  | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 84.25 | dur=  0.75 | pitch=C#0  | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 85.00 | dur=  0.25 | pitch=D1   | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 85.25 | dur=  0.12 | pitch=D2   | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 85.50 | dur=  0.75 | pitch=B-1  | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 86.25 | dur=  0.75 | pitch=B0   | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 87.00 | dur=  0.25 | pitch=C#1  | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 87.25 | dur=  0.25 | pitch=D2   | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 87.50 | dur=  0.50 | pitch=A-1  | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 88.00 | dur=  0.12 | pitch=C#0  | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 88.12 | dur=  0.12 | pitch=D1   | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 88.25 | dur=  0.25 | pitch=C#2  | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 89.50 | dur=  1.50 | pitch=A-1  | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 91.00 | dur=  0.12 | pitch=B0   | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 91.12 | dur=  0.12 | pitch=E1   | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 91.25 | dur=  0.25 | pitch=D2   | vel= 20
-2026-02-25 21:02:10,958 [DEBUG] start= 91.50 | dur=  0.50 | pitch=A4   | vel= 10
-2026-02-25 21:02:10,958 [DEBUG] Instrument: String Ensemble 1
-2026-02-25 21:02:10,958 [DEBUG] start=  0.00 | dur=  2.00 | pitch=A-1  | vel=110
-2026-02-25 21:02:10,958 [DEBUG] start=  2.00 | dur=  1.00 | pitch=A-1  | vel=110
-2026-02-25 21:02:10,959 [DEBUG] start=  3.00 | dur=  1.00 | pitch=F#0  | vel=110
-2026-02-25 21:02:10,959 [DEBUG] start=  4.00 | dur=  1.00 | pitch=A3   | vel=110
-2026-02-25 21:02:10,959 [DEBUG] start=  5.00 | dur=  0.50 | pitch=F#-1 | vel=110
-2026-02-25 21:02:10,959 [DEBUG] start=  5.50 | dur=  0.75 | pitch=C#0  | vel=110
-2026-02-25 21:02:10,959 [DEBUG] start=  6.25 | dur=  0.12 | pitch=A1   | vel=110
-2026-02-25 21:02:10,959 [DEBUG] start=  6.38 | dur=  0.25 | pitch=E2   | vel=110
-2026-02-25 21:02:10,959 [DEBUG] start=  7.00 | dur=  2.00 | pitch=G#-1 | vel=110
-2026-02-25 21:02:10,959 [DEBUG] start=  9.00 | dur=  1.00 | pitch=A3   | vel=110
-2026-02-25 21:02:10,959 [DEBUG] start= 10.00 | dur=  0.50 | pitch=C#-1 | vel= 10
-2026-02-25 21:02:10,959 [DEBUG] start= 10.50 | dur=  0.25 | pitch=G#0  | vel= 10
-2026-02-25 21:02:10,959 [DEBUG] start= 10.75 | dur=  1.00 | pitch=B1   | vel= 10
-2026-02-25 21:02:10,959 [DEBUG] start= 12.00 | dur=  0.25 | pitch=C#-1 | vel= 10
-2026-02-25 21:02:10,959 [DEBUG] start= 12.25 | dur=  0.50 | pitch=F#0  | vel= 10
-2026-02-25 21:02:10,959 [DEBUG] start= 12.75 | dur=  1.00 | pitch=B1   | vel= 10
-2026-02-25 21:02:10,959 [DEBUG] start= 13.75 | dur=  1.00 | pitch=A2   | vel= 10
-2026-02-25 21:02:10,959 [DEBUG] start= 14.75 | dur=  0.75 | pitch=B-1  | vel=110
-2026-02-25 21:02:10,959 [DEBUG] start= 16.75 | dur=  1.00 | pitch=C#-1 | vel=110
-2026-02-25 21:02:10,959 [DEBUG] start= 17.75 | dur=  1.00 | pitch=A3   | vel=110
-2026-02-25 21:02:10,959 [DEBUG] start= 18.75 | dur=  0.50 | pitch=C#-1 | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 19.25 | dur=  0.12 | pitch=F#0  | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 19.38 | dur=  0.50 | pitch=D1   | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 20.75 | dur=  0.50 | pitch=C#-1 | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 21.25 | dur=  0.25 | pitch=F#0  | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 21.50 | dur=  1.00 | pitch=D1   | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 22.50 | dur=  1.00 | pitch=A2   | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 23.50 | dur=  0.75 | pitch=A-1  | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 24.25 | dur=  0.50 | pitch=G#0  | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 24.75 | dur=  0.12 | pitch=A1   | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 24.88 | dur=  0.25 | pitch=E2   | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 25.50 | dur=  0.50 | pitch=A-1  | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 26.00 | dur=  0.25 | pitch=G#0  | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 26.25 | dur=  0.75 | pitch=A1   | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 27.00 | dur=  0.50 | pitch=E2   | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 27.50 | dur=  1.00 | pitch=A3   | vel= 50
-2026-02-25 21:02:10,959 [DEBUG] start= 28.50 | dur=  0.50 | pitch=D-1  | vel= 70
-2026-02-25 21:02:10,959 [DEBUG] start= 29.00 | dur=  0.12 | pitch=C#0  | vel= 70
-2026-02-25 21:02:10,959 [DEBUG] start= 29.12 | dur=  0.12 | pitch=G#1  | vel= 70
-2026-02-25 21:02:10,959 [DEBUG] start= 29.25 | dur=  0.25 | pitch=E2   | vel= 70
-2026-02-25 21:02:10,959 [DEBUG] start= 30.50 | dur=  1.50 | pitch=D-1  | vel= 70
-2026-02-25 21:02:10,959 [DEBUG] start= 32.00 | dur=  0.25 | pitch=B0   | vel= 70
-2026-02-25 21:02:10,959 [DEBUG] start= 32.25 | dur=  0.12 | pitch=F#1  | vel= 70
-2026-02-25 21:02:10,960 [DEBUG] start= 32.38 | dur=  0.12 | pitch=E2   | vel= 70
-2026-02-25 21:02:10,960 [DEBUG] start= 32.50 | dur=  1.00 | pitch=A2   | vel= 70
-2026-02-25 21:02:10,960 [DEBUG] start= 33.50 | dur=  0.12 | pitch=C#-1 | vel= 30
-2026-02-25 21:02:10,960 [DEBUG] start= 33.62 | dur=  0.50 | pitch=G#0  | vel= 30
-2026-02-25 21:02:10,960 [DEBUG] start= 35.50 | dur=  1.00 | pitch=C#-1 | vel= 30
-2026-02-25 21:02:10,960 [DEBUG] start= 36.50 | dur=  0.75 | pitch=G#0  | vel= 30
-2026-02-25 21:02:10,960 [DEBUG] start= 37.25 | dur=  1.00 | pitch=A2   | vel= 30
-2026-02-25 21:02:10,960 [DEBUG] start= 38.25 | dur=  2.00 | pitch=B-1  | vel=110
-2026-02-25 21:02:10,960 [DEBUG] start= 40.25 | dur=  2.00 | pitch=A-1  | vel=110
-2026-02-25 21:02:10,960 [DEBUG] start= 42.25 | dur=  1.00 | pitch=A3   | vel=110
-2026-02-25 21:02:10,960 [DEBUG] start= 43.25 | dur=  0.75 | pitch=G#-1 | vel= 30
-2026-02-25 21:02:10,960 [DEBUG] start= 45.25 | dur=  0.50 | pitch=G#-1 | vel= 30
-2026-02-25 21:02:10,960 [DEBUG] start= 45.75 | dur=  1.00 | pitch=A2   | vel= 30
-2026-02-25 21:02:10,960 [DEBUG] start= 46.75 | dur=  2.00 | pitch=A-1  | vel= 10
-2026-02-25 21:02:10,960 [DEBUG] start= 48.75 | dur=  0.75 | pitch=G#-1 | vel= 10
-2026-02-25 21:02:10,960 [DEBUG] start= 49.50 | dur=  1.00 | pitch=D0   | vel= 10
-2026-02-25 21:02:10,960 [DEBUG] start= 50.50 | dur=  0.25 | pitch=D1   | vel= 10
-2026-02-25 21:02:10,960 [DEBUG] start= 50.75 | dur=  1.00 | pitch=A2   | vel= 10
-2026-02-25 21:02:10,960 [DEBUG] start= 51.75 | dur=  0.50 | pitch=C#-1 | vel= 30
-2026-02-25 21:02:10,960 [DEBUG] start= 52.25 | dur=  1.50 | pitch=E0   | vel= 30
-2026-02-25 21:02:10,960 [DEBUG] start= 53.75 | dur=  2.00 | pitch=D-1  | vel= 30
-2026-02-25 21:02:10,960 [DEBUG] start= 55.75 | dur=  1.00 | pitch=A2   | vel= 30
-2026-02-25 21:02:10,960 [DEBUG] start= 56.75 | dur=  0.12 | pitch=E-1  | vel= 70
-2026-02-25 21:02:10,960 [DEBUG] start= 56.88 | dur=  0.12 | pitch=A0   | vel= 70
-2026-02-25 21:02:10,960 [DEBUG] start= 57.00 | dur=  0.12 | pitch=E1   | vel= 70
-2026-02-25 21:02:10,960 [DEBUG] start= 58.75 | dur=  1.50 | pitch=D-1  | vel= 70
-2026-02-25 21:02:10,960 [DEBUG] start= 60.25 | dur=  0.12 | pitch=B0   | vel= 70
-2026-02-25 21:02:10,960 [DEBUG] start= 60.38 | dur=  0.25 | pitch=F#1  | vel= 70
-2026-02-25 21:02:10,960 [DEBUG] start= 60.62 | dur=  1.00 | pitch=A3   | vel= 70
-2026-02-25 21:02:10,960 [DEBUG] start= 61.62 | dur=  0.75 | pitch=G#-1 | vel=110
-2026-02-25 21:02:10,960 [DEBUG] start= 62.38 | dur=  0.75 | pitch=E0   | vel=110
-2026-02-25 21:02:10,960 [DEBUG] start= 63.12 | dur=  0.25 | pitch=E1   | vel=110
-2026-02-25 21:02:10,960 [DEBUG] start= 63.62 | dur=  1.00 | pitch=F#-1 | vel=110
-2026-02-25 21:02:10,960 [DEBUG] start= 64.62 | dur=  0.75 | pitch=F#0  | vel=110
-2026-02-25 21:02:10,960 [DEBUG] start= 65.38 | dur=  0.25 | pitch=D1   | vel=110
-2026-02-25 21:02:10,961 [DEBUG] start= 65.62 | dur=  1.00 | pitch=A3   | vel=110
-2026-02-25 21:02:10,961 [DEBUG] start= 66.62 | dur=  0.75 | pitch=F#-1 | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 67.38 | dur=  0.25 | pitch=G#0  | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 67.62 | dur=  1.00 | pitch=G#1  | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 68.62 | dur=  0.12 | pitch=F#-1 | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 68.75 | dur=  0.75 | pitch=F#0  | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 69.50 | dur=  0.25 | pitch=A1   | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 69.75 | dur=  0.50 | pitch=F#2  | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 70.25 | dur=  1.00 | pitch=A3   | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 71.25 | dur=  2.00 | pitch=F#-1 | vel= 70
-2026-02-25 21:02:10,961 [DEBUG] start= 73.25 | dur=  0.50 | pitch=E-1  | vel= 70
-2026-02-25 21:02:10,961 [DEBUG] start= 73.75 | dur=  1.50 | pitch=G#0  | vel= 70
-2026-02-25 21:02:10,961 [DEBUG] start= 75.25 | dur=  1.00 | pitch=A2   | vel= 70
-2026-02-25 21:02:10,961 [DEBUG] start= 76.25 | dur=  1.50 | pitch=D-1  | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 78.25 | dur=  1.00 | pitch=D-1  | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 79.25 | dur=  1.00 | pitch=A2   | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 80.25 | dur=  0.75 | pitch=C#-1 | vel= 10
-2026-02-25 21:02:10,961 [DEBUG] start= 81.00 | dur=  1.00 | pitch=F#0  | vel= 10
-2026-02-25 21:02:10,961 [DEBUG] start= 82.00 | dur=  0.25 | pitch=E1   | vel= 10
-2026-02-25 21:02:10,961 [DEBUG] start= 82.25 | dur=  0.12 | pitch=C#-1 | vel= 10
-2026-02-25 21:02:10,961 [DEBUG] start= 82.38 | dur=  1.00 | pitch=E0   | vel= 10
-2026-02-25 21:02:10,961 [DEBUG] start= 83.38 | dur=  0.50 | pitch=E1   | vel= 10
-2026-02-25 21:02:10,961 [DEBUG] start= 83.88 | dur=  0.25 | pitch=B2   | vel= 10
-2026-02-25 21:02:10,961 [DEBUG] start= 84.12 | dur=  1.00 | pitch=A2   | vel= 10
-2026-02-25 21:02:10,961 [DEBUG] start= 85.12 | dur=  1.00 | pitch=G#-1 | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 86.12 | dur=  0.25 | pitch=C#0  | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 86.38 | dur=  0.50 | pitch=G#1  | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 86.88 | dur=  0.12 | pitch=G#2  | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 87.12 | dur=  0.12 | pitch=A-1  | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 87.25 | dur=  0.50 | pitch=C#0  | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 87.75 | dur=  0.25 | pitch=A1   | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 88.00 | dur=  1.00 | pitch=F#2  | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 89.00 | dur=  1.00 | pitch=A3   | vel= 30
-2026-02-25 21:02:10,961 [DEBUG] start= 90.00 | dur=  2.00 | pitch=C#-1 | vel= 70
-2026-02-25 21:02:10,961 [DEBUG] Instrument: Contrabass
-2026-02-25 21:02:10,961 [DEBUG] start=  0.00 | dur=  1.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,961 [DEBUG] start=  1.00 | dur=  1.00 | pitch=F#0  | vel=115
-2026-02-25 21:02:10,961 [DEBUG] start=  2.00 | dur=  1.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,961 [DEBUG] start=  3.00 | dur=  1.00 | pitch=G#0  | vel=115
-2026-02-25 21:02:10,961 [DEBUG] start=  4.00 | dur=  1.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,962 [DEBUG] start=  5.00 | dur=  1.00 | pitch=F#0  | vel=115
-2026-02-25 21:02:10,962 [DEBUG] start=  6.00 | dur=  1.00 | pitch=F#-1 | vel=115
-2026-02-25 21:02:10,962 [DEBUG] start=  7.00 | dur=  1.00 | pitch=F#0  | vel=115
-2026-02-25 21:02:10,962 [DEBUG] start=  8.00 | dur=  1.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,962 [DEBUG] start=  9.00 | dur=  1.00 | pitch=G#0  | vel=115
-2026-02-25 21:02:10,962 [DEBUG] start= 10.00 | dur=  1.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,962 [DEBUG] start= 11.00 | dur=  1.00 | pitch=A0   | vel=115
-2026-02-25 21:02:10,962 [DEBUG] start= 12.00 | dur=  1.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,962 [DEBUG] start= 13.00 | dur=  1.00 | pitch=A0   | vel=115
-2026-02-25 21:02:10,962 [DEBUG] start= 14.00 | dur=  1.00 | pitch=F#-1 | vel=115
-2026-02-25 21:02:10,962 [DEBUG] start= 15.00 | dur=  1.00 | pitch=A0   | vel=115
-2026-02-25 21:02:10,962 [DEBUG] start= 16.00 | dur=  0.50 | pitch=A0   | vel=110
-2026-02-25 21:02:10,962 [DEBUG] start= 16.50 | dur=  1.00 | pitch=E-1  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 17.50 | dur=  1.00 | pitch=B0   | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 18.50 | dur=  1.00 | pitch=E-1  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 19.50 | dur=  1.00 | pitch=C#0  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 20.50 | dur=  1.00 | pitch=D-1  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 21.50 | dur=  1.00 | pitch=B0   | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 22.50 | dur=  1.00 | pitch=D-1  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 23.50 | dur=  1.00 | pitch=B0   | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 24.50 | dur=  1.00 | pitch=D-1  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 25.50 | dur=  1.00 | pitch=A0   | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 26.50 | dur=  1.00 | pitch=E-1  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 27.50 | dur=  1.00 | pitch=G#0  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 28.50 | dur=  1.00 | pitch=F#-1 | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 29.50 | dur=  1.00 | pitch=A0   | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 30.50 | dur=  1.00 | pitch=F#-1 | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 31.50 | dur=  1.00 | pitch=A0   | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 32.50 | dur=  0.50 | pitch=A1   | vel= 10
-2026-02-25 21:02:10,962 [DEBUG] start= 33.00 | dur=  1.00 | pitch=D-1  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 34.00 | dur=  1.00 | pitch=F#0  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 35.00 | dur=  1.00 | pitch=D-1  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 36.00 | dur=  1.00 | pitch=F#0  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 37.00 | dur=  1.00 | pitch=D-1  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 38.00 | dur=  1.00 | pitch=E0   | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 39.00 | dur=  1.00 | pitch=C#-1 | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 40.00 | dur=  1.00 | pitch=E0   | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 41.00 | dur=  1.00 | pitch=B-1  | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 42.00 | dur=  1.00 | pitch=E0   | vel= 15
-2026-02-25 21:02:10,962 [DEBUG] start= 43.00 | dur=  1.00 | pitch=C#-1 | vel= 15
-2026-02-25 21:02:10,963 [DEBUG] start= 44.00 | dur=  1.00 | pitch=E0   | vel= 15
-2026-02-25 21:02:10,963 [DEBUG] start= 45.00 | dur=  1.00 | pitch=D-1  | vel= 15
-2026-02-25 21:02:10,963 [DEBUG] start= 46.00 | dur=  1.00 | pitch=E0   | vel= 15
-2026-02-25 21:02:10,963 [DEBUG] start= 47.00 | dur=  1.00 | pitch=D-1  | vel= 15
-2026-02-25 21:02:10,963 [DEBUG] start= 48.00 | dur=  1.00 | pitch=D0   | vel= 15
-2026-02-25 21:02:10,963 [DEBUG] start= 49.00 | dur=  0.50 | pitch=A0   | vel= 10
-2026-02-25 21:02:10,963 [DEBUG] start= 49.50 | dur=  1.00 | pitch=A-1  | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 50.50 | dur=  1.00 | pitch=F#0  | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 51.50 | dur=  1.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 52.50 | dur=  1.00 | pitch=E0   | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 53.50 | dur=  1.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 54.50 | dur=  1.00 | pitch=E0   | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 55.50 | dur=  1.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 56.50 | dur=  1.00 | pitch=E0   | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 57.50 | dur=  1.00 | pitch=A-1  | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 58.50 | dur=  1.00 | pitch=D0   | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 59.50 | dur=  1.00 | pitch=A-1  | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 60.50 | dur=  1.00 | pitch=D0   | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 61.50 | dur=  1.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 62.50 | dur=  1.00 | pitch=E0   | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 63.50 | dur=  1.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 64.50 | dur=  1.00 | pitch=E0   | vel=115
-2026-02-25 21:02:10,963 [DEBUG] start= 65.50 | dur=  0.50 | pitch=A0   | vel=110
-2026-02-25 21:02:10,963 [DEBUG] start= 66.00 | dur=  1.00 | pitch=E-1  | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 67.00 | dur=  1.00 | pitch=C#0  | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 68.00 | dur=  1.00 | pitch=D-1  | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 69.00 | dur=  1.00 | pitch=B0   | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 70.00 | dur=  1.00 | pitch=C#-1 | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 71.00 | dur=  1.00 | pitch=C#0  | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 72.00 | dur=  1.00 | pitch=B-1  | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 73.00 | dur=  1.00 | pitch=C#0  | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 74.00 | dur=  1.00 | pitch=C#-1 | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 75.00 | dur=  1.00 | pitch=C#0  | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 76.00 | dur=  1.00 | pitch=D-1  | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 77.00 | dur=  1.00 | pitch=B0   | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 78.00 | dur=  1.00 | pitch=D-1  | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 79.00 | dur=  1.00 | pitch=C#0  | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 80.00 | dur=  1.00 | pitch=D-1  | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 81.00 | dur=  1.00 | pitch=D0   | vel= 35
-2026-02-25 21:02:10,963 [DEBUG] start= 82.00 | dur=  0.50 | pitch=A0   | vel= 30
-2026-02-25 21:02:10,963 [DEBUG] start= 82.50 | dur=  1.00 | pitch=F#-1 | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 84.50 | dur=  1.00 | pitch=F#-1 | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 86.50 | dur=  1.00 | pitch=E-1  | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 88.50 | dur=  1.00 | pitch=E-1  | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 90.50 | dur=  1.00 | pitch=E-1  | vel=115
-2026-02-25 21:02:10,964 [DEBUG] Instrument: French Horn
-2026-02-25 21:02:10,964 [DEBUG] start=  0.00 | dur=  1.00 | pitch=A-1  | vel= 55
-2026-02-25 21:02:10,964 [DEBUG] start=  1.00 | dur=  1.00 | pitch=B0   | vel= 55
-2026-02-25 21:02:10,964 [DEBUG] start=  2.00 | dur=  0.50 | pitch=B-1  | vel= 55
-2026-02-25 21:02:10,964 [DEBUG] start=  2.50 | dur=  1.00 | pitch=C#0  | vel= 55
-2026-02-25 21:02:10,964 [DEBUG] start=  4.00 | dur=  2.00 | pitch=C#-1 | vel= 55
-2026-02-25 21:02:10,964 [DEBUG] start=  6.00 | dur=  0.50 | pitch=B-1  | vel= 55
-2026-02-25 21:02:10,964 [DEBUG] start=  6.50 | dur=  0.75 | pitch=D0   | vel= 55
-2026-02-25 21:02:10,964 [DEBUG] start=  7.25 | dur=  0.50 | pitch=A2   | vel= 50
-2026-02-25 21:02:10,964 [DEBUG] start=  7.75 | dur=  1.50 | pitch=D-1  | vel= 15
-2026-02-25 21:02:10,964 [DEBUG] start=  9.75 | dur=  2.00 | pitch=D-1  | vel= 15
-2026-02-25 21:02:10,964 [DEBUG] start= 11.75 | dur=  1.00 | pitch=D-1  | vel= 15
-2026-02-25 21:02:10,964 [DEBUG] start= 13.75 | dur=  2.00 | pitch=C#-1 | vel= 15
-2026-02-25 21:02:10,964 [DEBUG] start= 15.75 | dur=  0.50 | pitch=A2   | vel= 10
-2026-02-25 21:02:10,964 [DEBUG] start= 16.25 | dur=  2.00 | pitch=A-1  | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 18.25 | dur=  1.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 19.25 | dur=  0.12 | pitch=A0   | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 19.38 | dur=  0.12 | pitch=B1   | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 20.25 | dur=  0.12 | pitch=A-1  | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 20.38 | dur=  1.00 | pitch=B0   | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 21.38 | dur=  0.12 | pitch=A1   | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 22.25 | dur=  0.12 | pitch=A-1  | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 22.38 | dur=  0.12 | pitch=A0   | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 22.50 | dur=  1.50 | pitch=B1   | vel=115
-2026-02-25 21:02:10,964 [DEBUG] start= 24.00 | dur=  0.50 | pitch=A3   | vel=110
-2026-02-25 21:02:10,964 [DEBUG] start= 24.50 | dur=  0.50 | pitch=A-1  | vel= 35
-2026-02-25 21:02:10,964 [DEBUG] start= 26.50 | dur=  2.00 | pitch=A-1  | vel= 35
-2026-02-25 21:02:10,964 [DEBUG] start= 28.50 | dur=  0.12 | pitch=B-1  | vel= 35
-2026-02-25 21:02:10,964 [DEBUG] start= 30.50 | dur=  0.25 | pitch=B-1  | vel= 35
-2026-02-25 21:02:10,964 [DEBUG] start= 30.75 | dur=  0.50 | pitch=A3   | vel= 30
-2026-02-25 21:02:10,964 [DEBUG] start= 31.25 | dur=  2.00 | pitch=F#-1 | vel= 55
-2026-02-25 21:02:10,964 [DEBUG] start= 33.25 | dur=  0.25 | pitch=E-1  | vel= 55
-2026-02-25 21:02:10,964 [DEBUG] start= 33.50 | dur=  0.50 | pitch=D0   | vel= 55
-2026-02-25 21:02:10,964 [DEBUG] start= 34.00 | dur=  0.25 | pitch=C#1  | vel= 55
-2026-02-25 21:02:10,964 [DEBUG] start= 35.25 | dur=  1.50 | pitch=E-1  | vel= 55
-2026-02-25 21:02:10,964 [DEBUG] start= 36.75 | dur=  0.50 | pitch=D0   | vel= 55
-2026-02-25 21:02:10,965 [DEBUG] start= 37.25 | dur=  1.00 | pitch=F#-1 | vel= 55
-2026-02-25 21:02:10,965 [DEBUG] start= 38.25 | dur=  0.50 | pitch=E0   | vel= 55
-2026-02-25 21:02:10,965 [DEBUG] start= 38.75 | dur=  0.12 | pitch=D1   | vel= 55
-2026-02-25 21:02:10,965 [DEBUG] start= 38.88 | dur=  0.50 | pitch=A2   | vel= 50
-2026-02-25 21:02:10,965 [DEBUG] start= 39.38 | dur=  0.50 | pitch=D-1  | vel= 15
-2026-02-25 21:02:10,965 [DEBUG] start= 39.88 | dur=  0.12 | pitch=D0   | vel= 15
-2026-02-25 21:02:10,965 [DEBUG] start= 40.00 | dur=  0.12 | pitch=A1   | vel= 15
-2026-02-25 21:02:10,965 [DEBUG] start= 41.38 | dur=  0.12 | pitch=C#-1 | vel= 15
-2026-02-25 21:02:10,965 [DEBUG] start= 41.50 | dur=  0.50 | pitch=C#0  | vel= 15
-2026-02-25 21:02:10,965 [DEBUG] start= 42.00 | dur=  0.12 | pitch=A1   | vel= 15
-2026-02-25 21:02:10,965 [DEBUG] start= 43.38 | dur=  1.50 | pitch=C#-1 | vel= 15
-2026-02-25 21:02:10,965 [DEBUG] start= 44.88 | dur=  0.50 | pitch=C#0  | vel= 15
-2026-02-25 21:02:10,965 [DEBUG] start= 45.38 | dur=  0.75 | pitch=B-1  | vel= 15
-2026-02-25 21:02:10,965 [DEBUG] start= 46.12 | dur=  1.00 | pitch=D0   | vel= 15
-2026-02-25 21:02:10,965 [DEBUG] start= 47.12 | dur=  0.25 | pitch=B1   | vel= 15
-2026-02-25 21:02:10,965 [DEBUG] start= 47.38 | dur=  0.50 | pitch=A2   | vel= 10
-2026-02-25 21:02:10,965 [DEBUG] start= 47.88 | dur=  0.75 | pitch=C#-1 | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 48.62 | dur=  0.12 | pitch=F#0  | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 48.75 | dur=  0.75 | pitch=F#1  | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 49.88 | dur=  0.50 | pitch=C#-1 | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 50.38 | dur=  0.25 | pitch=E0   | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 50.62 | dur=  0.75 | pitch=F#1  | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 51.88 | dur=  1.50 | pitch=D-1  | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 53.38 | dur=  0.50 | pitch=F#0  | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 53.88 | dur=  2.00 | pitch=C#-1 | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 55.88 | dur=  0.50 | pitch=A2   | vel=110
-2026-02-25 21:02:10,965 [DEBUG] start= 56.38 | dur=  0.25 | pitch=A-1  | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 56.62 | dur=  1.00 | pitch=D0   | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 57.62 | dur=  0.75 | pitch=C#1  | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 58.38 | dur=  1.00 | pitch=A-1  | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 59.38 | dur=  0.75 | pitch=C#0  | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 60.12 | dur=  0.25 | pitch=C#1  | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 60.38 | dur=  2.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 62.38 | dur=  2.00 | pitch=G#-1 | vel=115
-2026-02-25 21:02:10,965 [DEBUG] start= 64.38 | dur=  0.50 | pitch=A2   | vel=110
-2026-02-25 21:02:10,965 [DEBUG] start= 64.88 | dur=  0.75 | pitch=A-1  | vel= 55
-2026-02-25 21:02:10,965 [DEBUG] start= 65.62 | dur=  0.25 | pitch=G#0  | vel= 55
-2026-02-25 21:02:10,965 [DEBUG] start= 65.88 | dur=  0.12 | pitch=B1   | vel= 55
-2026-02-25 21:02:10,965 [DEBUG] start= 66.88 | dur=  0.50 | pitch=A-1  | vel= 55
-2026-02-25 21:02:10,966 [DEBUG] start= 67.38 | dur=  0.50 | pitch=G#0  | vel= 55
-2026-02-25 21:02:10,966 [DEBUG] start= 67.88 | dur=  0.50 | pitch=B1   | vel= 55
-2026-02-25 21:02:10,966 [DEBUG] start= 68.88 | dur=  0.12 | pitch=B-1  | vel= 55
-2026-02-25 21:02:10,966 [DEBUG] start= 69.00 | dur=  0.25 | pitch=F#0  | vel= 55
-2026-02-25 21:02:10,966 [DEBUG] start= 69.25 | dur=  1.50 | pitch=A1   | vel= 55
-2026-02-25 21:02:10,966 [DEBUG] start= 70.88 | dur=  0.25 | pitch=B-1  | vel= 55
-2026-02-25 21:02:10,966 [DEBUG] start= 71.12 | dur=  1.00 | pitch=E0   | vel= 55
-2026-02-25 21:02:10,966 [DEBUG] start= 72.12 | dur=  0.12 | pitch=G#1  | vel= 55
-2026-02-25 21:02:10,966 [DEBUG] start= 72.25 | dur=  0.50 | pitch=A3   | vel= 50
-2026-02-25 21:02:10,966 [DEBUG] start= 72.75 | dur=  1.50 | pitch=E-1  | vel= 35
-2026-02-25 21:02:10,966 [DEBUG] start= 74.25 | dur=  0.50 | pitch=D0   | vel= 35
-2026-02-25 21:02:10,966 [DEBUG] start= 74.75 | dur=  1.00 | pitch=F#-1 | vel= 35
-2026-02-25 21:02:10,966 [DEBUG] start= 75.75 | dur=  1.00 | pitch=E0   | vel= 35
-2026-02-25 21:02:10,966 [DEBUG] start= 76.75 | dur=  1.50 | pitch=F#-1 | vel= 35
-2026-02-25 21:02:10,966 [DEBUG] start= 78.25 | dur=  0.25 | pitch=D0   | vel= 35
-2026-02-25 21:02:10,966 [DEBUG] start= 78.75 | dur=  1.50 | pitch=F#-1 | vel= 35
-2026-02-25 21:02:10,966 [DEBUG] start= 80.25 | dur=  0.50 | pitch=D0   | vel= 35
-2026-02-25 21:02:10,966 [DEBUG] start= 80.75 | dur=  0.50 | pitch=A3   | vel= 30
-2026-02-25 21:02:10,966 [DEBUG] start= 81.25 | dur=  0.50 | pitch=A-1  | vel= 95
-2026-02-25 21:02:10,966 [DEBUG] start= 81.75 | dur=  0.25 | pitch=C#0  | vel= 95
-2026-02-25 21:02:10,966 [DEBUG] start= 83.25 | dur=  0.50 | pitch=G#-1 | vel= 95
-2026-02-25 21:02:10,966 [DEBUG] start= 83.75 | dur=  1.00 | pitch=B0   | vel= 95
-2026-02-25 21:02:10,966 [DEBUG] start= 85.25 | dur=  0.50 | pitch=A-1  | vel= 95
-2026-02-25 21:02:10,966 [DEBUG] start= 85.75 | dur=  0.12 | pitch=A0   | vel= 95
-2026-02-25 21:02:10,966 [DEBUG] start= 87.25 | dur=  0.50 | pitch=B-1  | vel= 95
-2026-02-25 21:02:10,966 [DEBUG] start= 87.75 | dur=  1.00 | pitch=A0   | vel= 95
-2026-02-25 21:02:10,966 [DEBUG] start= 88.75 | dur=  0.50 | pitch=A3   | vel= 90
-2026-02-25 21:02:10,966 [DEBUG] start= 89.25 | dur=  0.75 | pitch=C#-1 | vel=115
-2026-02-25 21:02:10,966 [DEBUG] start= 90.00 | dur=  0.75 | pitch=D0   | vel=115
-2026-02-25 21:02:10,966 [DEBUG] start= 90.75 | dur=  0.12 | pitch=E1   | vel=115
-2026-02-25 21:02:10,966 [DEBUG] start= 91.25 | dur=  0.12 | pitch=C#-1 | vel=115
-2026-02-25 21:02:10,966 [DEBUG] -------------------
+2026-02-26 09:58:51,376 [DEBUG] --- MIDI EVENTS ---
+2026-02-26 09:58:51,376 [DEBUG] Instrument: Trumpet
+2026-02-26 09:58:51,376 [DEBUG] start=  0.00 | dur=  0.12 | pitch=E-1  | vel= 80
+2026-02-26 09:58:51,376 [DEBUG] start=  2.00 | dur=  0.50 | pitch=F#-1 | vel= 80
+2026-02-26 09:58:51,376 [DEBUG] start=  4.00 | dur=  1.00 | pitch=F#-1 | vel= 80
+2026-02-26 09:58:51,376 [DEBUG] start=  6.00 | dur=  1.00 | pitch=G#-1 | vel= 80
+2026-02-26 09:58:51,376 [DEBUG] start=  7.00 | dur=  0.50 | pitch=A3   | vel= 70
+2026-02-26 09:58:51,376 [DEBUG] start=  7.50 | dur=  0.75 | pitch=A-1  | vel= 20
+2026-02-26 09:58:51,376 [DEBUG] start=  8.25 | dur=  0.50 | pitch=G#0  | vel= 20
+2026-02-26 09:58:51,376 [DEBUG] start=  8.75 | dur=  0.50 | pitch=B1   | vel= 20
+2026-02-26 09:58:51,376 [DEBUG] start=  9.50 | dur=  0.25 | pitch=G#-1 | vel= 20
+2026-02-26 09:58:51,376 [DEBUG] start=  9.75 | dur=  0.25 | pitch=A0   | vel= 20
+2026-02-26 09:58:51,376 [DEBUG] start= 10.00 | dur=  0.75 | pitch=C#1  | vel= 20
+2026-02-26 09:58:51,376 [DEBUG] start= 11.50 | dur=  0.25 | pitch=A-1  | vel= 20
+2026-02-26 09:58:51,376 [DEBUG] start= 11.75 | dur=  0.75 | pitch=B0   | vel= 20
+2026-02-26 09:58:51,376 [DEBUG] start= 12.50 | dur=  0.75 | pitch=C#1  | vel= 20
+2026-02-26 09:58:51,376 [DEBUG] start= 13.50 | dur=  0.25 | pitch=B-1  | vel= 20
+2026-02-26 09:58:51,376 [DEBUG] start= 13.75 | dur=  0.25 | pitch=B0   | vel= 20
+2026-02-26 09:58:51,376 [DEBUG] start= 14.00 | dur=  0.12 | pitch=C#1  | vel= 20
+2026-02-26 09:58:51,376 [DEBUG] start= 14.12 | dur=  0.50 | pitch=A4   | vel= 10
+2026-02-26 09:58:51,376 [DEBUG] start= 14.62 | dur=  1.50 | pitch=E-1  | vel=120
+2026-02-26 09:58:51,376 [DEBUG] start= 16.12 | dur=  0.50 | pitch=G#0  | vel=120
+2026-02-26 09:58:51,376 [DEBUG] start= 16.62 | dur=  0.50 | pitch=E-1  | vel=120
+2026-02-26 09:58:51,376 [DEBUG] start= 17.12 | dur=  0.75 | pitch=G#0  | vel=120
+2026-02-26 09:58:51,376 [DEBUG] start= 17.88 | dur=  0.12 | pitch=A1   | vel=120
+2026-02-26 09:58:51,376 [DEBUG] start= 18.62 | dur=  1.00 | pitch=F#-1 | vel=120
+2026-02-26 09:58:51,376 [DEBUG] start= 19.62 | dur=  0.25 | pitch=G#0  | vel=120
+2026-02-26 09:58:51,377 [DEBUG] start= 19.88 | dur=  0.25 | pitch=B1   | vel=120
+2026-02-26 09:58:51,377 [DEBUG] start= 20.62 | dur=  0.50 | pitch=F#-1 | vel=120
+2026-02-26 09:58:51,377 [DEBUG] start= 21.12 | dur=  0.50 | pitch=F#0  | vel=120
+2026-02-26 09:58:51,377 [DEBUG] start= 21.62 | dur=  0.25 | pitch=A1   | vel=120
+2026-02-26 09:58:51,377 [DEBUG] start= 21.88 | dur=  0.50 | pitch=A3   | vel=110
+2026-02-26 09:58:51,377 [DEBUG] start= 22.38 | dur=  0.25 | pitch=E-1  | vel= 80
+2026-02-26 09:58:51,377 [DEBUG] start= 22.62 | dur=  1.50 | pitch=G#0  | vel= 80
+2026-02-26 09:58:51,377 [DEBUG] start= 24.12 | dur=  0.25 | pitch=E1   | vel= 80
+2026-02-26 09:58:51,377 [DEBUG] start= 24.38 | dur=  0.75 | pitch=E-1  | vel= 80
+2026-02-26 09:58:51,377 [DEBUG] start= 25.12 | dur=  0.25 | pitch=G#0  | vel= 80
+2026-02-26 09:58:51,377 [DEBUG] start= 25.38 | dur=  0.12 | pitch=F#1  | vel= 80
+2026-02-26 09:58:51,377 [DEBUG] start= 26.38 | dur=  1.00 | pitch=D-1  | vel= 80
+2026-02-26 09:58:51,377 [DEBUG] start= 27.38 | dur=  0.75 | pitch=G#0  | vel= 80
+2026-02-26 09:58:51,377 [DEBUG] start= 28.12 | dur=  0.12 | pitch=E1   | vel= 80
+2026-02-26 09:58:51,377 [DEBUG] start= 28.38 | dur=  0.12 | pitch=D-1  | vel= 80
+2026-02-26 09:58:51,377 [DEBUG] start= 28.50 | dur=  0.50 | pitch=F#0  | vel= 80
+2026-02-26 09:58:51,377 [DEBUG] start= 29.00 | dur=  0.75 | pitch=D1   | vel= 80
+2026-02-26 09:58:51,377 [DEBUG] start= 29.75 | dur=  0.50 | pitch=A4   | vel= 70
+2026-02-26 09:58:51,377 [DEBUG] start= 30.25 | dur=  0.25 | pitch=G#-1 | vel= 40
+2026-02-26 09:58:51,377 [DEBUG] start= 30.50 | dur=  0.75 | pitch=G#0  | vel= 40
+2026-02-26 09:58:51,377 [DEBUG] start= 31.25 | dur=  0.25 | pitch=A1   | vel= 40
+2026-02-26 09:58:51,377 [DEBUG] start= 32.25 | dur=  0.25 | pitch=F#-1 | vel= 40
+2026-02-26 09:58:51,377 [DEBUG] start= 32.50 | dur=  0.75 | pitch=G#0  | vel= 40
+2026-02-26 09:58:51,377 [DEBUG] start= 33.25 | dur=  0.75 | pitch=G#1  | vel= 40
+2026-02-26 09:58:51,377 [DEBUG] start= 34.25 | dur=  1.00 | pitch=E-1  | vel= 40
+2026-02-26 09:58:51,377 [DEBUG] start= 35.25 | dur=  0.50 | pitch=A0   | vel= 40
+2026-02-26 09:58:51,377 [DEBUG] start= 35.75 | dur=  0.50 | pitch=A1   | vel= 40
+2026-02-26 09:58:51,377 [DEBUG] start= 36.25 | dur=  1.00 | pitch=E-1  | vel= 40
+2026-02-26 09:58:51,377 [DEBUG] start= 37.25 | dur=  1.00 | pitch=A0   | vel= 40
+2026-02-26 09:58:51,377 [DEBUG] start= 38.25 | dur=  0.50 | pitch=A3   | vel= 30
+2026-02-26 09:58:51,377 [DEBUG] start= 38.75 | dur=  1.50 | pitch=E-1  | vel= 20
+2026-02-26 09:58:51,377 [DEBUG] start= 40.75 | dur=  1.00 | pitch=F#-1 | vel= 20
+2026-02-26 09:58:51,377 [DEBUG] start= 42.75 | dur=  1.50 | pitch=E-1  | vel= 20
+2026-02-26 09:58:51,378 [DEBUG] start= 44.75 | dur=  0.25 | pitch=E-1  | vel= 20
+2026-02-26 09:58:51,378 [DEBUG] start= 45.00 | dur=  0.50 | pitch=A4   | vel= 10
+2026-02-26 09:58:51,378 [DEBUG] start= 45.50 | dur=  0.12 | pitch=B-1  | vel= 60
+2026-02-26 09:58:51,378 [DEBUG] start= 47.50 | dur=  2.00 | pitch=C#-1 | vel= 60
+2026-02-26 09:58:51,378 [DEBUG] start= 49.50 | dur=  0.12 | pitch=B-1  | vel= 60
+2026-02-26 09:58:51,378 [DEBUG] start= 51.50 | dur=  0.25 | pitch=C#-1 | vel= 60
+2026-02-26 09:58:51,378 [DEBUG] start= 51.75 | dur=  0.50 | pitch=A4   | vel= 50
+2026-02-26 09:58:51,378 [DEBUG] start= 52.25 | dur=  2.00 | pitch=B-1  | vel= 40
+2026-02-26 09:58:51,378 [DEBUG] start= 54.25 | dur=  0.12 | pitch=B-1  | vel= 40
+2026-02-26 09:58:51,378 [DEBUG] start= 54.38 | dur=  0.50 | pitch=G#0  | vel= 40
+2026-02-26 09:58:51,378 [DEBUG] start= 56.25 | dur=  0.75 | pitch=B-1  | vel= 40
+2026-02-26 09:58:51,378 [DEBUG] start= 57.00 | dur=  0.75 | pitch=G#0  | vel= 40
+2026-02-26 09:58:51,378 [DEBUG] start= 58.25 | dur=  0.50 | pitch=A-1  | vel= 40
+2026-02-26 09:58:51,378 [DEBUG] start= 58.75 | dur=  0.75 | pitch=G#0  | vel= 40
+2026-02-26 09:58:51,378 [DEBUG] start= 59.50 | dur=  0.50 | pitch=A4   | vel= 30
+2026-02-26 09:58:51,378 [DEBUG] start= 60.00 | dur=  0.75 | pitch=A-1  | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 62.00 | dur=  1.50 | pitch=B-1  | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 64.00 | dur=  0.12 | pitch=B-1  | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 66.00 | dur=  0.25 | pitch=C#-1 | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 66.25 | dur=  0.50 | pitch=A3   | vel= 90
+2026-02-26 09:58:51,378 [DEBUG] start= 66.75 | dur=  1.00 | pitch=C#-1 | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 67.75 | dur=  0.75 | pitch=B0   | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 68.50 | dur=  0.12 | pitch=D1   | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 68.75 | dur=  0.50 | pitch=D-1  | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 69.25 | dur=  0.25 | pitch=C#0  | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 69.50 | dur=  0.25 | pitch=E1   | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 70.75 | dur=  0.25 | pitch=D-1  | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 71.00 | dur=  0.75 | pitch=D0   | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 71.75 | dur=  0.25 | pitch=F#1  | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 72.75 | dur=  1.00 | pitch=C#-1 | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 73.75 | dur=  1.00 | pitch=D0   | vel=100
+2026-02-26 09:58:51,378 [DEBUG] start= 74.75 | dur=  0.50 | pitch=A4   | vel= 90
+2026-02-26 09:58:51,378 [DEBUG] start= 75.25 | dur=  2.00 | pitch=G#-1 | vel=120
+2026-02-26 09:58:51,378 [DEBUG] start= 77.25 | dur=  0.75 | pitch=F#-1 | vel=120
+2026-02-26 09:58:51,378 [DEBUG] start= 78.00 | dur=  0.50 | pitch=F#0  | vel=120
+2026-02-26 09:58:51,378 [DEBUG] start= 78.50 | dur=  0.50 | pitch=D1   | vel=120
+2026-02-26 09:58:51,378 [DEBUG] start= 79.00 | dur=  0.25 | pitch=C#2  | vel=120
+2026-02-26 09:58:51,378 [DEBUG] start= 79.25 | dur=  1.50 | pitch=E-1  | vel=120
+2026-02-26 09:58:51,378 [DEBUG] start= 80.75 | dur=  0.12 | pitch=E0   | vel=120
+2026-02-26 09:58:51,378 [DEBUG] start= 80.88 | dur=  0.25 | pitch=C#1  | vel=120
+2026-02-26 09:58:51,379 [DEBUG] start= 81.12 | dur=  0.12 | pitch=C#2  | vel=120
+2026-02-26 09:58:51,379 [DEBUG] start= 81.25 | dur=  0.12 | pitch=E-1  | vel=120
+2026-02-26 09:58:51,379 [DEBUG] start= 81.38 | dur=  1.00 | pitch=E0   | vel=120
+2026-02-26 09:58:51,379 [DEBUG] start= 82.38 | dur=  0.12 | pitch=D1   | vel=120
+2026-02-26 09:58:51,379 [DEBUG] start= 82.50 | dur=  0.50 | pitch=D2   | vel=120
+2026-02-26 09:58:51,379 [DEBUG] start= 83.00 | dur=  0.50 | pitch=A3   | vel=110
+2026-02-26 09:58:51,379 [DEBUG] start= 83.50 | dur=  0.75 | pitch=B-1  | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 84.25 | dur=  0.75 | pitch=C#0  | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 85.00 | dur=  0.25 | pitch=D1   | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 85.25 | dur=  0.12 | pitch=D2   | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 85.50 | dur=  0.75 | pitch=B-1  | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 86.25 | dur=  0.75 | pitch=B0   | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 87.00 | dur=  0.25 | pitch=C#1  | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 87.25 | dur=  0.25 | pitch=D2   | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 87.50 | dur=  0.50 | pitch=A-1  | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 88.00 | dur=  0.12 | pitch=C#0  | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 88.12 | dur=  0.12 | pitch=D1   | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 88.25 | dur=  0.25 | pitch=C#2  | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 89.50 | dur=  1.50 | pitch=A-1  | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 91.00 | dur=  0.12 | pitch=B0   | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 91.12 | dur=  0.12 | pitch=E1   | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 91.25 | dur=  0.25 | pitch=D2   | vel= 20
+2026-02-26 09:58:51,379 [DEBUG] start= 91.50 | dur=  0.50 | pitch=A4   | vel= 10
+2026-02-26 09:58:51,379 [DEBUG] Instrument: String Ensemble 1
+2026-02-26 09:58:51,379 [DEBUG] start=  0.00 | dur=  2.00 | pitch=A-1  | vel=110
+2026-02-26 09:58:51,379 [DEBUG] start=  2.00 | dur=  1.00 | pitch=A-1  | vel=110
+2026-02-26 09:58:51,379 [DEBUG] start=  3.00 | dur=  1.00 | pitch=F#0  | vel=110
+2026-02-26 09:58:51,379 [DEBUG] start=  4.00 | dur=  1.00 | pitch=A3   | vel=110
+2026-02-26 09:58:51,379 [DEBUG] start=  5.00 | dur=  0.50 | pitch=F#-1 | vel=110
+2026-02-26 09:58:51,379 [DEBUG] start=  5.50 | dur=  0.75 | pitch=C#0  | vel=110
+2026-02-26 09:58:51,379 [DEBUG] start=  6.25 | dur=  0.12 | pitch=A1   | vel=110
+2026-02-26 09:58:51,379 [DEBUG] start=  6.38 | dur=  0.25 | pitch=E2   | vel=110
+2026-02-26 09:58:51,379 [DEBUG] start=  7.00 | dur=  2.00 | pitch=G#-1 | vel=110
+2026-02-26 09:58:51,379 [DEBUG] start=  9.00 | dur=  1.00 | pitch=A3   | vel=110
+2026-02-26 09:58:51,379 [DEBUG] start= 10.00 | dur=  0.50 | pitch=C#-1 | vel= 10
+2026-02-26 09:58:51,379 [DEBUG] start= 10.50 | dur=  0.25 | pitch=G#0  | vel= 10
+2026-02-26 09:58:51,379 [DEBUG] start= 10.75 | dur=  1.00 | pitch=B1   | vel= 10
+2026-02-26 09:58:51,379 [DEBUG] start= 12.00 | dur=  0.25 | pitch=C#-1 | vel= 10
+2026-02-26 09:58:51,379 [DEBUG] start= 12.25 | dur=  0.50 | pitch=F#0  | vel= 10
+2026-02-26 09:58:51,380 [DEBUG] start= 12.75 | dur=  1.00 | pitch=B1   | vel= 10
+2026-02-26 09:58:51,380 [DEBUG] start= 13.75 | dur=  1.00 | pitch=A2   | vel= 10
+2026-02-26 09:58:51,380 [DEBUG] start= 14.75 | dur=  0.75 | pitch=B-1  | vel=110
+2026-02-26 09:58:51,380 [DEBUG] start= 16.75 | dur=  1.00 | pitch=C#-1 | vel=110
+2026-02-26 09:58:51,380 [DEBUG] start= 17.75 | dur=  1.00 | pitch=A3   | vel=110
+2026-02-26 09:58:51,380 [DEBUG] start= 18.75 | dur=  0.50 | pitch=C#-1 | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 19.25 | dur=  0.12 | pitch=F#0  | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 19.38 | dur=  0.50 | pitch=D1   | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 20.75 | dur=  0.50 | pitch=C#-1 | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 21.25 | dur=  0.25 | pitch=F#0  | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 21.50 | dur=  1.00 | pitch=D1   | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 22.50 | dur=  1.00 | pitch=A2   | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 23.50 | dur=  0.75 | pitch=A-1  | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 24.25 | dur=  0.50 | pitch=G#0  | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 24.75 | dur=  0.12 | pitch=A1   | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 24.88 | dur=  0.25 | pitch=E2   | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 25.50 | dur=  0.50 | pitch=A-1  | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 26.00 | dur=  0.25 | pitch=G#0  | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 26.25 | dur=  0.75 | pitch=A1   | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 27.00 | dur=  0.50 | pitch=E2   | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 27.50 | dur=  1.00 | pitch=A3   | vel= 50
+2026-02-26 09:58:51,380 [DEBUG] start= 28.50 | dur=  0.50 | pitch=D-1  | vel= 70
+2026-02-26 09:58:51,380 [DEBUG] start= 29.00 | dur=  0.12 | pitch=C#0  | vel= 70
+2026-02-26 09:58:51,380 [DEBUG] start= 29.12 | dur=  0.12 | pitch=G#1  | vel= 70
+2026-02-26 09:58:51,380 [DEBUG] start= 29.25 | dur=  0.25 | pitch=E2   | vel= 70
+2026-02-26 09:58:51,380 [DEBUG] start= 30.50 | dur=  1.50 | pitch=D-1  | vel= 70
+2026-02-26 09:58:51,380 [DEBUG] start= 32.00 | dur=  0.25 | pitch=B0   | vel= 70
+2026-02-26 09:58:51,380 [DEBUG] start= 32.25 | dur=  0.12 | pitch=F#1  | vel= 70
+2026-02-26 09:58:51,380 [DEBUG] start= 32.38 | dur=  0.12 | pitch=E2   | vel= 70
+2026-02-26 09:58:51,380 [DEBUG] start= 32.50 | dur=  1.00 | pitch=A2   | vel= 70
+2026-02-26 09:58:51,380 [DEBUG] start= 33.50 | dur=  0.12 | pitch=C#-1 | vel= 30
+2026-02-26 09:58:51,380 [DEBUG] start= 33.62 | dur=  0.50 | pitch=G#0  | vel= 30
+2026-02-26 09:58:51,380 [DEBUG] start= 35.50 | dur=  1.00 | pitch=C#-1 | vel= 30
+2026-02-26 09:58:51,380 [DEBUG] start= 36.50 | dur=  0.75 | pitch=G#0  | vel= 30
+2026-02-26 09:58:51,380 [DEBUG] start= 37.25 | dur=  1.00 | pitch=A2   | vel= 30
+2026-02-26 09:58:51,380 [DEBUG] start= 38.25 | dur=  2.00 | pitch=B-1  | vel=110
+2026-02-26 09:58:51,380 [DEBUG] start= 40.25 | dur=  2.00 | pitch=A-1  | vel=110
+2026-02-26 09:58:51,380 [DEBUG] start= 42.25 | dur=  1.00 | pitch=A3   | vel=110
+2026-02-26 09:58:51,380 [DEBUG] start= 43.25 | dur=  0.75 | pitch=G#-1 | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 45.25 | dur=  0.50 | pitch=G#-1 | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 45.75 | dur=  1.00 | pitch=A2   | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 46.75 | dur=  2.00 | pitch=A-1  | vel= 10
+2026-02-26 09:58:51,381 [DEBUG] start= 48.75 | dur=  0.75 | pitch=G#-1 | vel= 10
+2026-02-26 09:58:51,381 [DEBUG] start= 49.50 | dur=  1.00 | pitch=D0   | vel= 10
+2026-02-26 09:58:51,381 [DEBUG] start= 50.50 | dur=  0.25 | pitch=D1   | vel= 10
+2026-02-26 09:58:51,381 [DEBUG] start= 50.75 | dur=  1.00 | pitch=A2   | vel= 10
+2026-02-26 09:58:51,381 [DEBUG] start= 51.75 | dur=  0.50 | pitch=C#-1 | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 52.25 | dur=  1.50 | pitch=E0   | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 53.75 | dur=  2.00 | pitch=D-1  | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 55.75 | dur=  1.00 | pitch=A2   | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 56.75 | dur=  0.12 | pitch=E-1  | vel= 70
+2026-02-26 09:58:51,381 [DEBUG] start= 56.88 | dur=  0.12 | pitch=A0   | vel= 70
+2026-02-26 09:58:51,381 [DEBUG] start= 57.00 | dur=  0.12 | pitch=E1   | vel= 70
+2026-02-26 09:58:51,381 [DEBUG] start= 58.75 | dur=  1.50 | pitch=D-1  | vel= 70
+2026-02-26 09:58:51,381 [DEBUG] start= 60.25 | dur=  0.12 | pitch=B0   | vel= 70
+2026-02-26 09:58:51,381 [DEBUG] start= 60.38 | dur=  0.25 | pitch=F#1  | vel= 70
+2026-02-26 09:58:51,381 [DEBUG] start= 60.62 | dur=  1.00 | pitch=A3   | vel= 70
+2026-02-26 09:58:51,381 [DEBUG] start= 61.62 | dur=  0.75 | pitch=G#-1 | vel=110
+2026-02-26 09:58:51,381 [DEBUG] start= 62.38 | dur=  0.75 | pitch=E0   | vel=110
+2026-02-26 09:58:51,381 [DEBUG] start= 63.12 | dur=  0.25 | pitch=E1   | vel=110
+2026-02-26 09:58:51,381 [DEBUG] start= 63.62 | dur=  1.00 | pitch=F#-1 | vel=110
+2026-02-26 09:58:51,381 [DEBUG] start= 64.62 | dur=  0.75 | pitch=F#0  | vel=110
+2026-02-26 09:58:51,381 [DEBUG] start= 65.38 | dur=  0.25 | pitch=D1   | vel=110
+2026-02-26 09:58:51,381 [DEBUG] start= 65.62 | dur=  1.00 | pitch=A3   | vel=110
+2026-02-26 09:58:51,381 [DEBUG] start= 66.62 | dur=  0.75 | pitch=F#-1 | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 67.38 | dur=  0.25 | pitch=G#0  | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 67.62 | dur=  1.00 | pitch=G#1  | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 68.62 | dur=  0.12 | pitch=F#-1 | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 68.75 | dur=  0.75 | pitch=F#0  | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 69.50 | dur=  0.25 | pitch=A1   | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 69.75 | dur=  0.50 | pitch=F#2  | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 70.25 | dur=  1.00 | pitch=A3   | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 71.25 | dur=  2.00 | pitch=F#-1 | vel= 70
+2026-02-26 09:58:51,381 [DEBUG] start= 73.25 | dur=  0.50 | pitch=E-1  | vel= 70
+2026-02-26 09:58:51,381 [DEBUG] start= 73.75 | dur=  1.50 | pitch=G#0  | vel= 70
+2026-02-26 09:58:51,381 [DEBUG] start= 75.25 | dur=  1.00 | pitch=A2   | vel= 70
+2026-02-26 09:58:51,381 [DEBUG] start= 76.25 | dur=  1.50 | pitch=D-1  | vel= 30
+2026-02-26 09:58:51,381 [DEBUG] start= 78.25 | dur=  1.00 | pitch=D-1  | vel= 30
+2026-02-26 09:58:51,382 [DEBUG] start= 79.25 | dur=  1.00 | pitch=A2   | vel= 30
+2026-02-26 09:58:51,382 [DEBUG] start= 80.25 | dur=  0.75 | pitch=C#-1 | vel= 10
+2026-02-26 09:58:51,382 [DEBUG] start= 81.00 | dur=  1.00 | pitch=F#0  | vel= 10
+2026-02-26 09:58:51,382 [DEBUG] start= 82.00 | dur=  0.25 | pitch=E1   | vel= 10
+2026-02-26 09:58:51,382 [DEBUG] start= 82.25 | dur=  0.12 | pitch=C#-1 | vel= 10
+2026-02-26 09:58:51,382 [DEBUG] start= 82.38 | dur=  1.00 | pitch=E0   | vel= 10
+2026-02-26 09:58:51,382 [DEBUG] start= 83.38 | dur=  0.50 | pitch=E1   | vel= 10
+2026-02-26 09:58:51,382 [DEBUG] start= 83.88 | dur=  0.25 | pitch=B2   | vel= 10
+2026-02-26 09:58:51,382 [DEBUG] start= 84.12 | dur=  1.00 | pitch=A2   | vel= 10
+2026-02-26 09:58:51,382 [DEBUG] start= 85.12 | dur=  1.00 | pitch=G#-1 | vel= 30
+2026-02-26 09:58:51,382 [DEBUG] start= 86.12 | dur=  0.25 | pitch=C#0  | vel= 30
+2026-02-26 09:58:51,382 [DEBUG] start= 86.38 | dur=  0.50 | pitch=G#1  | vel= 30
+2026-02-26 09:58:51,382 [DEBUG] start= 86.88 | dur=  0.12 | pitch=G#2  | vel= 30
+2026-02-26 09:58:51,382 [DEBUG] start= 87.12 | dur=  0.12 | pitch=A-1  | vel= 30
+2026-02-26 09:58:51,382 [DEBUG] start= 87.25 | dur=  0.50 | pitch=C#0  | vel= 30
+2026-02-26 09:58:51,382 [DEBUG] start= 87.75 | dur=  0.25 | pitch=A1   | vel= 30
+2026-02-26 09:58:51,382 [DEBUG] start= 88.00 | dur=  1.00 | pitch=F#2  | vel= 30
+2026-02-26 09:58:51,382 [DEBUG] start= 89.00 | dur=  1.00 | pitch=A3   | vel= 30
+2026-02-26 09:58:51,382 [DEBUG] start= 90.00 | dur=  2.00 | pitch=C#-1 | vel= 70
+2026-02-26 09:58:51,382 [DEBUG] Instrument: Contrabass
+2026-02-26 09:58:51,382 [DEBUG] start=  0.00 | dur=  1.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start=  1.00 | dur=  1.00 | pitch=F#0  | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start=  2.00 | dur=  1.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start=  3.00 | dur=  1.00 | pitch=G#0  | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start=  4.00 | dur=  1.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start=  5.00 | dur=  1.00 | pitch=F#0  | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start=  6.00 | dur=  1.00 | pitch=F#-1 | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start=  7.00 | dur=  1.00 | pitch=F#0  | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start=  8.00 | dur=  1.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start=  9.00 | dur=  1.00 | pitch=G#0  | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start= 10.00 | dur=  1.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start= 11.00 | dur=  1.00 | pitch=A0   | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start= 12.00 | dur=  1.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start= 13.00 | dur=  1.00 | pitch=A0   | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start= 14.00 | dur=  1.00 | pitch=F#-1 | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start= 15.00 | dur=  1.00 | pitch=A0   | vel=115
+2026-02-26 09:58:51,382 [DEBUG] start= 16.00 | dur=  0.50 | pitch=A0   | vel=110
+2026-02-26 09:58:51,382 [DEBUG] start= 16.50 | dur=  1.00 | pitch=E-1  | vel= 15
+2026-02-26 09:58:51,382 [DEBUG] start= 17.50 | dur=  1.00 | pitch=B0   | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 18.50 | dur=  1.00 | pitch=E-1  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 19.50 | dur=  1.00 | pitch=C#0  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 20.50 | dur=  1.00 | pitch=D-1  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 21.50 | dur=  1.00 | pitch=B0   | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 22.50 | dur=  1.00 | pitch=D-1  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 23.50 | dur=  1.00 | pitch=B0   | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 24.50 | dur=  1.00 | pitch=D-1  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 25.50 | dur=  1.00 | pitch=A0   | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 26.50 | dur=  1.00 | pitch=E-1  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 27.50 | dur=  1.00 | pitch=G#0  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 28.50 | dur=  1.00 | pitch=F#-1 | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 29.50 | dur=  1.00 | pitch=A0   | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 30.50 | dur=  1.00 | pitch=F#-1 | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 31.50 | dur=  1.00 | pitch=A0   | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 32.50 | dur=  0.50 | pitch=A1   | vel= 10
+2026-02-26 09:58:51,383 [DEBUG] start= 33.00 | dur=  1.00 | pitch=D-1  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 34.00 | dur=  1.00 | pitch=F#0  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 35.00 | dur=  1.00 | pitch=D-1  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 36.00 | dur=  1.00 | pitch=F#0  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 37.00 | dur=  1.00 | pitch=D-1  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 38.00 | dur=  1.00 | pitch=E0   | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 39.00 | dur=  1.00 | pitch=C#-1 | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 40.00 | dur=  1.00 | pitch=E0   | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 41.00 | dur=  1.00 | pitch=B-1  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 42.00 | dur=  1.00 | pitch=E0   | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 43.00 | dur=  1.00 | pitch=C#-1 | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 44.00 | dur=  1.00 | pitch=E0   | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 45.00 | dur=  1.00 | pitch=D-1  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 46.00 | dur=  1.00 | pitch=E0   | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 47.00 | dur=  1.00 | pitch=D-1  | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 48.00 | dur=  1.00 | pitch=D0   | vel= 15
+2026-02-26 09:58:51,383 [DEBUG] start= 49.00 | dur=  0.50 | pitch=A0   | vel= 10
+2026-02-26 09:58:51,383 [DEBUG] start= 49.50 | dur=  1.00 | pitch=A-1  | vel=115
+2026-02-26 09:58:51,383 [DEBUG] start= 50.50 | dur=  1.00 | pitch=F#0  | vel=115
+2026-02-26 09:58:51,383 [DEBUG] start= 51.50 | dur=  1.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,383 [DEBUG] start= 52.50 | dur=  1.00 | pitch=E0   | vel=115
+2026-02-26 09:58:51,383 [DEBUG] start= 53.50 | dur=  1.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,383 [DEBUG] start= 54.50 | dur=  1.00 | pitch=E0   | vel=115
+2026-02-26 09:58:51,383 [DEBUG] start= 55.50 | dur=  1.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,383 [DEBUG] start= 56.50 | dur=  1.00 | pitch=E0   | vel=115
+2026-02-26 09:58:51,384 [DEBUG] start= 57.50 | dur=  1.00 | pitch=A-1  | vel=115
+2026-02-26 09:58:51,384 [DEBUG] start= 58.50 | dur=  1.00 | pitch=D0   | vel=115
+2026-02-26 09:58:51,384 [DEBUG] start= 59.50 | dur=  1.00 | pitch=A-1  | vel=115
+2026-02-26 09:58:51,384 [DEBUG] start= 60.50 | dur=  1.00 | pitch=D0   | vel=115
+2026-02-26 09:58:51,384 [DEBUG] start= 61.50 | dur=  1.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,384 [DEBUG] start= 62.50 | dur=  1.00 | pitch=E0   | vel=115
+2026-02-26 09:58:51,384 [DEBUG] start= 63.50 | dur=  1.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,384 [DEBUG] start= 64.50 | dur=  1.00 | pitch=E0   | vel=115
+2026-02-26 09:58:51,384 [DEBUG] start= 65.50 | dur=  0.50 | pitch=A0   | vel=110
+2026-02-26 09:58:51,384 [DEBUG] start= 66.00 | dur=  1.00 | pitch=E-1  | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 67.00 | dur=  1.00 | pitch=C#0  | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 68.00 | dur=  1.00 | pitch=D-1  | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 69.00 | dur=  1.00 | pitch=B0   | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 70.00 | dur=  1.00 | pitch=C#-1 | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 71.00 | dur=  1.00 | pitch=C#0  | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 72.00 | dur=  1.00 | pitch=B-1  | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 73.00 | dur=  1.00 | pitch=C#0  | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 74.00 | dur=  1.00 | pitch=C#-1 | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 75.00 | dur=  1.00 | pitch=C#0  | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 76.00 | dur=  1.00 | pitch=D-1  | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 77.00 | dur=  1.00 | pitch=B0   | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 78.00 | dur=  1.00 | pitch=D-1  | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 79.00 | dur=  1.00 | pitch=C#0  | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 80.00 | dur=  1.00 | pitch=D-1  | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 81.00 | dur=  1.00 | pitch=D0   | vel= 35
+2026-02-26 09:58:51,384 [DEBUG] start= 82.00 | dur=  0.50 | pitch=A0   | vel= 30
+2026-02-26 09:58:51,384 [DEBUG] start= 82.50 | dur=  1.00 | pitch=F#-1 | vel=115
+2026-02-26 09:58:51,384 [DEBUG] start= 84.50 | dur=  1.00 | pitch=F#-1 | vel=115
+2026-02-26 09:58:51,384 [DEBUG] start= 86.50 | dur=  1.00 | pitch=E-1  | vel=115
+2026-02-26 09:58:51,384 [DEBUG] start= 88.50 | dur=  1.00 | pitch=E-1  | vel=115
+2026-02-26 09:58:51,384 [DEBUG] start= 90.50 | dur=  1.00 | pitch=E-1  | vel=115
+2026-02-26 09:58:51,384 [DEBUG] Instrument: French Horn
+2026-02-26 09:58:51,384 [DEBUG] start=  0.00 | dur=  1.00 | pitch=A-1  | vel= 55
+2026-02-26 09:58:51,384 [DEBUG] start=  1.00 | dur=  1.00 | pitch=B0   | vel= 55
+2026-02-26 09:58:51,384 [DEBUG] start=  2.00 | dur=  0.50 | pitch=B-1  | vel= 55
+2026-02-26 09:58:51,384 [DEBUG] start=  2.50 | dur=  1.00 | pitch=C#0  | vel= 55
+2026-02-26 09:58:51,384 [DEBUG] start=  4.00 | dur=  2.00 | pitch=C#-1 | vel= 55
+2026-02-26 09:58:51,384 [DEBUG] start=  6.00 | dur=  0.50 | pitch=B-1  | vel= 55
+2026-02-26 09:58:51,384 [DEBUG] start=  6.50 | dur=  0.75 | pitch=D0   | vel= 55
+2026-02-26 09:58:51,385 [DEBUG] start=  7.25 | dur=  0.50 | pitch=A2   | vel= 50
+2026-02-26 09:58:51,385 [DEBUG] start=  7.75 | dur=  1.50 | pitch=D-1  | vel= 15
+2026-02-26 09:58:51,385 [DEBUG] start=  9.75 | dur=  2.00 | pitch=D-1  | vel= 15
+2026-02-26 09:58:51,385 [DEBUG] start= 11.75 | dur=  1.00 | pitch=D-1  | vel= 15
+2026-02-26 09:58:51,385 [DEBUG] start= 13.75 | dur=  2.00 | pitch=C#-1 | vel= 15
+2026-02-26 09:58:51,385 [DEBUG] start= 15.75 | dur=  0.50 | pitch=A2   | vel= 10
+2026-02-26 09:58:51,385 [DEBUG] start= 16.25 | dur=  2.00 | pitch=A-1  | vel=115
+2026-02-26 09:58:51,385 [DEBUG] start= 18.25 | dur=  1.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,385 [DEBUG] start= 19.25 | dur=  0.12 | pitch=A0   | vel=115
+2026-02-26 09:58:51,385 [DEBUG] start= 19.38 | dur=  0.12 | pitch=B1   | vel=115
+2026-02-26 09:58:51,385 [DEBUG] start= 20.25 | dur=  0.12 | pitch=A-1  | vel=115
+2026-02-26 09:58:51,385 [DEBUG] start= 20.38 | dur=  1.00 | pitch=B0   | vel=115
+2026-02-26 09:58:51,385 [DEBUG] start= 21.38 | dur=  0.12 | pitch=A1   | vel=115
+2026-02-26 09:58:51,385 [DEBUG] start= 22.25 | dur=  0.12 | pitch=A-1  | vel=115
+2026-02-26 09:58:51,385 [DEBUG] start= 22.38 | dur=  0.12 | pitch=A0   | vel=115
+2026-02-26 09:58:51,385 [DEBUG] start= 22.50 | dur=  1.50 | pitch=B1   | vel=115
+2026-02-26 09:58:51,385 [DEBUG] start= 24.00 | dur=  0.50 | pitch=A3   | vel=110
+2026-02-26 09:58:51,385 [DEBUG] start= 24.50 | dur=  0.50 | pitch=A-1  | vel= 35
+2026-02-26 09:58:51,385 [DEBUG] start= 26.50 | dur=  2.00 | pitch=A-1  | vel= 35
+2026-02-26 09:58:51,385 [DEBUG] start= 28.50 | dur=  0.12 | pitch=B-1  | vel= 35
+2026-02-26 09:58:51,385 [DEBUG] start= 30.50 | dur=  0.25 | pitch=B-1  | vel= 35
+2026-02-26 09:58:51,385 [DEBUG] start= 30.75 | dur=  0.50 | pitch=A3   | vel= 30
+2026-02-26 09:58:51,385 [DEBUG] start= 31.25 | dur=  2.00 | pitch=F#-1 | vel= 55
+2026-02-26 09:58:51,385 [DEBUG] start= 33.25 | dur=  0.25 | pitch=E-1  | vel= 55
+2026-02-26 09:58:51,385 [DEBUG] start= 33.50 | dur=  0.50 | pitch=D0   | vel= 55
+2026-02-26 09:58:51,385 [DEBUG] start= 34.00 | dur=  0.25 | pitch=C#1  | vel= 55
+2026-02-26 09:58:51,385 [DEBUG] start= 35.25 | dur=  1.50 | pitch=E-1  | vel= 55
+2026-02-26 09:58:51,385 [DEBUG] start= 36.75 | dur=  0.50 | pitch=D0   | vel= 55
+2026-02-26 09:58:51,385 [DEBUG] start= 37.25 | dur=  1.00 | pitch=F#-1 | vel= 55
+2026-02-26 09:58:51,385 [DEBUG] start= 38.25 | dur=  0.50 | pitch=E0   | vel= 55
+2026-02-26 09:58:51,385 [DEBUG] start= 38.75 | dur=  0.12 | pitch=D1   | vel= 55
+2026-02-26 09:58:51,385 [DEBUG] start= 38.88 | dur=  0.50 | pitch=A2   | vel= 50
+2026-02-26 09:58:51,385 [DEBUG] start= 39.38 | dur=  0.50 | pitch=D-1  | vel= 15
+2026-02-26 09:58:51,385 [DEBUG] start= 39.88 | dur=  0.12 | pitch=D0   | vel= 15
+2026-02-26 09:58:51,385 [DEBUG] start= 40.00 | dur=  0.12 | pitch=A1   | vel= 15
+2026-02-26 09:58:51,385 [DEBUG] start= 41.38 | dur=  0.12 | pitch=C#-1 | vel= 15
+2026-02-26 09:58:51,385 [DEBUG] start= 41.50 | dur=  0.50 | pitch=C#0  | vel= 15
+2026-02-26 09:58:51,386 [DEBUG] start= 42.00 | dur=  0.12 | pitch=A1   | vel= 15
+2026-02-26 09:58:51,386 [DEBUG] start= 43.38 | dur=  1.50 | pitch=C#-1 | vel= 15
+2026-02-26 09:58:51,386 [DEBUG] start= 44.88 | dur=  0.50 | pitch=C#0  | vel= 15
+2026-02-26 09:58:51,386 [DEBUG] start= 45.38 | dur=  0.75 | pitch=B-1  | vel= 15
+2026-02-26 09:58:51,386 [DEBUG] start= 46.12 | dur=  1.00 | pitch=D0   | vel= 15
+2026-02-26 09:58:51,386 [DEBUG] start= 47.12 | dur=  0.25 | pitch=B1   | vel= 15
+2026-02-26 09:58:51,386 [DEBUG] start= 47.38 | dur=  0.50 | pitch=A2   | vel= 10
+2026-02-26 09:58:51,386 [DEBUG] start= 47.88 | dur=  0.75 | pitch=C#-1 | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 48.62 | dur=  0.12 | pitch=F#0  | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 48.75 | dur=  0.75 | pitch=F#1  | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 49.88 | dur=  0.50 | pitch=C#-1 | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 50.38 | dur=  0.25 | pitch=E0   | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 50.62 | dur=  0.75 | pitch=F#1  | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 51.88 | dur=  1.50 | pitch=D-1  | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 53.38 | dur=  0.50 | pitch=F#0  | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 53.88 | dur=  2.00 | pitch=C#-1 | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 55.88 | dur=  0.50 | pitch=A2   | vel=110
+2026-02-26 09:58:51,386 [DEBUG] start= 56.38 | dur=  0.25 | pitch=A-1  | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 56.62 | dur=  1.00 | pitch=D0   | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 57.62 | dur=  0.75 | pitch=C#1  | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 58.38 | dur=  1.00 | pitch=A-1  | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 59.38 | dur=  0.75 | pitch=C#0  | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 60.12 | dur=  0.25 | pitch=C#1  | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 60.38 | dur=  2.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 62.38 | dur=  2.00 | pitch=G#-1 | vel=115
+2026-02-26 09:58:51,386 [DEBUG] start= 64.38 | dur=  0.50 | pitch=A2   | vel=110
+2026-02-26 09:58:51,386 [DEBUG] start= 64.88 | dur=  0.75 | pitch=A-1  | vel= 55
+2026-02-26 09:58:51,386 [DEBUG] start= 65.62 | dur=  0.25 | pitch=G#0  | vel= 55
+2026-02-26 09:58:51,386 [DEBUG] start= 65.88 | dur=  0.12 | pitch=B1   | vel= 55
+2026-02-26 09:58:51,386 [DEBUG] start= 66.88 | dur=  0.50 | pitch=A-1  | vel= 55
+2026-02-26 09:58:51,386 [DEBUG] start= 67.38 | dur=  0.50 | pitch=G#0  | vel= 55
+2026-02-26 09:58:51,386 [DEBUG] start= 67.88 | dur=  0.50 | pitch=B1   | vel= 55
+2026-02-26 09:58:51,386 [DEBUG] start= 68.88 | dur=  0.12 | pitch=B-1  | vel= 55
+2026-02-26 09:58:51,386 [DEBUG] start= 69.00 | dur=  0.25 | pitch=F#0  | vel= 55
+2026-02-26 09:58:51,386 [DEBUG] start= 69.25 | dur=  1.50 | pitch=A1   | vel= 55
+2026-02-26 09:58:51,386 [DEBUG] start= 70.88 | dur=  0.25 | pitch=B-1  | vel= 55
+2026-02-26 09:58:51,386 [DEBUG] start= 71.12 | dur=  1.00 | pitch=E0   | vel= 55
+2026-02-26 09:58:51,386 [DEBUG] start= 72.12 | dur=  0.12 | pitch=G#1  | vel= 55
+2026-02-26 09:58:51,387 [DEBUG] start= 72.25 | dur=  0.50 | pitch=A3   | vel= 50
+2026-02-26 09:58:51,387 [DEBUG] start= 72.75 | dur=  1.50 | pitch=E-1  | vel= 35
+2026-02-26 09:58:51,387 [DEBUG] start= 74.25 | dur=  0.50 | pitch=D0   | vel= 35
+2026-02-26 09:58:51,387 [DEBUG] start= 74.75 | dur=  1.00 | pitch=F#-1 | vel= 35
+2026-02-26 09:58:51,387 [DEBUG] start= 75.75 | dur=  1.00 | pitch=E0   | vel= 35
+2026-02-26 09:58:51,387 [DEBUG] start= 76.75 | dur=  1.50 | pitch=F#-1 | vel= 35
+2026-02-26 09:58:51,387 [DEBUG] start= 78.25 | dur=  0.25 | pitch=D0   | vel= 35
+2026-02-26 09:58:51,387 [DEBUG] start= 78.75 | dur=  1.50 | pitch=F#-1 | vel= 35
+2026-02-26 09:58:51,387 [DEBUG] start= 80.25 | dur=  0.50 | pitch=D0   | vel= 35
+2026-02-26 09:58:51,387 [DEBUG] start= 80.75 | dur=  0.50 | pitch=A3   | vel= 30
+2026-02-26 09:58:51,387 [DEBUG] start= 81.25 | dur=  0.50 | pitch=A-1  | vel= 95
+2026-02-26 09:58:51,387 [DEBUG] start= 81.75 | dur=  0.25 | pitch=C#0  | vel= 95
+2026-02-26 09:58:51,387 [DEBUG] start= 83.25 | dur=  0.50 | pitch=G#-1 | vel= 95
+2026-02-26 09:58:51,387 [DEBUG] start= 83.75 | dur=  1.00 | pitch=B0   | vel= 95
+2026-02-26 09:58:51,387 [DEBUG] start= 85.25 | dur=  0.50 | pitch=A-1  | vel= 95
+2026-02-26 09:58:51,387 [DEBUG] start= 85.75 | dur=  0.12 | pitch=A0   | vel= 95
+2026-02-26 09:58:51,387 [DEBUG] start= 87.25 | dur=  0.50 | pitch=B-1  | vel= 95
+2026-02-26 09:58:51,387 [DEBUG] start= 87.75 | dur=  1.00 | pitch=A0   | vel= 95
+2026-02-26 09:58:51,387 [DEBUG] start= 88.75 | dur=  0.50 | pitch=A3   | vel= 90
+2026-02-26 09:58:51,387 [DEBUG] start= 89.25 | dur=  0.75 | pitch=C#-1 | vel=115
+2026-02-26 09:58:51,387 [DEBUG] start= 90.00 | dur=  0.75 | pitch=D0   | vel=115
+2026-02-26 09:58:51,387 [DEBUG] start= 90.75 | dur=  0.12 | pitch=E1   | vel=115
+2026-02-26 09:58:51,387 [DEBUG] start= 91.25 | dur=  0.12 | pitch=C#-1 | vel=115
+2026-02-26 09:58:51,387 [DEBUG] -------------------

@@ -1,6 +1,6 @@
 import pytest
 import random
-from roles import RoleMelody, RoleBass, RolePad, RoleCountermelody, RoleBehavior
+from listener_to_randomness.core.roles import RoleMelody, RoleBass, RolePad, RoleCountermelody, RoleBehavior
 
 
 class FakeConfig:

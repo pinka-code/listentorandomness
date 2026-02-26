@@ -1,10 +1,10 @@
 import pretty_midi  # type: ignore
 
-from track import Track
-from orchestration import choose_instrument_for_role
-from roles import create_role
-from orchestration import Role
-from measure import Measure
+from .track import Track
+from listener_to_randomness.midi.orchestration import choose_instrument_for_role
+from .roles import create_role
+from listener_to_randomness.midi.orchestration import Role
+from .measure import Measure
 
 
 class Composition:

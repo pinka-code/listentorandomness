@@ -1,6 +1,6 @@
 import pytest
 import random
-import rhythm
+from listener_to_randomness.core import rhythm
 
 
 @pytest.fixture
