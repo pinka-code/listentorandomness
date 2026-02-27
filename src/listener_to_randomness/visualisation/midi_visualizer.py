@@ -93,6 +93,105 @@ def plot_midi_pitch_time_velocity(midi_path, output_dir="src/listener_to_randomn
         print(f"Saved {file_path}")
         fig_count += 1
 
+def plot_global_complexity_map(midi_path, output_path, time_bin=0.1):
+    """
+    Plot all instruments in one complexity map.
+
+    X = rhythmic complexity (duration entropy)
+    Y = melodic complexity (interval entropy)
+    Color = harmonic density
+    """
+
+    pm = pretty_midi.PrettyMIDI(midi_path)
+    instruments = [inst for inst in pm.instruments if inst.notes]
+
+    if not instruments:
+        print("No tracks with notes found.")
+        return
+
+    rhythmic_values = []
+    melodic_values = []
+    harmonic_values = []
+    labels = []
+
+    for inst in instruments:
+
+        inst.notes.sort(key=lambda n: n.start)
+
+        pitches = np.array([note.pitch for note in inst.notes])
+        durations = np.array([note.end - note.start for note in inst.notes])
+
+        if len(pitches) < 2:
+            continue
+
+        intervals = np.diff(pitches)
+        melodic_complexity = shannon_entropy(intervals)
+
+        rhythmic_complexity = shannon_entropy(np.round(durations, 2))
+
+        harmonic_density = compute_harmonic_density(
+            inst.notes,
+            time_bin=time_bin
+        )
+
+        rhythmic_values.append(rhythmic_complexity)
+        melodic_values.append(melodic_complexity)
+        harmonic_values.append(harmonic_density)
+
+        labels.append(inst.name or f"Program_{inst.program}")
+
+    if not rhythmic_values:
+        return
+
+    plt.figure(figsize=(9, 7))
+
+    scatter = plt.scatter(
+        rhythmic_values,
+        melodic_values,
+        c=harmonic_values,
+        cmap="viridis",
+        s=200
+    )
+
+    plt.colorbar(scatter, label="Harmonic Density")
+
+    for i, label in enumerate(labels):
+        plt.text(
+            rhythmic_values[i] + 0.02,
+            melodic_values[i] + 0.02,
+            label,
+            fontsize=8
+        )
+
+    plt.xlabel("Rhythmic Complexity (Entropy)")
+    plt.ylabel("Melodic Complexity (Entropy)")
+    plt.title("Global Complexity Map (All Instruments)")
+    plt.grid(True)
+    plt.tight_layout()
+
+    plt.savefig(output_path, dpi=150)
+    plt.close()
+
+    print(f"Saved global complexity map to {output_path}")
+
+def compute_harmonic_density(notes, time_bin=0.1):
+    """
+    Compute average number of simultaneous notes (polyphony).
+    """
+    if not notes:
+        return 0.0
+
+    max_time = max(note.end for note in notes)
+    bins = np.arange(0, max_time + time_bin, time_bin)
+
+    density = []
+
+    for t in bins:
+        active = sum(1 for note in notes if note.start <= t < note.end)
+        density.append(active)
+
+    return np.mean(density)
+
 def analyze_midi_tracks(midi_path, output_dir="midi_analysis", time_bin=0.1):
     """
     Analyze each track of a MIDI file and generate multiple plots per instrument.
