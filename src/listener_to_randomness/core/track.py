@@ -26,13 +26,28 @@ class Track:
         self.measure_class = measure_class
 
     def _generate_pattern(self):
-        return [
-            self.rng.randint(0, len(self.config.scale_notes) - 1)
-            for _ in range(self.rng.randint(
-                self.config.phrase_length_min,
-                self.config.phrase_length_max
-            ))
-        ]
+        scale_len = len(self.config.scale_notes)
+
+        length = self.rng.randint(
+            self.config.pattern_length_min,
+            self.config.pattern_length_max
+        )
+
+        degrees = list(range(scale_len))
+        start_weights = [4 if d == 0 else 1 for d in degrees]
+
+        current = self.rng.choice_weighted(degrees, weights=start_weights)
+        motif = [current]
+
+        interval_choices = [-2, -1, 0, 1, 2, 3, -3]
+        interval_weights = [1, 4, 3, 4, 2, 1, 1]
+
+        for _ in range(length - 1):
+            interval = self.rng.choice_weighted(interval_choices, weights=interval_weights)
+            current = current + interval
+            motif.append(current)
+
+        return motif
 
     def generate(self):
         time = 0.0

@@ -15,8 +15,8 @@ class MusicConfig:
     time_signature_type: str
     num_tracks: int
     total_duration: float
-    phrase_length_min: int
-    phrase_length_max: int
+    pattern_length_min: int
+    pattern_length_max: int
     phrase_variation_prob: float
     tonic_midi: int
 
@@ -29,8 +29,8 @@ def generate_structure(rng):
     num_tracks = rng.randint(1, 5)
     total_duration = rng.randint(30, 180)
 
-    phrase_length_min = 1
-    phrase_length_max = 4
+    pattern_length_min = 1
+    pattern_length_max = 4
     phrase_variation_prob = 0.7   # 70% chance to vary the motif
 
     tonic_midi = key_obj.tonic()
@@ -46,8 +46,8 @@ def generate_structure(rng):
         time_signature_type=sig_type,
         num_tracks=num_tracks,
         total_duration=total_duration,
-        phrase_length_min=phrase_length_min,
-        phrase_length_max=phrase_length_max,
+        pattern_length_min=pattern_length_min,
+        pattern_length_max=pattern_length_max,
         phrase_variation_prob=phrase_variation_prob,
         tonic_midi=tonic_midi
     )

@@ -59,14 +59,17 @@ class DummyRandom:
 
     def random(self):
         return 1.0
+    
+    def choice_weighted(self, seq, weights):
+        return seq[0]
 
 
 @pytest.fixture
 def config():
     class DummyConfig:
         total_duration = 4.0
-        phrase_length_min = 1
-        phrase_length_max = 1
+        pattern_length_min = 1
+        pattern_length_max = 1
         scale_notes = [0, 2, 4, 5, 7]
         phrase_variation_prob = 0.0
         time_signature_num = 4

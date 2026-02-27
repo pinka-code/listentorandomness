@@ -15,6 +15,9 @@ class DummyRandom:
 
     def choice(self, seq):
         return seq[0]
+    
+    def choice_weighted(self, seq, weights):
+        return seq[0]
 
     def randint(self, a, b):
         return a
@@ -57,8 +60,8 @@ def config():
     class DummyConfig:
         tempo_bpm = 120
         total_duration = 4.0
-        phrase_length_min = 1
-        phrase_length_max = 1
+        pattern_length_min = 1
+        pattern_length_max = 1
         scale_notes = [0, 2, 4, 5, 7]
         phrase_variation_prob = 0.0
         tonic_midi = 60
