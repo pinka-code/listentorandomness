@@ -6,6 +6,9 @@ from matplotlib import gridspec
 import os
 import networkx as nx
 from collections import Counter
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+
 
 def plot_midi_pitch_time_velocity(midi_path, output_dir="src/listener_to_randomness/visualisation/plots", tracks_per_fig=2, track_height=4, y_margin=5):
     """
@@ -369,9 +372,6 @@ def plot_markov_transition(pitches, output_path, instrument_name):
     plt.savefig(output_path, dpi=150)
     plt.close()
 
-# ==========================================================
-# -------------------- ENTROPY -----------------------------
-# ==========================================================
 
 def shannon_entropy(values):
     """
@@ -438,3 +438,145 @@ def analyze_entropy(pitches, durations, output_txt, inst_name, inst_dir):
     plt.tight_layout()
     plt.savefig(os.path.join(inst_dir, "entropy_profile.png"), dpi=150)
     plt.close()
+
+
+def extract_phrases(notes, pause_threshold=0.5):
+    """
+    Segment notes into phrases based on silence duration.
+    """
+    if not notes:
+        return []
+
+    notes = sorted(notes, key=lambda n: n.start)
+
+    phrases = []
+    current_phrase = [notes[0]]
+
+    for prev, curr in zip(notes[:-1], notes[1:]):
+        gap = curr.start - prev.end
+
+        if gap > pause_threshold:
+            phrases.append(current_phrase)
+            current_phrase = [curr]
+        else:
+            current_phrase.append(curr)
+
+    phrases.append(current_phrase)
+    return phrases
+
+
+def plot_phrase_clustering(midi_path, output_path,
+                           n_clusters=3,
+                           pause_threshold=0.5):
+
+    pm = pretty_midi.PrettyMIDI(midi_path)
+    instruments = [inst for inst in pm.instruments if inst.notes]
+
+    all_features = []
+
+    for inst in instruments:
+        phrases = extract_phrases(inst.notes, pause_threshold)
+
+        for phrase in phrases:
+            features = compute_phrase_features(phrase)
+            if features is not None:
+                all_features.append(features)
+
+    if len(all_features) < n_clusters:
+        print("Not enough phrases for clustering.")
+        return
+
+    X = np.array(all_features)
+
+    # Standardize
+    X_scaled = standardize(X)
+
+    # KMeans (NumPy version)
+    clusters = simple_kmeans(X_scaled, n_clusters)
+
+    # Simple 2D projection (first two dimensions)
+    x_axis = X_scaled[:, 0]
+    y_axis = X_scaled[:, 1]
+
+    plt.figure(figsize=(9, 7))
+
+    plt.scatter(
+        x_axis,
+        y_axis,
+        c=clusters,
+        cmap="tab10",
+        s=120
+    )
+
+    plt.xlabel("Feature Dimension 1")
+    plt.ylabel("Feature Dimension 2")
+    plt.title("Phrase Clustering (NumPy KMeans)")
+    plt.grid(True)
+    plt.tight_layout()
+
+    plt.savefig(output_path, dpi=150)
+    plt.close()
+
+    print(f"Saved phrase clustering plot to {output_path}")
+
+
+def compute_phrase_features(phrase):
+    """
+    Extract numerical features from a phrase.
+    """
+    pitches = np.array([n.pitch for n in phrase])
+    durations = np.array([n.end - n.start for n in phrase])
+
+    if len(pitches) < 2:
+        return None
+
+    intervals = np.diff(pitches)
+
+    return [
+        np.mean(pitches),
+        np.std(pitches),
+        np.mean(durations),
+        np.std(durations),
+        shannon_entropy(intervals),
+        shannon_entropy(np.round(durations, 2)),
+    ]
+
+def simple_kmeans(X, k, max_iter=100):
+    """
+    Minimal KMeans implementation using NumPy.
+    """
+    np.random.seed(42)
+
+    # Randomly initialize centroids
+    centroids = X[np.random.choice(len(X), k, replace=False)]
+
+    for _ in range(max_iter):
+        # Compute distances
+        distances = np.linalg.norm(
+            X[:, np.newaxis] - centroids,
+            axis=2
+        )
+
+        # Assign clusters
+        labels = np.argmin(distances, axis=1)
+
+        # Recompute centroids
+        new_centroids = np.array([
+            X[labels == i].mean(axis=0)
+            if np.any(labels == i)
+            else centroids[i]
+            for i in range(k)
+        ])
+
+        if np.allclose(centroids, new_centroids):
+            break
+
+        centroids = new_centroids
+
+    return labels
+
+def standardize(X):
+    mean = X.mean(axis=0)
+    std = X.std(axis=0)
+    std[std == 0] = 1
+    return (X - mean) / std

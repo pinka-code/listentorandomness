@@ -1,5 +1,5 @@
 import argparse
-from listener_to_randomness.visualisation.midi_visualizer import plot_midi_pitch_time_velocity, plot_global_complexity_map, analyze_midi_tracks
+from listener_to_randomness.visualisation.midi_visualizer import plot_midi_pitch_time_velocity, plot_global_complexity_map, analyze_midi_tracks, plot_phrase_clustering
 
 
 def main():
@@ -35,6 +35,7 @@ def main():
     elif args.mode == "analysis":
         analyze_midi_tracks(args.midi_file, args.output_dir)
         plot_global_complexity_map(args.midi_file, args.output_dir)
+        plot_phrase_clustering(args.midi_file, args.output_dir+"/phrase_clustering.png", n_clusters=4, pause_threshold=0.5)
 
     elif args.mode == "todo":
         print("not implemented yet.")
