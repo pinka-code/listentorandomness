@@ -24,8 +24,7 @@ def test_role_pitch_octave_velocity(config, rng, RoleClass):
 
     for _ in range(20):
         degree = rng.randint(0, len(config.scale_notes)-1)
-        octave = role.choose_octave()
-        pitch = role.choose_pitch(degree, octave)
+        pitch = role.choose_pitch(degree)
         velocity = role.adjust_velocity(80)
 
         interval = (pitch - config.tonic_midi) % 12

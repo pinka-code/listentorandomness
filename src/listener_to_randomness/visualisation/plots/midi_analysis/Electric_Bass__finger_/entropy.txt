@@ -1,0 +1,6 @@
+Entropy analysis - Electric Bass (finger)
+
+Pitch entropy: 3.6660
+Interval entropy: 4.5597
+Duration entropy: 0.2998
+Transition entropy: 3.6699

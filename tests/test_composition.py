@@ -31,13 +31,10 @@ class DummyRole(RoleBehavior):
         self.tonic_midi = tonic_midi
         self.rng = rng
 
-    def choose_degree(self, measure, motif_idx):
-        return 0
-
     def choose_octave(self):
         return 4
 
-    def adjust_velocity(self, velocity, idx):
+    def adjust_velocity(self, velocity):
         return velocity
     
     def generate_rhythm(self, measure_duration):
@@ -49,7 +46,7 @@ class DummyRole(RoleBehavior):
             remaining -= dur
         return pattern
 
-    def choose_pitch(self, degree, index):
+    def choose_pitch(self, degree):
         """For tests, just return tonic + octave*12 + degree modulo scale"""
         base_note = self.tonic_midi
         return base_note + 12 * 4 + degree  # fixed octave 4 for the test

@@ -18,12 +18,12 @@ class Measure:
         notes = []
         current_time = start_time
 
-        for index, (degree, dur_tuple) in enumerate(zip(self.melodic_pattern, self.rhythmic_pattern)):
+        for _, (degree, dur_tuple) in enumerate(zip(self.melodic_pattern, self.rhythmic_pattern)):
             duration, is_rest = dur_tuple
             if is_rest:
                 pass
-            pitch = self.role.choose_pitch(degree, index)
-            velocity = self.role.adjust_velocity(dynamic, index)
+            pitch = self.role.choose_pitch(degree)
+            velocity = self.role.adjust_velocity(dynamic)
 
             notes.append(
                 Note(

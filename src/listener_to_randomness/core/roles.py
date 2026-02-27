@@ -18,24 +18,19 @@ class RoleBehavior:
         self.config = config
         self.rng = rng
 
-    def choose_degree(self, measure=None, motif_idx=0):
-        """Chooses the degree in the pattern (default: cyclic)."""
-        if measure:
-            return measure.motif[motif_idx % len(measure.motif)]
-        return 0
-
     def choose_octave(self):
         """Default octave (3 or 4)."""
         oct = [octaves.Octave.OCTAVE_3, octaves.Octave.OCTAVE_4]
         return octaves.choose_octave(self.rng, oct)
 
-    def adjust_velocity(self, velocity: int, idx=0) -> int:
+    def adjust_velocity(self, velocity: int) -> int:
         """Adjust velocity based on the role (no change by default)."""
         return velocity
 
-    def choose_pitch(self, degree: int, octave: int) -> int:
+    def choose_pitch(self, degree: int) -> int:
         """Returns the final MIDI pitch based on degree and octave."""
         base_note = self.config.scale_notes[degree % len(self.config.scale_notes)]
+        octave = self.choose_octave()
         return base_note + 12 * octave
     
     def generate_rhythm(self, measure_duration):
@@ -51,9 +46,8 @@ class RoleBehavior:
     def choose_final_note(self):
         """Returns a tuple (pitch, duration_ratio) for the final note."""
         degree = 0
-        octave = self.choose_octave()
         duration_ratio = 0.5
-        pitch = self.choose_pitch(degree, octave)
+        pitch = self.choose_pitch(degree)
         return pitch, duration_ratio
 
 
@@ -64,7 +58,7 @@ class RoleMelody(RoleBehavior):
         oct = [octaves.Octave.OCTAVE_4, octaves.Octave.OCTAVE_5]
         return octaves.choose_octave(self.rng, oct)
 
-    def adjust_velocity(self, velocity: int, idx=0) -> int:
+    def adjust_velocity(self, velocity: int) -> int:
         return min(127, velocity + 10)
     
     def generate_rhythm(self, measure_duration):
@@ -79,9 +73,8 @@ class RoleMelody(RoleBehavior):
 
     def choose_final_note(self):
         degree = 0
-        octave = self.choose_octave()
         duration_ratio = 0.5
-        pitch = self.choose_pitch(degree, octave)
+        pitch = self.choose_pitch(degree)
         return pitch, duration_ratio
 
 class RoleHarmony(RoleBehavior):
@@ -91,7 +84,7 @@ class RoleHarmony(RoleBehavior):
         oct = [octaves.Octave.OCTAVE_3, octaves.Octave.OCTAVE_4]
         return octaves.choose_octave(self.rng, oct)
 
-    def adjust_velocity(self, velocity: int, idx=0) -> int:
+    def adjust_velocity(self, velocity: int) -> int:
         return velocity
 
     def generate_rhythm(self, measure_duration):
@@ -106,22 +99,18 @@ class RoleHarmony(RoleBehavior):
 
     def choose_final_note(self):
         degree = 0
-        octave = self.choose_octave()
         duration_ratio = 1.0
-        pitch = self.choose_pitch(degree, octave)
+        pitch = self.choose_pitch(degree)
         return pitch, duration_ratio
 
 class RoleBass(RoleBehavior):
     name = Role.BASS
 
-    def choose_degree(self, measure=None, motif_idx=0):
-        return self.rng.choice([0, 4])  # tonic or fifth
-
     def choose_octave(self):
         oct = [octaves.Octave.OCTAVE_1, octaves.Octave.OCTAVE_2]
         return octaves.choose_octave(self.rng, oct)
 
-    def adjust_velocity(self, velocity: int, idx=0) -> int:
+    def adjust_velocity(self, velocity: int) -> int:
         return min(127, velocity + 5)
     
     def generate_rhythm(self, measure_duration):
@@ -132,9 +121,8 @@ class RoleBass(RoleBehavior):
 
     def choose_final_note(self):
         degree = 0
-        octave = self.rng.choice([1, 2])
         duration_ratio = 0.5
-        pitch = self.choose_pitch(degree, octave)
+        pitch = self.choose_pitch(degree)
         return pitch, duration_ratio
 
 
@@ -145,7 +133,7 @@ class RolePad(RoleBehavior):
         oct = [octaves.Octave.OCTAVE_3, octaves.Octave.OCTAVE_4]
         return octaves.choose_octave(self.rng, oct)
 
-    def adjust_velocity(self, velocity: int, idx=0) -> int:
+    def adjust_velocity(self, velocity: int) -> int:
         return max(20, velocity - 10)
     
     def generate_rhythm(self, measure_duration):
@@ -156,9 +144,8 @@ class RolePad(RoleBehavior):
 
     def choose_final_note(self):
         degree = 0
-        octave = self.choose_octave()
         duration_ratio = 1.0
-        pitch = self.choose_pitch(degree, octave)
+        pitch = self.choose_pitch(degree)
         return pitch, duration_ratio
 
 
@@ -169,7 +156,7 @@ class RoleCountermelody(RoleBehavior):
         oct = [octaves.Octave.OCTAVE_3, octaves.Octave.OCTAVE_4]
         return octaves.choose_octave(self.rng, oct)
 
-    def adjust_velocity(self, velocity: int, idx=0) -> int:
+    def adjust_velocity(self, velocity: int) -> int:
         return min(127, velocity + 5)
     
     def generate_rhythm(self, measure_duration):
@@ -184,9 +171,8 @@ class RoleCountermelody(RoleBehavior):
 
     def choose_final_note(self):
         degree = 0
-        octave = self.choose_octave()
         duration_ratio = 0.5
-        pitch = self.choose_pitch(degree, octave)
+        pitch = self.choose_pitch(degree)
         return pitch, duration_ratio
 
 

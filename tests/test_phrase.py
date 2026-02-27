@@ -19,10 +19,10 @@ class DummyRandom:
 
 
 class DummyRole:
-    def choose_pitch(self, degree, note_index):
+    def choose_pitch(self, degree):
         return 60 + degree
 
-    def adjust_velocity(self, velocity, note_index):
+    def adjust_velocity(self, velocity):
         return velocity
     
     def generate_rhythm(self, measure_duration):
@@ -36,9 +36,8 @@ class DummyRole:
 
     def choose_final_note(self):
         degree = 0
-        octave = 3
         duration_ratio = 0.5
-        pitch = self.choose_pitch(degree, octave)
+        pitch = self.choose_pitch(degree)
         return pitch, duration_ratio
 
 

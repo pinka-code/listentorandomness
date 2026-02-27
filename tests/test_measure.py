@@ -3,10 +3,10 @@ from listener_to_randomness.core.measure import Measure
 
 
 class DummyRole:
-    def choose_pitch(self, degree, note_index):
+    def choose_pitch(self, degree):
         return 60 + degree
 
-    def adjust_velocity(self, velocity, note_index):
+    def adjust_velocity(self, velocity):
         return velocity + 5
 
 
