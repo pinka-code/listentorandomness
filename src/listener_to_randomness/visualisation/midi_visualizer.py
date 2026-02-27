@@ -3,8 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 from matplotlib import gridspec
-import sys
 import os
+import networkx as nx
+from collections import Counter
 
 def plot_midi_pitch_time_velocity(midi_path, output_dir="src/listener_to_randomness/visualisation/plots", tracks_per_fig=2, track_height=4, y_margin=5):
     """
@@ -92,23 +93,11 @@ def plot_midi_pitch_time_velocity(midi_path, output_dir="src/listener_to_randomn
         print(f"Saved {file_path}")
         fig_count += 1
 
-
 def analyze_midi_tracks(midi_path, output_dir="midi_analysis", time_bin=0.1):
     """
-    Analyze each track of a MIDI file and generate multiple plots per instrument:
-        - Melody contour (pitch vs time)
-        - Pitch histogram
-        - Duration histogram
-        - Rhythmic density (notes per time window)
-        - Velocity over time
-
-    Files are saved in a dedicated folder per instrument.
-
-    Parameters:
-        midi_path (str): path to the MIDI file
-        output_dir (str): output directory
-        time_bin (float): bin size (seconds) for rhythmic density histogram
+    Analyze each track of a MIDI file and generate multiple plots per instrument.
     """
+
     pm = pretty_midi.PrettyMIDI(midi_path)
     instruments = [inst for inst in pm.instruments if inst.notes]
 
@@ -124,72 +113,229 @@ def analyze_midi_tracks(midi_path, output_dir="midi_analysis", time_bin=0.1):
         inst_dir = os.path.join(output_dir, safe_name)
         os.makedirs(inst_dir, exist_ok=True)
 
+        inst.notes.sort(key=lambda n: n.start)
+
         times = np.array([note.start for note in inst.notes])
         pitches = np.array([note.pitch for note in inst.notes])
         velocities = np.array([note.velocity for note in inst.notes])
         durations = np.array([note.end - note.start for note in inst.notes])
 
-        # Melody contour (Pitch vs Time)
-        plt.figure(figsize=(12, 4))
-        plt.plot(times, pitches, marker='o', linestyle='-')
-        plt.xlabel("Time (s)")
-        plt.ylabel("MIDI Pitch")
-        plt.title(f"Melody contour - {inst_name}")
-        plt.grid(True)
-        plt.tight_layout()
-        plt.savefig(os.path.join(inst_dir, "melody.png"), dpi=150)
-        plt.close()
+        plot_melody_contour(times, pitches, inst_name, inst_dir)
+        plot_pitch_histogram(pitches, inst_name, inst_dir)
+        plot_duration_histogram(durations, inst_name, inst_dir)
+        plot_rhythmic_density(times, inst_name, inst_dir, time_bin)
+        plot_velocity_over_time(times, pitches, velocities, inst_name, inst_dir)
 
-        # Pitch histogram
-        plt.figure(figsize=(12, 4))
-        plt.hist(pitches, bins=np.arange(0, 128) - 0.5,
-                 color="skyblue", edgecolor="black")
-        plt.xlabel("MIDI Pitch")
-        plt.ylabel("Note count")
-        plt.title(f"Pitch distribution - {inst_name}")
-        plt.grid(True)
-        plt.tight_layout()
-        plt.savefig(os.path.join(inst_dir, "pitch_hist.png"), dpi=150)
-        plt.close()
+        motifs = detect_repeated_motifs(pitches)
+        save_motifs(motifs, inst_dir)
 
-        # Duration histogram
-        plt.figure(figsize=(12, 4))
-        plt.hist(durations, bins=20,
-                 color="lightgreen", edgecolor="black")
-        plt.xlabel("Duration (s)")
-        plt.ylabel("Note count")
-        plt.title(f"Note duration distribution - {inst_name}")
-        plt.grid(True)
-        plt.tight_layout()
-        plt.savefig(os.path.join(inst_dir, "duration_hist.png"), dpi=150)
-        plt.close()
+        plot_markov_transition(
+            pitches,
+            os.path.join(inst_dir, "markov_graph.png"),
+            inst_name
+        )
 
-        # Rhythmic density
-        bins = np.arange(0, times.max() + time_bin, time_bin)
-        plt.figure(figsize=(12, 4))
-        plt.hist(times, bins=bins,
-                 color="salmon", edgecolor="black")
-        plt.xlabel("Time (s)")
-        plt.ylabel(f"Notes per {time_bin}s")
-        plt.title(f"Rhythmic density - {inst_name}")
-        plt.grid(True)
-        plt.tight_layout()
-        plt.savefig(os.path.join(inst_dir, "rhythm_density.png"), dpi=150)
-        plt.close()
-
-        # Velocity over time
-        plt.figure(figsize=(12, 4))
-        scatter = plt.scatter(times, pitches,
-                              c=velocities,
-                              cmap="magma",
-                              s=velocities)
-        plt.colorbar(scatter, label="Velocity")
-        plt.xlabel("Time (s)")
-        plt.ylabel("MIDI Pitch")
-        plt.title(f"Velocity over time - {inst_name}")
-        plt.grid(True)
-        plt.tight_layout()
-        plt.savefig(os.path.join(inst_dir, "velocity.png"), dpi=150)
-        plt.close()
+        analyze_entropy(
+            pitches,
+            durations,
+            os.path.join(inst_dir, "entropy.txt"),
+            inst_name,
+            inst_dir
+        )
 
         print(f"Saved analysis for {inst_name} in {inst_dir}")
+
+
+def plot_melody_contour(times, pitches, inst_name, inst_dir):
+    plt.figure(figsize=(12, 4))
+    plt.plot(times, pitches, marker='o', linestyle='-')
+    plt.xlabel("Time (s)")
+    plt.ylabel("MIDI Pitch")
+    plt.title(f"Melody contour - {inst_name}")
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(os.path.join(inst_dir, "melody.png"), dpi=150)
+    plt.close()
+
+
+def plot_pitch_histogram(pitches, inst_name, inst_dir):
+    plt.figure(figsize=(12, 4))
+    plt.hist(pitches, bins=np.arange(0, 128) - 0.5,
+             color="skyblue", edgecolor="black")
+    plt.xlabel("MIDI Pitch")
+    plt.ylabel("Note count")
+    plt.title(f"Pitch distribution - {inst_name}")
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(os.path.join(inst_dir, "pitch_hist.png"), dpi=150)
+    plt.close()
+
+
+def plot_duration_histogram(durations, inst_name, inst_dir):
+    plt.figure(figsize=(12, 4))
+    plt.hist(durations, bins=20,
+             color="lightgreen", edgecolor="black")
+    plt.xlabel("Duration (s)")
+    plt.ylabel("Note count")
+    plt.title(f"Note duration distribution - {inst_name}")
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(os.path.join(inst_dir, "duration_hist.png"), dpi=150)
+    plt.close()
+
+
+def plot_rhythmic_density(times, inst_name, inst_dir, time_bin):
+    bins = np.arange(0, times.max() + time_bin, time_bin)
+
+    plt.figure(figsize=(12, 4))
+    plt.hist(times, bins=bins,
+             color="salmon", edgecolor="black")
+    plt.xlabel("Time (s)")
+    plt.ylabel(f"Notes per {time_bin}s")
+    plt.title(f"Rhythmic density - {inst_name}")
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(os.path.join(inst_dir, "rhythm_density.png"), dpi=150)
+    plt.close()
+
+
+def plot_velocity_over_time(times, pitches, velocities, inst_name, inst_dir):
+    plt.figure(figsize=(12, 4))
+    scatter = plt.scatter(times, pitches,
+                          c=velocities,
+                          cmap="magma",
+                          s=velocities)
+    plt.colorbar(scatter, label="Velocity")
+    plt.xlabel("Time (s)")
+    plt.ylabel("MIDI Pitch")
+    plt.title(f"Velocity over time - {inst_name}")
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(os.path.join(inst_dir, "velocity.png"), dpi=150)
+    plt.close()
+
+
+def detect_repeated_motifs(pitches, min_len=3, max_len=6):
+    if len(pitches) < min_len:
+        return []
+
+    intervals = np.diff(pitches)
+    motif_counts = Counter()
+
+    for length in range(min_len, max_len + 1):
+        for i in range(len(intervals) - length + 1):
+            motif = tuple(intervals[i:i+length])
+            motif_counts[motif] += 1
+
+    repeated = [(motif, count)
+                for motif, count in motif_counts.items()
+                if count > 1]
+
+    repeated.sort(key=lambda x: x[1], reverse=True)
+    return repeated[:10]
+
+
+def save_motifs(motifs, inst_dir):
+    with open(os.path.join(inst_dir, "motifs.txt"), "w") as f:
+        f.write("Top repeated interval motifs:\n\n")
+        for motif, count in motifs:
+            f.write(f"{motif} -> {count} occurrences\n")
+
+
+def plot_markov_transition(pitches, output_path, instrument_name):
+    if len(pitches) < 2:
+        return
+
+    transitions = Counter(zip(pitches[:-1], pitches[1:]))
+
+    G = nx.DiGraph()
+    for (p1, p2), weight in transitions.items():
+        G.add_edge(p1, p2, weight=weight)
+
+    plt.figure(figsize=(8, 8))
+    pos = nx.spring_layout(G, seed=42)
+
+    edges = G.edges()
+    weights = [G[u][v]['weight'] for u, v in edges]
+
+    nx.draw(G, pos,
+            with_labels=True,
+            node_size=500,
+            font_size=8,
+            width=[w * 0.2 for w in weights],
+            arrows=True)
+
+    plt.title(f"Markov Transition Graph - {instrument_name}")
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=150)
+    plt.close()
+
+# ==========================================================
+# -------------------- ENTROPY -----------------------------
+# ==========================================================
+
+def shannon_entropy(values):
+    """
+    Compute Shannon entropy of a 1D array.
+    """
+    if len(values) == 0:
+        return 0.0
+
+    value, counts = np.unique(values, return_counts=True)
+    probabilities = counts / counts.sum()
+
+    return -np.sum(probabilities * np.log2(probabilities))
+
+
+def compute_transition_entropy(pitches):
+    """
+    Entropy of pitch-to-pitch transitions.
+    """
+    if len(pitches) < 2:
+        return 0.0
+
+    transitions = list(zip(pitches[:-1], pitches[1:]))
+    return shannon_entropy(transitions)
+
+
+def analyze_entropy(pitches, durations, output_txt, inst_name, inst_dir):
+    """
+    Compute multiple entropy metrics and generate plots.
+    """
+
+    intervals = np.diff(pitches) if len(pitches) > 1 else []
+
+    pitch_entropy = shannon_entropy(pitches)
+    interval_entropy = shannon_entropy(intervals)
+    duration_entropy = shannon_entropy(np.round(durations, 2))
+    transition_entropy = compute_transition_entropy(pitches)
+
+    with open(output_txt, "w") as f:
+        f.write(f"Entropy analysis - {inst_name}\n\n")
+        f.write(f"Pitch entropy: {pitch_entropy:.4f}\n")
+        f.write(f"Interval entropy: {interval_entropy:.4f}\n")
+        f.write(f"Duration entropy: {duration_entropy:.4f}\n")
+        f.write(f"Transition entropy: {transition_entropy:.4f}\n")
+
+    labels = [
+        "Pitch",
+        "Interval",
+        "Duration",
+        "Transition"
+    ]
+
+    values = [
+        pitch_entropy,
+        interval_entropy,
+        duration_entropy,
+        transition_entropy
+    ]
+
+    plt.figure(figsize=(8, 5))
+    plt.bar(labels, values)
+    plt.ylabel("Entropy (bits)")
+    plt.title(f"Entropy profile - {inst_name}")
+    plt.grid(axis="y")
+    plt.tight_layout()
+    plt.savefig(os.path.join(inst_dir, "entropy_profile.png"), dpi=150)
+    plt.close()

@@ -1,0 +1,3 @@
+Top repeated interval motifs:
+
+(np.int64(13), np.int64(-27), np.int64(14)) -> 2 occurrences
