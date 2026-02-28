@@ -1,11 +1,11 @@
 import pytest
 import random
 from listener_to_randomness.core import rhythm
-from listener_to_randomness.randomness.rng import DefaultRandom
+from listener_to_randomness.randomness.rng import DeterministicRandom
 
 @pytest.fixture
 def rng():
-    return DefaultRandom(seed=42)
+    return DeterministicRandom(seed=42)
 
 
 def test_generate_rest_returns_boolean(rng):

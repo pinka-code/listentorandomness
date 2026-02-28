@@ -1,6 +1,6 @@
 import argparse
 
-from listener_to_randomness.randomness import DefaultRandom, BiasedRandom
+from listener_to_randomness.randomness import DeterministicRandom, BiasedRandom
 from listener_to_randomness.core import generate_structure, Composition
 from listener_to_randomness.utils import debug_notes
 
@@ -38,7 +38,7 @@ def main():
     if args.generator == "biased":
         random_generator = BiasedRandom(seed=args.seed)
     else:
-        random_generator = DefaultRandom(seed=args.seed)
+        random_generator = DeterministicRandom(seed=args.seed)
 
     cfg = generate_structure(random_generator)
 

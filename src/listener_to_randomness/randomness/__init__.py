@@ -1,6 +1,6 @@
-from .rng import DefaultRandom, BiasedRandom
+from .rng import DeterministicRandom, BiasedRandom
 
 __all__ = [
-    "DefaultRandom",
+    "DeterministicRandom",
     "BiasedRandom",
 ]

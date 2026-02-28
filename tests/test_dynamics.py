@@ -1,11 +1,11 @@
 import pytest  # type: ignore
 import random
 from listener_to_randomness.core import dynamics
-from listener_to_randomness.randomness.rng import DefaultRandom
+from listener_to_randomness.randomness.rng import DeterministicRandom
 
 @pytest.fixture
 def rng():
-    return DefaultRandom(seed=42)
+    return DeterministicRandom(seed=42)
 
 def test_choose_dynamic_returns_int(rng):
     velocity = dynamics.choose_dynamic(rng)
