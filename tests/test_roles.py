@@ -1,7 +1,7 @@
 import pytest
 import random
 from listener_to_randomness.core.roles import RoleMelody, RoleBass, RolePad, RoleCountermelody, RoleBehavior
-
+from listener_to_randomness.randomness.rng import DefaultRandom
 
 class FakeConfig:
     scale_notes = [0, 2, 4, 5, 7, 9, 11]
@@ -10,7 +10,7 @@ class FakeConfig:
 
 @pytest.fixture
 def rng():
-    return random.Random(42)
+    return DefaultRandom(seed=42)
 
 
 @pytest.fixture
