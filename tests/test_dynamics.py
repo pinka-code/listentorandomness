@@ -1,7 +1,7 @@
 import pytest  # type: ignore
 import random
 from listener_to_randomness.core import dynamics
-from listener_to_randomness.randomness.rng import DeterministicRandom
+from listener_to_randomness.randomness import DeterministicRandom
 
 @pytest.fixture
 def rng():

@@ -1,7 +1,7 @@
 import pytest
 import random
 from listener_to_randomness.core.roles import RoleMelody, RoleBass, RolePad, RoleCountermelody, RoleBehavior
-from listener_to_randomness.randomness.rng import DeterministicRandom
+from listener_to_randomness.randomness import DeterministicRandom
 
 class FakeConfig:
     scale_notes = [0, 2, 4, 5, 7, 9, 11]
