@@ -137,7 +137,7 @@ class RolePad(RoleBehavior):
         return max(20, velocity - 10)
     
     def generate_rhythm(self, measure_duration):
-        return [measure_duration]
+        return [(measure_duration, False)]
     
     def phrase_length(self):
         return 8

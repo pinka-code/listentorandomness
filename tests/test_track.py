@@ -67,27 +67,46 @@ class DummyRandom:
 @pytest.fixture
 def config():
     class DummyConfig:
+        tempo_bpm = 120
         total_duration = 4.0
         pattern_length_min = 1
         pattern_length_max = 1
         scale_notes = [0, 2, 4, 5, 7]
         phrase_variation_prob = 0.0
+        tonic_midi = 60
         time_signature_num = 4
         time_signature_den = 4
+
+        def beat_duration(self):
+            return 60.0 / self.tempo_bpm
+
+        def bar_duration(self):
+            return self.time_signature_num * self.beat_duration()
+
+        def total_bars(self):
+            return int(self.total_duration / self.bar_duration())
+
     return DummyConfig()
 
 
 def test_track_does_not_exceed_total_duration(config):
     instrument = DummyInstrument()
+    rng = DummyRandom()
+    role = DummyRole()
     track = Track(
         config=config,
-        rng=DummyRandom(),
-        role=DummyRole(),
+        rng=rng,
+        role=role,
         instrument=instrument,
         instrument_name="piano",
         measure_class=DummyMeasure,
     )
 
-    track.generate()
+    class DummySection:
+        name = "A"
+        bars = 2
 
-    assert all(note.end <= config.total_duration for note in instrument.notes)
+    start_bar = 0
+    track.generate_section(DummySection(), start_bar)
+
+    assert all(note.start + note.duration <= config.total_duration for note in instrument.notes)

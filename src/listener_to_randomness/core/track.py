@@ -2,12 +2,6 @@ from .phrase import Phrase
 from . import dynamics
 
 class Track:
-    """
-    Responsibilities:
-    - Generate successive phrases
-    - Fill the instrument with the produced notes
-    - Respect the total duration of the composition
-    """
 
     def __init__(
         self,
@@ -24,6 +18,8 @@ class Track:
         self.instrument = instrument
         self.instrument_name = instrument_name
         self.measure_class = measure_class
+
+        self.section_themes = {}
 
     def _generate_pattern(self):
         scale_len = len(self.config.scale_notes)
@@ -43,17 +39,31 @@ class Track:
         interval_weights = [1, 4, 3, 4, 2, 1, 1]
 
         for _ in range(length - 1):
-            interval = self.rng.choice_weighted(interval_choices, weights=interval_weights)
+            interval = self.rng.choice_weighted(
+                interval_choices,
+                weights=interval_weights
+            )
+
             current = current + interval
             motif.append(current)
 
         return motif
 
-    def generate(self):
-        time = 0.0
+    def _pattern_for_section(self, section_name):
+        if section_name not in self.section_themes:
+            pattern = self._generate_pattern()
+            self.section_themes[section_name] = pattern
+        return self.section_themes[section_name]
 
-        while time < self.config.total_duration:
-            melodic_pattern = self._generate_pattern()
+    def generate_section(self, section, start_bar):
+        bar_duration = self.config.bar_duration()
+        start_time = start_bar * bar_duration
+        end_time = start_time + section.bars * bar_duration
+        time = start_time
+        melodic_pattern = self._pattern_for_section(section.name)
+
+        while time < end_time:
+
             velocity = dynamics.choose_dynamic(self.rng)
             measure_count = self.role.phrase_length()
 
@@ -70,9 +80,9 @@ class Track:
             notes = phrase.play(start_time=time)
 
             for note in notes:
-                end_time = note.start + note.duration
+                note_end = note.start + note.duration
 
-                if end_time <= self.config.total_duration:
+                if note_end <= end_time:
                     self.instrument.notes.append(note.to_midi())
 
             if notes:

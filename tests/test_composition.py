@@ -67,6 +67,16 @@ def config():
         tonic_midi = 60
         time_signature_num = 4
         time_signature_den = 4
+
+        def beat_duration(self):
+            return 60.0 / self.tempo_bpm
+
+        def bar_duration(self):
+            return self.time_signature_num * self.beat_duration()
+
+        def total_bars(self):
+            return int(self.total_duration / self.bar_duration())
+
     return DummyConfig()
 
 

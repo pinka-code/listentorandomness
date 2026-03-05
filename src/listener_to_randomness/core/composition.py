@@ -4,6 +4,7 @@ from .track import Track
 from listener_to_randomness.midi.orchestration import choose_instrument_for_role
 from .roles import create_role
 from listener_to_randomness.midi.orchestration import Role
+from .form import MusicalForm
 from .measure import Measure
 
 
@@ -19,6 +20,7 @@ class Composition:
     def __init__(self, config, rng):
         self.config = config
         self.rng = rng
+        self.form = MusicalForm(config, rng)
         self.tracks = []
 
     def _used_roles(self):
@@ -60,7 +62,16 @@ class Composition:
                 measure_class=Measure,
             )
 
-            track.generate()
+            current_bar = 0
+            for section in self.form.sections:
+                print(f"Section {section.name} ({section.bars} bars)")
+
+                track.generate_section(
+                    section=section,
+                    start_bar=current_bar,
+                )
+
+                current_bar += section.bars
 
             self.tracks.append(track)
             midi.instruments.append(instrument)
