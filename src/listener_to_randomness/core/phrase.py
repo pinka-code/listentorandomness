@@ -77,6 +77,11 @@ class Phrase:
             )
 
             measure_notes = measure.play(current_time, self.velocity)
+
+            for note in measure_notes:
+                jitter = (-0.125 + 0.25 * self.rng.random()) * note.duration
+                note.start = max(0.0, note.start + jitter)
+
             notes.extend(measure_notes)
 
             measure_duration_sum = sum(

@@ -48,12 +48,49 @@ class Track:
             motif.append(current)
 
         return motif
+    
+    def _transform_pattern(self, pattern):
+        transform = self.rng.choice([
+            "transpose",
+            "invert",
+            "retrograde",
+            "shift"
+        ])
+
+        if transform == "transpose":
+            shift = self.rng.randint(-2, 2)
+            return [p + shift for p in pattern]
+
+        if transform == "invert":
+            center = pattern[0]
+            return [center - (p - center) for p in pattern]
+
+        if transform == "retrograde":
+            return list(reversed(pattern))
+
+        if transform == "shift":
+            k = self.rng.randint(1, len(pattern) - 1)
+            return pattern[k:] + pattern[:k]
+
+        return pattern
 
     def _pattern_for_section(self, section_name):
-        if section_name not in self.section_themes:
+        if section_name in self.section_themes:
+            return self.section_themes[section_name]
+
+        if section_name == "A":
             pattern = self._generate_pattern()
-            self.section_themes[section_name] = pattern
-        return self.section_themes[section_name]
+
+        else:
+            base = self.section_themes.get("A")
+            if base:
+                pattern = self._transform_pattern(base)
+            else:
+                pattern = self._generate_pattern()
+
+        self.section_themes[section_name] = pattern
+
+        return pattern
 
     def generate_section(self, section, start_bar):
         bar_duration = self.config.bar_duration()
