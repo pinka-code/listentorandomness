@@ -45,10 +45,8 @@ def main():
 
     print("===== COMPOSITION CONFIGURATION =====")
     print(f"Key signature: {cfg.key_name}")
-    print(f"Tempo: {cfg.tempo_name} → {cfg.tempo_bpm} BPM")
     print(f"Time signature: {cfg.time_signature_name}")
     print(f"Number of tracks: {cfg.num_tracks}")
-    print(f"Target total duration: {cfg.total_duration} sec")
     print("=====================================")
 
     part = Composition(cfg, random_generator)

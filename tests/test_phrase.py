@@ -62,6 +62,9 @@ def config():
         phrase_variation_prob = 0.5
         time_signature_num = 4
         time_signature_den = 4
+
+        def measure_duration_quarters(self) -> float:
+            return self.time_signature_num * (4 / self.time_signature_den)
     return DummyConfig()
 
 

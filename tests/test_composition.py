@@ -58,8 +58,6 @@ class DummyRole(RoleBehavior):
 @pytest.fixture
 def config():
     class DummyConfig:
-        tempo_bpm = 120
-        total_duration = 4.0
         pattern_length_min = 1
         pattern_length_max = 1
         scale_notes = [0, 2, 4, 5, 7]
@@ -68,14 +66,8 @@ def config():
         time_signature_num = 4
         time_signature_den = 4
 
-        def beat_duration(self):
-            return 60.0 / self.tempo_bpm
-
-        def bar_duration(self):
-            return self.time_signature_num * self.beat_duration()
-
-        def total_bars(self):
-            return int(self.total_duration / self.bar_duration())
+        def measure_duration_quarters(self) -> float:
+            return self.time_signature_num * (4 / self.time_signature_den)
 
     return DummyConfig()
 
@@ -98,7 +90,6 @@ def test_composition_generates_tracks(monkeypatch, config):
     times, tempos = midi.get_tempo_changes()
 
     assert len(tempos) == 1
-    assert tempos[0] == config.tempo_bpm
     assert times[0] == 0.0
 
     # 3 fixed roles + 2 optional forced by DummyRandom

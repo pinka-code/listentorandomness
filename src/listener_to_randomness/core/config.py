@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 
-from . import tempo
 from . import time_signature
 from .key_signature import KeySignature
 
@@ -10,16 +9,12 @@ class MusicConfig:
     key_name: str
     scale_notes: list
 
-    tempo_name: str
-    tempo_bpm: int
-
     time_signature_name: str
     time_signature_num: int
     time_signature_den: int
     time_signature_type: str
 
     num_tracks: int
-    total_duration: float
 
     pattern_length_min: int
     pattern_length_max: int
@@ -28,27 +23,14 @@ class MusicConfig:
 
     tonic_midi: int
 
-    def beat_duration(self) -> float:
+    def measure_duration_quarters(self) -> float:
         """
-        Duration of one beat in seconds.
+        Duration of one measure in quarter-note units.
+        (1.0 = quarter note)
         """
-        return 60.0 / self.tempo_bpm
-
-    def bar_duration(self) -> float:
-        """
-        Duration of one measure (bar) in seconds.
-        """
-        return self.time_signature_num * self.beat_duration()
-
-    def total_bars(self) -> int:
-        """
-        Total number of bars in the composition.
-        """
-        return int(self.total_duration / self.bar_duration())
+        return self.time_signature_num * (4 / self.time_signature_den)
 
 def generate_structure(rng):
-    tempo_name, tempo_bpm = tempo.choose_tempo_with_name(rng)
-
     key_obj = KeySignature.choose_key_signature(rng)
     key_name = key_obj.name
     scale_notes = key_obj.generate_scale()
@@ -62,8 +44,6 @@ def generate_structure(rng):
 
     num_tracks = rng.randint(1, 5)
 
-    total_duration = rng.randint(30, 180)
-
     pattern_length_min = 1
     pattern_length_max = 4
 
@@ -75,16 +55,12 @@ def generate_structure(rng):
         key_name=key_name,
         scale_notes=scale_notes,
 
-        tempo_name=tempo_name,
-        tempo_bpm=tempo_bpm,
-
         time_signature_name=time_signature_name,
         time_signature_num=sig_num,
         time_signature_den=sig_den,
         time_signature_type=sig_type,
 
         num_tracks=num_tracks,
-        total_duration=total_duration,
 
         pattern_length_min=pattern_length_min,
         pattern_length_max=pattern_length_max,

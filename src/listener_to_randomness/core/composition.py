@@ -35,8 +35,10 @@ class Composition:
         return roles
 
     def generate(self):
+        initial_tempo = self.form.sections[0].tempo_bpm
+
         midi = pretty_midi.PrettyMIDI(
-            initial_tempo=self.config.tempo_bpm
+            initial_tempo=initial_tempo
         )
 
         for role_name in self._used_roles():

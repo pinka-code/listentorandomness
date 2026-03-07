@@ -93,7 +93,7 @@ class Track:
         return pattern
 
     def generate_section(self, section, start_bar):
-        bar_duration = self.config.bar_duration()
+        bar_duration = section.bar_duration(self.config)
         start_time = start_bar * bar_duration
         end_time = start_time + section.bars * bar_duration
         time = start_time
