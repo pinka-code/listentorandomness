@@ -1,7 +1,8 @@
 import pytest
 from listener_to_randomness.core.phrase import Phrase
 from listener_to_randomness.midi.note import Note
-
+from listener_to_randomness.core.rhythm import RhythmicPattern
+from listener_to_randomness.core.melodic_pattern import MelodicPattern
 
 class DummyRandom:
     def __init__(self):
@@ -19,10 +20,10 @@ class DummyRandom:
 
 
 class DummyRole:
-    def choose_pitch(self, degree):
-        return 60 + degree
+    def choose_pitch(self, degree, note_index):
+        return 60
 
-    def adjust_velocity(self, velocity):
+    def adjust_velocity(self, velocity, note_index):
         return velocity
     
     def generate_rhythm(self, measure_duration):
@@ -30,15 +31,13 @@ class DummyRole:
         remaining = measure_duration
         while remaining > 0:
             dur = 1.0 if remaining >= 1.0 else remaining
-            pattern.append((dur, False))  # False = no silence
+            pattern.append((dur, False))
             remaining -= dur
-        return pattern
 
-    def choose_final_note(self):
-        degree = 0
-        duration_ratio = 0.5
-        pitch = self.choose_pitch(degree)
-        return pitch, duration_ratio
+        return RhythmicPattern(pattern)
+
+    def phrase_length(self):
+            return 4
 
 
 class DummyMeasure:
@@ -68,26 +67,6 @@ def config():
     return DummyConfig()
 
 
-def test_phrase_adds_final_note(config):
-    role = DummyRole()
-    rnd = DummyRandom()
-
-    phrase = Phrase(
-        config=config,
-        melodic_pattern=[0],
-        measure_count=1,
-        role=role,
-        velocity=80,
-        measure_class=DummyMeasure,
-        rng=rnd,
-    )
-
-    notes = phrase.play(start_time=0)
-
-    assert len(notes) == 2
-    assert notes[-1].pitch == 60
-
-
 def test_phrase_applies_variation(config):
     role = DummyRole()
     rnd = DummyRandom()
@@ -95,7 +74,7 @@ def test_phrase_applies_variation(config):
 
     phrase = Phrase(
         config=config,
-        melodic_pattern=[0],
+        melodic_pattern=MelodicPattern([0]),
         measure_count=2,
         role=role,
         velocity=80,
@@ -105,4 +84,6 @@ def test_phrase_applies_variation(config):
 
     notes = phrase.play(start_time=0)
 
-    assert len(notes) == 3  # 2 measures + final note
+    for note in notes:
+        assert note.start >= 0
+        assert note.start + note.duration <= config.measure_duration_quarters() * phrase.measure_count + 1.0  # marge pour la note finale

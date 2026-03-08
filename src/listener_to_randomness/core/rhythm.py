@@ -9,24 +9,30 @@ DURATIONS = {
     "WHOLE_NOTE": 4.0
 }
 
-def generate_rest(rng, probability=0.2):
-    return rng.random() < probability
+class RhythmicPattern:
+    def __init__(self, pattern):
+        self.pattern = pattern
 
-def generate_rhythmic_pattern(total_beats, rng, rest_probability=0.0):
-    """
-    Returns a list of tuples:
-    [(duration, is_rest), ...]
-    """
-    pattern = []
-    remaining = total_beats
+    def total_duration(self):
+        return sum(duration for duration, _ in self.pattern)
 
-    while remaining > 0:
-        possible = [v for v in DURATIONS.values() if v <= remaining]
-        duration = rng.choice(possible)
+    @classmethod
+    def generate(cls, total_beats, rng, rest_probability=0.0):
+        pattern = []
+        remaining = total_beats
+        durations = list(DURATIONS.values())
 
-        is_rest = generate_rest(rng, rest_probability)
+        while remaining > 0:
+            possible = [d for d in durations if d <= remaining]
+            duration = rng.choice(possible)
+            is_rest = rng.random() < rest_probability
+            pattern.append((duration, is_rest))
+            remaining -= duration
 
-        pattern.append((duration, is_rest))
-        remaining -= duration
+        return cls(pattern)
 
-    return pattern
+    def __iter__(self):
+        return iter(self.pattern)
+
+    def __len__(self):
+        return len(self.pattern)

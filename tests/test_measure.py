@@ -1,6 +1,7 @@
 import pytest
 from listener_to_randomness.core.measure import Measure
-
+from listener_to_randomness.core.rhythm import RhythmicPattern
+from listener_to_randomness.core.melodic_pattern import MelodicPattern
 
 class DummyRole:
     def choose_pitch(self, degree):
@@ -8,7 +9,19 @@ class DummyRole:
 
     def adjust_velocity(self, velocity):
         return velocity + 5
+    
+    def generate_rhythm(self, measure_duration):
+        pattern = []
+        remaining = measure_duration
+        while remaining > 0:
+            dur = 1.0 if remaining >= 1.0 else remaining
+            pattern.append((dur, False))
+            remaining -= dur
 
+        return RhythmicPattern(pattern)
+
+    def phrase_length(self):
+            return 4
 
 @pytest.fixture
 def config():
@@ -19,8 +32,8 @@ def config():
 
 
 def test_measure_generates_notes_from_pattern(config):
-    pattern = [0, 2, 4]
-    rhythm = [(1, False), (1, False), (1, False)]  # tuples (duration, is_rest)
+    pattern = MelodicPattern([0, 2, 4])
+    rhythm = RhythmicPattern([(1, False), (1, False), (1, False)])
 
     role = DummyRole()
     measure = Measure(config, pattern, rhythm, role)
@@ -34,8 +47,8 @@ def test_measure_generates_notes_from_pattern(config):
 
 
 def test_measure_applies_role_velocity(config):
-    pattern = [0]
-    rhythm = [(1, False)]
+    pattern = MelodicPattern([0])
+    rhythm = RhythmicPattern([(1, False)])
 
     role = DummyRole()
     measure = Measure(config, pattern, rhythm, role)
@@ -46,8 +59,8 @@ def test_measure_applies_role_velocity(config):
 
 
 def test_measure_respects_timing(config):
-    pattern = [0, 1]
-    rhythm = [(1, False), (2, False)]
+    pattern = MelodicPattern([0, 1])
+    rhythm = RhythmicPattern([(1, False), (2, False)])
 
     role = DummyRole()
     measure = Measure(config, pattern, rhythm, role)

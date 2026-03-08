@@ -1,6 +1,7 @@
 import pytest
 from listener_to_randomness.core.track import Track
 from listener_to_randomness.midi.note import Note
+from listener_to_randomness.core.rhythm import RhythmicPattern
 
 
 class DummyInstrument:
@@ -20,19 +21,13 @@ class DummyRole:
         remaining = measure_duration
         while remaining > 0:
             dur = 1.0 if remaining >= 1.0 else remaining
-            pattern.append((dur, False))  # False = no silence
+            pattern.append((dur, False))
             remaining -= dur
-        return pattern
-    
-    def phrase_length(self):
-        return 4
 
-    def choose_final_note(self):
-        degree = 0
-        octave = 3
-        duration_ratio = 0.5
-        pitch = self.choose_pitch(degree, octave)
-        return pitch, duration_ratio
+        return RhythmicPattern(pattern)
+
+    def phrase_length(self):
+            return 4
 
 
 class DummyMeasure:

@@ -1,7 +1,6 @@
 import pytest
 from listener_to_randomness.core.composition import Composition
-from listener_to_randomness.core.roles import RoleBehavior
-
+from listener_to_randomness.core.rhythm import RhythmicPattern
 
 class DummyInstrument:
     def __init__(self):
@@ -28,32 +27,25 @@ class DummyRandom:
         return val
 
 
-class DummyRole(RoleBehavior):
-    def __init__(self, config=None, tonic_midi=60, rng=None):
-        self.config = config
-        self.tonic_midi = tonic_midi
-        self.rng = rng
-
-    def choose_octave(self):
-        return 4
+class DummyRole:
+    def choose_pitch(self, degree):
+        return 60 + degree
 
     def adjust_velocity(self, velocity):
-        return velocity
+        return velocity + 5
     
     def generate_rhythm(self, measure_duration):
         pattern = []
         remaining = measure_duration
         while remaining > 0:
             dur = 1.0 if remaining >= 1.0 else remaining
-            pattern.append((dur, False))  # False = no silence
+            pattern.append((dur, False))
             remaining -= dur
-        return pattern
 
-    def choose_pitch(self, degree):
-        """For tests, just return tonic + octave*12 + degree modulo scale"""
-        base_note = self.tonic_midi
-        return base_note + 12 * 4 + degree  # fixed octave 4 for the test
+        return RhythmicPattern(pattern)
 
+    def phrase_length(self):
+            return 4
 
 @pytest.fixture
 def config():

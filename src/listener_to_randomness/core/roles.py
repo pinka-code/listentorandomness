@@ -1,5 +1,6 @@
 from listener_to_randomness.midi.orchestration import Role
-from . import octaves, rhythm
+from . import octaves
+from .rhythm import RhythmicPattern
 
 class RoleBehavior:
     """
@@ -34,7 +35,7 @@ class RoleBehavior:
         return base_note + 12 * octave
     
     def generate_rhythm(self, measure_duration):
-        return rhythm.generate_rhythmic_pattern(
+        return RhythmicPattern.generate(
             measure_duration,
             self.rng,
             rest_probability=0.0
@@ -62,7 +63,7 @@ class RoleMelody(RoleBehavior):
         return min(127, velocity + 10)
     
     def generate_rhythm(self, measure_duration):
-        return rhythm.generate_rhythmic_pattern(
+        return RhythmicPattern.generate(
             measure_duration,
             self.rng,
             rest_probability=0.15
@@ -88,7 +89,7 @@ class RoleHarmony(RoleBehavior):
         return velocity
 
     def generate_rhythm(self, measure_duration):
-        return rhythm.generate_rhythmic_pattern(
+        return RhythmicPattern.generate(
             measure_duration,
             self.rng,
             rest_probability=0.05
@@ -114,7 +115,8 @@ class RoleBass(RoleBehavior):
         return min(127, velocity + 5)
     
     def generate_rhythm(self, measure_duration):
-        return [(1.0, False) for _ in range(int(measure_duration))]
+        pattern = [(1.0, False)] * int(measure_duration)
+        return RhythmicPattern(pattern)
     
     def phrase_length(self):
         return 8
@@ -137,7 +139,8 @@ class RolePad(RoleBehavior):
         return max(20, velocity - 10)
     
     def generate_rhythm(self, measure_duration):
-        return [(measure_duration, False)]
+        pattern = [(measure_duration, False)]
+        return RhythmicPattern(pattern)
     
     def phrase_length(self):
         return 8
@@ -160,7 +163,7 @@ class RoleCountermelody(RoleBehavior):
         return min(127, velocity + 5)
     
     def generate_rhythm(self, measure_duration):
-        return rhythm.generate_rhythmic_pattern(
+        return RhythmicPattern.generate(
             measure_duration,
             self.rng,
             rest_probability=0.25
