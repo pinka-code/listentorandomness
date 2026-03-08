@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from . import time_signature
+from .time_signature import TimeSignature
 from .key_signature import KeySignature
 
 
@@ -12,7 +12,6 @@ class MusicConfig:
     time_signature_name: str
     time_signature_num: int
     time_signature_den: int
-    time_signature_type: str
 
     num_tracks: int
 
@@ -31,16 +30,11 @@ class MusicConfig:
         return self.time_signature_num * (4 / self.time_signature_den)
 
 def generate_structure(rng):
-    key_obj = KeySignature.choose_key_signature(rng)
+    key_obj = KeySignature.choose(rng)
     key_name = key_obj.name
     scale_notes = key_obj.generate_scale()
 
-    (
-        time_signature_name,
-        sig_num,
-        sig_den,
-        sig_type
-    ) = time_signature.choose_time_signature(rng)
+    time_signature = TimeSignature.choose(rng)
 
     num_tracks = rng.randint(1, 5)
 
@@ -55,10 +49,9 @@ def generate_structure(rng):
         key_name=key_name,
         scale_notes=scale_notes,
 
-        time_signature_name=time_signature_name,
-        time_signature_num=sig_num,
-        time_signature_den=sig_den,
-        time_signature_type=sig_type,
+        time_signature_name=time_signature.name,
+        time_signature_num=time_signature.numerator,
+        time_signature_den=time_signature.denominator,
 
         num_tracks=num_tracks,
 

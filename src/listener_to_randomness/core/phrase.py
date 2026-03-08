@@ -5,7 +5,6 @@ class Phrase:
     Responsibilities:
     - Orchestrate multiple measures
     - Apply melodic pattern variations
-    - Add the final note
     """
 
     def __init__(
