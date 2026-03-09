@@ -16,46 +16,43 @@ class Track:
         role,
         instrument,
         instrument_name,
-        measure_class,
     ):
         self.config = config
         self.rng = rng
         self.role = role
         self.instrument = instrument
         self.instrument_name = instrument_name
-        self.measure_class = measure_class
-
         self.section_themes = {}
 
-    def _pattern_for_section(self, section_name):
+    def _pattern_for_section(self, section):
+        section_name = section.name
         if section_name in self.section_themes:
             return self.section_themes[section_name]
 
         if section_name == "A":
-            pattern = MelodicPattern.generate(self.config, self.rng)
+            pattern = MelodicPattern.generate(self.config, section.context, self.rng)
 
         else:
             base = self.section_themes.get("A")
 
             if base:
-                pattern = MelodicPattern.generate(self.config, self.rng)
+                pattern = MelodicPattern.generate(self.config, section.context, self.rng)
             else:
-                pattern = MelodicPattern.generate(self.config, self.rng)
+                pattern = MelodicPattern.generate(self.config, section.context, self.rng)
 
         self.section_themes[section_name] = pattern
 
         return pattern
 
     def generate_section(self, section, start_bar):
-        bar_duration = section.bar_duration(self.config)
+        bar_duration = section.context.bar_duration
         section_start = start_bar * bar_duration
 
-        melodic_pattern = self._pattern_for_section(section.name)
+        melodic_pattern = self._pattern_for_section(section)
 
         current_bar = 0
 
         while current_bar < section.bars:
-
             velocity = dynamics.choose_dynamic(self.rng)
 
             phrase_len = min(
@@ -65,11 +62,11 @@ class Track:
 
             phrase = Phrase(
                 config=self.config,
+                context=section.context,
                 melodic_pattern=melodic_pattern,
                 measure_count=phrase_len,
                 role=self.role,
                 velocity=velocity,
-                measure_class=self.measure_class,
                 rng=self.rng
             )
 

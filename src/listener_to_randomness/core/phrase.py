@@ -1,4 +1,4 @@
-from listener_to_randomness.midi.note import Note
+from .measure import Measure
 
 class Phrase:
     """
@@ -10,38 +10,37 @@ class Phrase:
     def __init__(
         self,
         config,
+        context,
         melodic_pattern,
         measure_count,
         role,
         velocity,
-        measure_class,
         rng,
     ):
         self.config = config
+        self.context = context
         self.melodic_pattern = melodic_pattern
         self.measure_count = measure_count
         self.role = role
         self.velocity = velocity
-        self.measure_class = measure_class
         self.rng = rng
 
     def play(self, start_time: float):
         notes = []
         current_time = start_time
-        current_pattern = self.melodic_pattern
+        current_melodic_pattern = self.melodic_pattern
 
         for i in range(self.measure_count):
             if i > 0 and self.rng.random() < self.config.phrase_variation_prob:
-                current_pattern = current_pattern.transform(self.rng)
+                current_melodic_pattern = current_melodic_pattern.transform(self.rng)
 
-            rhythmic_pattern = self.role.generate_rhythm(
-                self.config.measure_duration_quarters()
-            )
-
-            measure = self.measure_class(
+            current_rhythmic_pattern = self.role.generate_rhythm(self.context.measure_duration)
+            
+            measure = Measure(
                 self.config,
-                current_pattern,
-                rhythmic_pattern,
+                self.context,
+                current_melodic_pattern,
+                current_rhythmic_pattern,
                 self.role,
             )
 
@@ -49,6 +48,6 @@ class Phrase:
                 measure.play(current_time, self.velocity)
             )
 
-            current_time += rhythmic_pattern.total_duration()
+            current_time += current_rhythmic_pattern.total_duration()
 
         return notes

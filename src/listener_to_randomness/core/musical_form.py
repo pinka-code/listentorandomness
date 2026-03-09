@@ -1,23 +1,8 @@
-from dataclasses import dataclass
 from . import tempo
-from . import config
 from .key_signature import KeySignature
 from .time_signature import TimeSignature
-
-@dataclass
-class MusicalSection:
-    name: str
-    bars: int
-    tempo_name: str
-    tempo_bpm: int
-    key_signature: KeySignature
-    time_signature: TimeSignature
-
-    def bar_duration(self, config: config.MusicConfig) -> float:
-        beat_duration = 60.0 / self.tempo_bpm
-        beat_unit = 4 / config.time_signature_den
-        return config.time_signature_num * beat_unit * beat_duration
-
+from .musical_context import MusicalContext
+from .musical_section import MusicalSection
 
 class MusicalForm:
     def __init__(self, config, rng):
@@ -37,18 +22,24 @@ class MusicalForm:
         sections = []
         section_tempos = {}
         section_time_signature = {}
-
+        section_key_signature = {}
         previous_key_signature = None
 
         for i, (name, bars) in enumerate(form):
             if name not in section_tempos:
-                section_tempos[name] = tempo.choose_tempo_with_name(self.rng)
-            tempo_name, tempo_bpm = section_tempos[name]
+                section_tempos[name] = tempo.choose(self.rng)
+            tempo_bpm = section_tempos[name]
 
-            if i == 0:
-                key_signature = KeySignature.choose(self.rng)
+            if name in section_key_signature:
+                key_signature = section_key_signature[name]
             else:
-                key_signature = previous_key_signature.choose_neighbour_key(self.rng, same_prob=0.7)
+                if previous_key_signature is None:
+                    key_signature = KeySignature.choose(self.rng)
+                else:
+                    key_signature = previous_key_signature.choose_neighbour_key(
+                        self.rng, same_prob=0.7
+                    )
+                section_key_signature[name] = key_signature
 
             previous_key_signature = key_signature
 
@@ -56,8 +47,7 @@ class MusicalForm:
                 section_time_signature[name] = TimeSignature.choose(self.rng)
             time_signature = section_time_signature[name]
 
-            sections.append(
-                MusicalSection(name, bars, tempo_name, tempo_bpm, key_signature, time_signature)
-            )
+            context = MusicalContext(key_signature, time_signature, tempo_bpm)
+            sections.append(MusicalSection(name=name, bars=bars, context=context))
 
         return sections

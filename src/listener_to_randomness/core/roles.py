@@ -10,12 +10,11 @@ class RoleBehavior:
     - Control expressive parameters (velocity shaping)
     - Define rhythmic behavior
     - Define phrase structure length
-    - Provide a final resolution note behavior
     """
 
     name = "default"
 
-    def __init__(self, config, rng=None):
+    def __init__(self, config, rng):
         self.config = config
         self.rng = rng
 
@@ -28,9 +27,9 @@ class RoleBehavior:
         """Adjust velocity based on the role (no change by default)."""
         return velocity
 
-    def choose_pitch(self, degree: int) -> int:
+    def choose_pitch(self, scale_notes, degree: int) -> int:
         """Returns the final MIDI pitch based on degree and octave."""
-        base_note = self.config.scale_notes[degree % len(self.config.scale_notes)]
+        base_note = scale_notes[degree % len(scale_notes)]
         octave = self.choose_octave()
         return base_note + 12 * octave
     
@@ -43,13 +42,6 @@ class RoleBehavior:
     
     def phrase_length(self):
         return 4
-
-    def choose_final_note(self):
-        """Returns a tuple (pitch, duration_ratio) for the final note."""
-        degree = 0
-        duration_ratio = 0.5
-        pitch = self.choose_pitch(degree)
-        return pitch, duration_ratio
 
 
 class RoleMelody(RoleBehavior):
@@ -72,12 +64,6 @@ class RoleMelody(RoleBehavior):
     def phrase_length(self):
         return 4
 
-    def choose_final_note(self):
-        degree = 0
-        duration_ratio = 0.5
-        pitch = self.choose_pitch(degree)
-        return pitch, duration_ratio
-
 class RoleHarmony(RoleBehavior):
     name = Role.HARMONY
 
@@ -98,12 +84,6 @@ class RoleHarmony(RoleBehavior):
     def phrase_length(self):
         return 2
 
-    def choose_final_note(self):
-        degree = 0
-        duration_ratio = 1.0
-        pitch = self.choose_pitch(degree)
-        return pitch, duration_ratio
-
 class RoleBass(RoleBehavior):
     name = Role.BASS
 
@@ -120,12 +100,6 @@ class RoleBass(RoleBehavior):
     
     def phrase_length(self):
         return 8
-
-    def choose_final_note(self):
-        degree = 0
-        duration_ratio = 0.5
-        pitch = self.choose_pitch(degree)
-        return pitch, duration_ratio
 
 
 class RolePad(RoleBehavior):
@@ -144,12 +118,6 @@ class RolePad(RoleBehavior):
     
     def phrase_length(self):
         return 8
-
-    def choose_final_note(self):
-        degree = 0
-        duration_ratio = 1.0
-        pitch = self.choose_pitch(degree)
-        return pitch, duration_ratio
 
 
 class RoleCountermelody(RoleBehavior):
@@ -171,12 +139,6 @@ class RoleCountermelody(RoleBehavior):
     
     def phrase_length(self):
         return 4
-
-    def choose_final_note(self):
-        degree = 0
-        duration_ratio = 0.5
-        pitch = self.choose_pitch(degree)
-        return pitch, duration_ratio
 
 
 def create_role(role_name: str, config=None, rng=None) -> RoleBehavior:

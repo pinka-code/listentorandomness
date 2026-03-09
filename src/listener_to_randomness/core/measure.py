@@ -8,8 +8,9 @@ class Measure:
     - Delegate pitch and velocity decisions to the Role
     """
 
-    def __init__(self, config, melodic_pattern, rhythmic_pattern, role):
+    def __init__(self, config, context, melodic_pattern, rhythmic_pattern, role):
         self.config = config
+        self.context = context
         self.melodic_pattern = melodic_pattern
         self.rhythmic_pattern = rhythmic_pattern
         self.role = role
@@ -23,8 +24,7 @@ class Measure:
             self.rhythmic_pattern.pattern
         ):
             if not rest:
-
-                pitch = self.role.choose_pitch(degree)
+                pitch = self.role.choose_pitch(self.context.scale_notes, degree)
                 dyn = self.role.adjust_velocity(dynamic)
 
                 notes.append(

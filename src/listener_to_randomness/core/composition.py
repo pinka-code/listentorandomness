@@ -4,8 +4,7 @@ from .track import Track
 from listener_to_randomness.midi.orchestration import choose_instrument_for_role
 from .roles import create_role
 from listener_to_randomness.midi.orchestration import Role
-from .form import MusicalForm
-from .measure import Measure
+from .musical_form import MusicalForm
 
 
 class Composition:
@@ -35,14 +34,13 @@ class Composition:
         return roles
 
     def generate(self):
-        initial_tempo = self.form.sections[0].tempo_bpm
+        initial_tempo = self.form.sections[0].context.tempo_bpm
 
         midi = pretty_midi.PrettyMIDI(
             initial_tempo=initial_tempo
         )
 
         for role_name in self._used_roles():
-
             instrument, instrument_name = choose_instrument_for_role(
                 self.rng,
                 role_name,
@@ -61,12 +59,11 @@ class Composition:
                 role=role,
                 instrument=instrument,
                 instrument_name=instrument_name,
-                measure_class=Measure,
             )
 
             current_bar = 0
             for section in self.form.sections:
-                print(f"Section {section.name} ({section.bars} bars)")
+                print(f"Section {section.name} ({section.bars} bars) {section.context}")
 
                 track.generate_section(
                     section=section,

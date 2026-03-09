@@ -30,3 +30,10 @@ class TimeSignature:
         """
         name, data = rng.choice(list(cls.TIME_SIGNATURES.items()))
         return cls(name, data["num"], data["den"], data["type"])
+    
+    def measure_duration_quarters(self) -> float:
+        """
+        Duration of one measure in quarter-note units.
+        (1.0 = quarter note)
+        """
+        return self.numerator * (4 / self.denominator)

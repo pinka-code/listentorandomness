@@ -38,9 +38,8 @@ class MelodicPattern:
         return MelodicPattern(pattern)
     
     @classmethod
-    def generate(cls, config, rng):
-
-        scale_len = len(config.scale_notes)
+    def generate(cls, config, context, rng):
+        scale_len = len(context.scale_notes)
 
         length = rng.randint(
             config.pattern_length_min,

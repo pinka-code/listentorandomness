@@ -7,15 +7,8 @@ TEMPOS = {
     "PRESTO": 160      # very fast
 }
 
-def choose_tempo(rng):
+def choose(rng):
     """
     Returns a random tempo (BPM) from TEMPOS.
     """
     return rng.choice(list(TEMPOS.values()))
-
-def choose_tempo_with_name(rng):
-    """
-    Returns a tuple (name, BPM) for the randomly chosen tempo.
-    """
-    name, bpm = rng.choice(list(TEMPOS.items()))
-    return name, bpm
