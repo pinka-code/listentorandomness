@@ -41,16 +41,16 @@ class Composition:
         )
 
         for role_name in self._used_roles():
-            instrument, instrument_name = choose_instrument_for_role(
+            instrument = choose_instrument_for_role(
                 self.rng,
                 role_name,
             )
-            print(f"Instrument: {instrument_name}")
+            print(f"Instrument: {instrument.name}")
 
             role = create_role(
                 role_name=role_name,
                 config=self.config,
-                rng=self.rng,
+                rng=self.rng
             )
 
             track = Track(
@@ -58,7 +58,6 @@ class Composition:
                 rng=self.rng,
                 role=role,
                 instrument=instrument,
-                instrument_name=instrument_name,
             )
 
             current_bar = 0
@@ -73,6 +72,6 @@ class Composition:
                 current_bar += section.bars
 
             self.tracks.append(track)
-            midi.instruments.append(instrument)
+            midi.instruments.append(instrument.midi)
 
         return midi

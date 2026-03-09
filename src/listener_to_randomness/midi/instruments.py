@@ -39,3 +39,9 @@ INSTRUMENTS = {
     "Lead 1 (square)": 80,
     "Pad 1 (new age)": 88,
 }
+
+class Instrument:
+    def __init__(self, midi, name, sound):
+        self.midi = midi
+        self.name = name
+        self.sound = sound

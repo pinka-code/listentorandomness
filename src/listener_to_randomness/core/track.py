@@ -15,13 +15,11 @@ class Track:
         rng,
         role,
         instrument,
-        instrument_name,
     ):
         self.config = config
         self.rng = rng
         self.role = role
         self.instrument = instrument
-        self.instrument_name = instrument_name
         self.section_themes = {}
 
     def _pattern_for_section(self, section):
@@ -72,6 +70,7 @@ class Track:
                 measure_count=phrase_len,
                 role=self.role,
                 dynamics=dynamics,
+                sound_design=self.instrument.sound,
                 rng=self.rng
             )
 
@@ -80,7 +79,7 @@ class Track:
             notes = phrase.play(phrase_start)
 
             for note in notes:
-                self.instrument.notes.append(note.to_midi())
+                self.instrument.midi.notes.append(note.to_midi())
                 previous_velocity = note.velocity
 
             current_bar += phrase_len

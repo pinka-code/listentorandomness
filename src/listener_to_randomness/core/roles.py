@@ -6,10 +6,7 @@ class RoleBehavior:
     """
     Responsibilities:
     - Define musical identity of a role (melody, harmony, bass, pad, etc.)
-    - Control pitch selection (degree + octave)
-    - Control expressive parameters (velocity shaping)
-    - Define rhythmic behavior
-    - Define phrase structure length
+    - Controls pitch, octave, dynamics, rhythm, phrase length.
     """
 
     name = "default"

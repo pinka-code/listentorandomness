@@ -16,6 +16,7 @@ class Phrase:
         measure_count,
         role,
         dynamics,
+        sound_design,
         rng,
     ):
         self.config = config
@@ -24,6 +25,7 @@ class Phrase:
         self.measure_count = measure_count
         self.role = role
         self.dynamics = dynamics
+        self.sound_design = sound_design
         self.rng = rng
 
     def play(self, start_time: float):
@@ -47,7 +49,7 @@ class Phrase:
             )
 
             notes.extend(
-                measure.play(current_time, self.dynamics, articulation)
+                measure.play(current_time, self.dynamics, articulation, self.sound_design)
             )
 
             current_time += current_rhythmic_pattern.total_duration()

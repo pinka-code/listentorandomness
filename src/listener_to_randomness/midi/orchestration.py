@@ -1,6 +1,6 @@
 import pretty_midi  # type: ignore
-from listener_to_randomness.midi.instruments import INSTRUMENTS
-
+from .instruments import INSTRUMENTS, Instrument
+from .sound_design import SoundDesign
 from enum import Enum
 
 class Role(Enum):
@@ -45,5 +45,7 @@ RANGES = {
 def choose_instrument_for_role(rng, role):
     name = rng.choice(ORCHESTRATION[role])
     program = INSTRUMENTS[name]
-    instrument = pretty_midi.Instrument(program=program, name=name)
-    return instrument, name
+    midi_instrument = pretty_midi.Instrument(program=program, name=name)
+    sound = SoundDesign(rng)
+    return Instrument(midi_instrument, name, sound)
+
