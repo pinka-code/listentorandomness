@@ -1,4 +1,5 @@
 from .measure import Measure
+from .articulation import Articulation
 
 class Phrase:
     """
@@ -29,6 +30,7 @@ class Phrase:
         notes = []
         current_time = start_time
         current_melodic_pattern = self.melodic_pattern
+        articulation = Articulation(self.rng)
 
         for i in range(self.measure_count):
             if i > 0 and self.rng.random() < self.config.phrase_variation_prob:
@@ -45,7 +47,7 @@ class Phrase:
             )
 
             notes.extend(
-                measure.play(current_time, self.dynamics)
+                measure.play(current_time, self.dynamics, articulation)
             )
 
             current_time += current_rhythmic_pattern.total_duration()

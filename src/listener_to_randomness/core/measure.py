@@ -1,5 +1,6 @@
 from listener_to_randomness.midi.note import Note
 from .dynamics import Dynamics
+from .articulation import Articulation
 
 class Measure:
     """
@@ -16,7 +17,7 @@ class Measure:
         self.rhythmic_pattern = rhythmic_pattern
         self.role = role
 
-    def play(self, start_time: float, dynamic: Dynamics):
+    def play(self, start_time: float, dynamic: Dynamics, articulation: Articulation):
         notes = []
         current_time = start_time
         bar_duration = self.context.bar_duration
@@ -32,14 +33,14 @@ class Measure:
                 accent = Dynamics.accent_boost(pos)
                 velocity = self.role.adjust_velocity(base_velocity + accent)
 
-                notes.append(
-                    Note(
-                        pitch=pitch,
-                        start=current_time,
-                        duration=duration,
-                        velocity=velocity
-                    )
+                articulated = articulation.apply(
+                    pitch,
+                    current_time,
+                    duration,
+                    velocity
                 )
+
+                notes.extend(articulated)
 
             current_time += duration
 
