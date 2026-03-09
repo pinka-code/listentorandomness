@@ -1,5 +1,12 @@
 Top repeated interval motifs:
 
-(np.int64(-7), np.int64(-5), np.int64(5)) -> 2 occurrences
-(np.int64(0), np.int64(10), np.int64(2)) -> 2 occurrences
-(np.int64(5), np.int64(7), np.int64(-19)) -> 2 occurrences
+(np.int64(1), np.int64(-1), np.int64(1)) -> 21 occurrences
+(np.int64(-1), np.int64(1), np.int64(-1)) -> 12 occurrences
+(np.int64(1), np.int64(-1), np.int64(1), np.int64(-1)) -> 8 occurrences
+(np.int64(-1), np.int64(1), np.int64(-1), np.int64(1)) -> 8 occurrences
+(np.int64(1), np.int64(-1), np.int64(1), np.int64(-1), np.int64(1)) -> 8 occurrences
+(np.int64(-1), np.int64(1), np.int64(0)) -> 4 occurrences
+(np.int64(-1), np.int64(1), np.int64(-14)) -> 4 occurrences
+(np.int64(-2), np.int64(3), np.int64(-1)) -> 3 occurrences
+(np.int64(3), np.int64(-1), np.int64(1)) -> 3 occurrences
+(np.int64(-3), np.int64(4), np.int64(-1)) -> 3 occurrences

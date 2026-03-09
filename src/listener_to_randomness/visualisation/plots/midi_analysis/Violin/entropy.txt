@@ -1,0 +1,6 @@
+Entropy analysis - Violin
+
+Pitch entropy: 2.7784
+Interval entropy: 3.9190
+Duration entropy: 3.2628
+Transition entropy: 2.7519

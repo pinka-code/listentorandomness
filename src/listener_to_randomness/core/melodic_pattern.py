@@ -42,8 +42,8 @@ class MelodicPattern:
         scale_len = len(context.scale_notes)
 
         length = rng.randint(
-            config.pattern_length_min,
-            config.pattern_length_max
+            config.melodic_pattern_length_min,
+            config.melodic_pattern_length_max
         )
 
         degrees = list(range(scale_len))
