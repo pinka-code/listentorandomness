@@ -25,7 +25,7 @@ class RoleBehavior:
 
     def adjust_velocity(self, velocity: int) -> int:
         """Adjust velocity based on the role (no change by default)."""
-        return velocity
+        return min(127, velocity)
 
     def choose_pitch(self, scale_notes, degree: int) -> int:
         """Returns the final MIDI pitch based on degree and octave."""
@@ -74,7 +74,7 @@ class RoleHarmony(RoleBehavior):
         return octaves.choose_octave(self.rng, oct)
 
     def adjust_velocity(self, velocity: int) -> int:
-        return velocity
+        return min(127, velocity)
 
     def generate_rhythm(self, context):
         return RhythmicPattern.generate(

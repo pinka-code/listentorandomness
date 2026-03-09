@@ -14,7 +14,7 @@ class Phrase:
         melodic_pattern,
         measure_count,
         role,
-        velocity,
+        dynamics,
         rng,
     ):
         self.config = config
@@ -22,7 +22,7 @@ class Phrase:
         self.melodic_pattern = melodic_pattern
         self.measure_count = measure_count
         self.role = role
-        self.velocity = velocity
+        self.dynamics = dynamics
         self.rng = rng
 
     def play(self, start_time: float):
@@ -45,7 +45,7 @@ class Phrase:
             )
 
             notes.extend(
-                measure.play(current_time, self.velocity)
+                measure.play(current_time, self.dynamics)
             )
 
             current_time += current_rhythmic_pattern.total_duration()

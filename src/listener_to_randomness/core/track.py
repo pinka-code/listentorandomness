@@ -1,5 +1,5 @@
 from .phrase import Phrase
-from . import dynamics
+from .dynamics import Dynamics
 from .melodic_pattern import MelodicPattern
 
 class Track:
@@ -51,13 +51,18 @@ class Track:
         melodic_pattern = self._pattern_for_section(section)
 
         current_bar = 0
+        previous_velocity = None
 
         while current_bar < section.bars:
-            velocity = dynamics.choose_dynamic(self.rng)
 
             phrase_len = min(
                 self.role.phrase_length(),
                 section.bars - current_bar
+            )
+
+            dynamics = Dynamics(
+                rng=self.rng,
+                start_velocity=previous_velocity
             )
 
             phrase = Phrase(
@@ -66,7 +71,7 @@ class Track:
                 melodic_pattern=melodic_pattern,
                 measure_count=phrase_len,
                 role=self.role,
-                velocity=velocity,
+                dynamics=dynamics,
                 rng=self.rng
             )
 
@@ -76,5 +81,6 @@ class Track:
 
             for note in notes:
                 self.instrument.notes.append(note.to_midi())
+                previous_velocity = note.velocity
 
             current_bar += phrase_len

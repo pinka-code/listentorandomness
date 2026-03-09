@@ -1,4 +1,5 @@
 from listener_to_randomness.midi.note import Note
+from .dynamics import Dynamics
 
 class Measure:
     """
@@ -15,9 +16,10 @@ class Measure:
         self.rhythmic_pattern = rhythmic_pattern
         self.role = role
 
-    def play(self, start_time: float, dynamic: int):
+    def play(self, start_time: float, dynamic: Dynamics):
         notes = []
         current_time = start_time
+        bar_duration = self.context.bar_duration
 
         for degree, (duration, rest) in zip(
             self.melodic_pattern.degrees,
@@ -25,14 +27,17 @@ class Measure:
         ):
             if not rest:
                 pitch = self.role.choose_pitch(self.context.scale_notes, degree)
-                dyn = self.role.adjust_velocity(dynamic)
+                pos = (current_time - start_time) / bar_duration
+                base_velocity = dynamic.choose(pos)
+                accent = Dynamics.accent_boost(pos)
+                velocity = self.role.adjust_velocity(base_velocity + accent)
 
                 notes.append(
                     Note(
                         pitch=pitch,
                         start=current_time,
                         duration=duration,
-                        velocity=dyn
+                        velocity=velocity
                     )
                 )
 

@@ -77,7 +77,7 @@ def test_phrase_applies_variation(config):
         melodic_pattern=MelodicPattern([0]),
         measure_count=2,
         role=role,
-        velocity=80,
+        dynamics=80,
         measure_class=DummyMeasure,
         rng=rnd,
     )
