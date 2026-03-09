@@ -1,5 +1,4 @@
-import pretty_midi  # type: ignore
-from .instruments import INSTRUMENTS, Instrument
+from .instruments import Instrument
 from .sound_design import SoundDesign
 from enum import Enum
 
@@ -10,42 +9,20 @@ class Role(Enum):
     BASS = "bass"
     PAD = "pad"
 
-ORCHESTRATION = {
-    Role.MELODY: ["Violin", "Flute", "Oboe", "Clarinet", "Trumpet"],
-    Role.COUNTERMELODY: ["Viola", "Clarinet", "French Horn"],
-    Role.HARMONY: ["Acoustic Grand Piano", "String Ensemble 1", "Church Organ"],
-    Role.BASS: ["Cello", "Contrabass", "Electric Bass (finger)", "Acoustic Bass"],
-    Role.PAD: ["Pad 1 (new age)", "String Ensemble 1"]
-}
+def choose_instrument_for_role(ctx, role):
+    role_spec = ctx.style.roles.get(role)
 
-RANGES = {
-    "Violin": (55, 103),
-    "Viola": (48, 88),
-    "Cello": (36, 76),
-    "Contrabass": (28, 60),
+    if role_spec is None:
+        raise ValueError(
+            f"Role {role} not defined in style {ctx.style.name}"
+        )
 
-    "Flute": (60, 96),
-    "Oboe": (58, 91),
-    "Clarinet": (50, 94),
-    "Bassoon": (34, 75),
+    instrument_type = ctx.rng.choice(role_spec.instruments)
+    midi_instrument = instrument_type.create_pretty_midi()
+    sound = SoundDesign(ctx.rng)
 
-    "Trumpet": (55, 82),
-    "French Horn": (40, 80),
-    "Trombone": (40, 72),
-    "Tuba": (28, 55),
-
-    "Acoustic Grand Piano": (21, 108),
-    "String Ensemble 1": (40, 100),
-    "Pad 1 (new age)": (48, 84),
-
-    "Electric Bass (finger)": (28, 60),
-    "Acoustic Bass": (28, 60),
-}
-
-def choose_instrument_for_role(rng, role):
-    name = rng.choice(ORCHESTRATION[role])
-    program = INSTRUMENTS[name]
-    midi_instrument = pretty_midi.Instrument(program=program, name=name)
-    sound = SoundDesign(rng)
-    return Instrument(midi_instrument, name, sound)
-
+    return Instrument(
+        midi=midi_instrument,
+        name=instrument_type.label,
+        sound=sound
+    )

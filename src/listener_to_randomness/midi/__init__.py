@@ -8,13 +8,13 @@ Provides:
 """
 
 # Import key items from submodules
-from .instruments import INSTRUMENTS
+from .instruments import InstrumentType
 from .note import Note
 from .orchestration import choose_instrument_for_role
 
 # Public API
 __all__ = [
-    "INSTRUMENTS",
+    "InstrumentType",
     "Note",
     "choose_instrument_for_role",
 ]

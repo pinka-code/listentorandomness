@@ -1,5 +1,15 @@
 class MusicalContext:
-    def __init__(self, key_signature, time_signature, tempo_bpm):
+    def __init__(
+        self,
+        rng,
+        style,
+        key_signature,
+        time_signature,
+        tempo_bpm,
+    ):
+        self.rng = rng
+        self.style = style
+
         self.key_signature = key_signature
         self.time_signature = time_signature
         self.tempo_bpm = tempo_bpm
