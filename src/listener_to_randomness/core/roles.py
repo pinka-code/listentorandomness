@@ -33,11 +33,12 @@ class RoleBehavior:
         octave = self.choose_octave()
         return base_note + 12 * octave
     
-    def generate_rhythm(self, measure_duration):
+    def generate_rhythm(self, context):
         return RhythmicPattern.generate(
-            measure_duration,
+            context.measure_duration,
             self.rng,
-            rest_probability=0.0
+            rest_probability=0.0,
+            time_signature=context.time_signature
         )
     
     def phrase_length(self):
@@ -54,11 +55,12 @@ class RoleMelody(RoleBehavior):
     def adjust_velocity(self, velocity: int) -> int:
         return min(127, velocity + 10)
     
-    def generate_rhythm(self, measure_duration):
+    def generate_rhythm(self, context):
         return RhythmicPattern.generate(
-            measure_duration,
+            context.measure_duration,
             self.rng,
-            rest_probability=0.15
+            rest_probability=0.15,
+            time_signature=context.time_signature
         )
     
     def phrase_length(self):
@@ -74,11 +76,12 @@ class RoleHarmony(RoleBehavior):
     def adjust_velocity(self, velocity: int) -> int:
         return velocity
 
-    def generate_rhythm(self, measure_duration):
+    def generate_rhythm(self, context):
         return RhythmicPattern.generate(
-            measure_duration,
+            context.measure_duration,
             self.rng,
-            rest_probability=0.05
+            rest_probability=0.05,
+            time_signature=context.time_signature
         )
     
     def phrase_length(self):
@@ -94,8 +97,8 @@ class RoleBass(RoleBehavior):
     def adjust_velocity(self, velocity: int) -> int:
         return min(127, velocity + 5)
     
-    def generate_rhythm(self, measure_duration):
-        pattern = [(1.0, False)] * int(measure_duration)
+    def generate_rhythm(self, context):
+        pattern = [(1.0, False)] * int(context.measure_duration)
         return RhythmicPattern(pattern)
     
     def phrase_length(self):
@@ -112,8 +115,8 @@ class RolePad(RoleBehavior):
     def adjust_velocity(self, velocity: int) -> int:
         return max(20, velocity - 10)
     
-    def generate_rhythm(self, measure_duration):
-        pattern = [(measure_duration, False)]
+    def generate_rhythm(self, context):
+        pattern = [(context.measure_duration, False)]
         return RhythmicPattern(pattern)
     
     def phrase_length(self):
@@ -130,11 +133,12 @@ class RoleCountermelody(RoleBehavior):
     def adjust_velocity(self, velocity: int) -> int:
         return min(127, velocity + 5)
     
-    def generate_rhythm(self, measure_duration):
+    def generate_rhythm(self, context):
         return RhythmicPattern.generate(
-            measure_duration,
+            context.measure_duration,
             self.rng,
-            rest_probability=0.25
+            rest_probability=0.25,
+            time_signature=context.time_signature
         )
     
     def phrase_length(self):
