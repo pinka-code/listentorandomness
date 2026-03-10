@@ -1,4 +1,5 @@
 import pretty_midi  # type: ignore
+import copy
 
 from .track import Track
 from listener_to_randomness.midi.orchestration import choose_instrument_for_role
@@ -47,9 +48,9 @@ class Composition:
             instrument = choose_instrument_for_role(self.ctx, role_name, used_instruments)
             if instrument is None:
                 continue
-            
+
             instrument_rng = self.rng.fork(seed_offset=idx)
-            print(f"Instrument: {instrument.name} rng: {instrument_rng}")
+            print(f"Instrument: {instrument.name}")
 
             role = create_role(
                 role_name=role_name,
@@ -65,10 +66,20 @@ class Composition:
             )
 
             current_bar = 0
-            for section in self.form.sections:
-                print(f"Section {section.name} ({section.bars} bars) {section.context}")
+            last_note_end = 0.0
 
-                track.generate_section(section=section, start_bar=current_bar)
+            for section_idx, section in enumerate(self.form.sections):
+                section_rng = instrument_rng.fork(seed_offset=section_idx + 1000)
+                section_context = copy.deepcopy(section.context)
+                section_context.rng = section_rng
+
+                last_note_end = track.generate_section(
+                    section=section,
+                    start_bar=current_bar,
+                    context=section_context,
+                    last_note_end=last_note_end
+                )
+
                 current_bar += section.bars
 
             self.tracks.append(track)

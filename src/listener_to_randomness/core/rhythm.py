@@ -29,6 +29,10 @@ class RhythmicPattern:
             1.0: 1.0, 1.5: 0.3, 2.0: 0.2, 4.0: 0.1
         }
 
+        max_consecutive_rests = 2
+        rest_streak = 0
+        has_note = False
+
         # Adjust weights based on signature
         if time_signature is not None:
             if time_signature.type == "binary":
@@ -57,10 +61,26 @@ class RhythmicPattern:
                     possible_weights = [w * 1.5 if d <= 0.5 else w for d, w in zip(possible, possible_weights)]
 
             duration = rng.choice_weighted(possible, possible_weights)
-            is_rest = rng.random() < rest_probability
+            if rest_streak >= max_consecutive_rests:
+                is_rest = False
+            else:
+                is_rest = rng.random() < rest_probability
+
+            if is_rest:
+                rest_streak += 1
+            else:
+                rest_streak = 0
+                has_note = True
+
             pattern.append((duration, is_rest))
+
             remaining -= duration
             beat_position += duration
+
+        if not has_note and pattern:
+            idx = rng.randint(0, len(pattern) - 1)
+            duration, _ = pattern[idx]
+            pattern[idx] = (duration, False)
 
         return cls(pattern)
 

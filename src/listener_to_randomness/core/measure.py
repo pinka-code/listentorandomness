@@ -1,6 +1,7 @@
 from listener_to_randomness.midi.sound_design import SoundDesign
 from .dynamics import Dynamics
 from .articulation import Articulation
+import itertools
 
 class Measure:
     """
@@ -23,7 +24,7 @@ class Measure:
         bar_duration = self.context.bar_duration
 
         for degree, (duration, rest) in zip(
-            self.melodic_pattern.degrees,
+            itertools.cycle(self.melodic_pattern.degrees),
             self.rhythmic_pattern.pattern
         ):
             if rest:
@@ -54,7 +55,6 @@ class Measure:
                 final_notes.extend(sd_notes)
 
             notes.extend(final_notes)
-
             current_time += duration
 
         return notes

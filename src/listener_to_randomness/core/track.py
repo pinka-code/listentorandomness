@@ -31,11 +31,11 @@ class Track:
         self.section_patterns[key] = pattern
         return pattern
 
-    def generate_section(self, section, start_bar, context=None):
+    def generate_section(self, section, start_bar, context=None, last_note_end=0.0):
         ctx = context or section.context
-
         bar_duration = ctx.bar_duration
-        section_start = start_bar * bar_duration
+
+        section_start = max(start_bar * bar_duration, last_note_end)
 
         melodic_pattern = self._pattern_for_section(section, self.role)
 
@@ -43,16 +43,8 @@ class Track:
         previous_velocity = None
 
         while current_bar < section.bars:
-
-            phrase_len = min(
-                self.role.phrase_length(),
-                section.bars - current_bar
-            )
-
-            dynamics = Dynamics(
-                rng=ctx.rng,
-                start_velocity=previous_velocity
-            )
+            phrase_len = min(self.role.phrase_length(), section.bars - current_bar)
+            dynamics = Dynamics(rng=ctx.rng, start_velocity=previous_velocity)
 
             phrase = Phrase(
                 config=self.config,
@@ -74,3 +66,10 @@ class Track:
                 previous_velocity = note.velocity
 
             current_bar += phrase_len
+
+        if self.instrument.midi.notes:
+            last_note_end = max(note.start + note.duration for note in self.instrument.midi.notes)
+        else:
+            last_note_end = section_start
+
+        return last_note_end
