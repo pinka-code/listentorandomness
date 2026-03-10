@@ -32,9 +32,10 @@ class Style:
         self.tempo_choices = tempo_choices  # can be None, then use global choose()
         self.time_signature_choices = time_signature_choices  # list of TimeSignature
 
-    def choose_roles(self, rng):
+    def choose_roles(self, rng, density=1.0):
         selected = list(self.core_roles)
-        for role, prob in self.optional_roles.items():
+        for role, base_prob in self.optional_roles.items():
+            prob = base_prob * density
             if rng.random() < prob:
                 selected.append(role)
         return selected

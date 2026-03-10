@@ -1,12 +1,24 @@
 from dataclasses import dataclass
 
+
+
 @dataclass(frozen=True)
 class MusicConfig:
-    num_tracks: int
+    orchestration_density: int
+
+    DENSITY_MAP = {
+        "sparse": 0.4,
+        "normal": 0.7,
+        "dense": 1.0,
+    }
+
+    @property
+    def density_factor(self):
+        return self.DENSITY_MAP[self.orchestration_density]
 
 def generate_structure(rng):
-    num_tracks = rng.randint(1, 5)
+    orchestration_density = rng.choice(["sparse", "normal", "dense"])
 
     return MusicConfig(
-        num_tracks=num_tracks
+        orchestration_density=orchestration_density
     )

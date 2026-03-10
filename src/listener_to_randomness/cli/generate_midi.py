@@ -44,7 +44,7 @@ def main():
     cfg = generate_structure(random_generator)
 
     print("===== COMPOSITION CONFIGURATION =====")
-    print(f"Number of tracks: {cfg.num_tracks}")
+    print(f"Orchestration density: {cfg.orchestration_density}")
     print("=====================================")
 
     part = Composition(cfg, random_generator)

@@ -42,7 +42,7 @@ class Composition:
 
         print(f"Style: {self.style.name}, Tempo: {tempo} BPM, Time Signature: {time_signature.name}")
 
-        for role_name in self.style.choose_roles(self.rng):
+        for role_name in self.style.choose_roles(self.rng, self.config.density_factor):
             instrument = choose_instrument_for_role(self.ctx, role_name)
             print(f"Instrument: {instrument.name}")
 
