@@ -12,13 +12,7 @@ class MusicalForm:
         self.sections = self._generate_form()
 
     def _generate_form(self):
-        forms = [
-            [("A", 8), ("A", 8), ("B", 8), ("A", 8)],
-            [("A", 8), ("B", 8), ("A", 8)],
-            [("A", 8), ("B", 8), ("C", 8)],
-        ]
-
-        form = self.rng.choice(forms)
+        form = self.rng.choice(self.style.forms)
 
         sections = []
         section_tempos = {}

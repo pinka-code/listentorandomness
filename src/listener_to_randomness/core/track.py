@@ -20,33 +20,22 @@ class Track:
         self.rng = rng
         self.role = role
         self.instrument = instrument
-        self.section_themes = {}
+        self.section_patterns = {}
 
-    def _pattern_for_section(self, section):
-        section_name = section.name
-        if section_name in self.section_themes:
-            return self.section_themes[section_name]
+    def _pattern_for_section(self, section, role):
+        key = (section.name, role)
+        if key in self.section_patterns:
+            return self.section_patterns[key]
 
-        if section_name == "A":
-            pattern = MelodicPattern.generate(section.context, self.rng)
-
-        else:
-            base = self.section_themes.get("A")
-
-            if base:
-                pattern = MelodicPattern.generate(section.context, self.rng)
-            else:
-                pattern = MelodicPattern.generate(section.context, self.rng)
-
-        self.section_themes[section_name] = pattern
-
+        pattern = MelodicPattern.generate(section.context, self.rng)
+        self.section_patterns[key] = pattern
         return pattern
 
     def generate_section(self, section, start_bar):
         bar_duration = section.context.bar_duration
         section_start = start_bar * bar_duration
 
-        melodic_pattern = self._pattern_for_section(section)
+        melodic_pattern = self._pattern_for_section(section, self.role)
 
         current_bar = 0
         previous_velocity = None

@@ -19,6 +19,12 @@ class BiasedRandom(RandomModifier):
 
     def random(self):
         return self.base_rng.random()
+    
+    def uniform(self, a, b):
+        return self.base_rng.uniform(a, b)
+
+    def shuffle(self, seq):
+        return self.base_rng.shuffle(seq)
 
 
 # More probabilities to central values
@@ -44,6 +50,12 @@ class GaussianRandom(RandomModifier):
 
     def random(self):
         return self.base_rng.random()
+    
+    def uniform(self, a, b):
+        return self.base_rng.uniform(a, b)
+
+    def shuffle(self, seq):
+        return self.base_rng.shuffle(seq)
 
 
 # Memory of precedent state    
@@ -75,6 +87,12 @@ class MarkovRandom(RandomModifier):
     def random(self):
         return self.base_rng.random()
     
+    def uniform(self, a, b):
+        return self.base_rng.uniform(a, b)
+
+    def shuffle(self, seq):
+        return self.base_rng.shuffle(seq)
+    
 # Add periodicity
 class RhythmicRandom(RandomModifier):
 
@@ -100,3 +118,9 @@ class RhythmicRandom(RandomModifier):
 
     def random(self):
         return self.base_rng.random()
+    
+    def uniform(self, a, b):
+        return self.base_rng.uniform(a, b)
+
+    def shuffle(self, seq):
+        return self.base_rng.shuffle(seq)

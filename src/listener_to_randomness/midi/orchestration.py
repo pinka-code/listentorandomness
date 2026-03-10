@@ -9,7 +9,7 @@ class Role(Enum):
     BASS = "bass"
     PAD = "pad"
 
-def choose_instrument_for_role(ctx, role):
+def choose_instrument_for_role(ctx, role, used_instruments):
     role_spec = ctx.style.roles.get(role)
 
     if role_spec is None:
@@ -17,7 +17,17 @@ def choose_instrument_for_role(ctx, role):
             f"Role {role} not defined in style {ctx.style.name}"
         )
 
-    instrument_type = ctx.rng.choice(role_spec.instruments)
+    available = [
+        inst for inst in role_spec.instruments
+        if inst not in used_instruments
+    ]
+
+    if not available:
+        return None  # aucun instrument dispo pour ce rôle
+
+    instrument_type = ctx.rng.choice(available)
+    used_instruments.add(instrument_type)
+
     midi_instrument = instrument_type.create_pretty_midi()
     sound = SoundDesign(ctx.rng)
 

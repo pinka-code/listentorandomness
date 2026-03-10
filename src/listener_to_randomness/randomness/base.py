@@ -51,6 +51,13 @@ class BasePythonRandom(EntropySource):
 
     def random(self):
         return self._random.random()
+    
+    def shuffle(self, seq):
+        self._random.shuffle(seq)
+        return seq
+
+    def uniform(self, a, b):
+        return self._random.uniform(a, b)
 
 # Deterministic PRNG: fixed seed, fully reproducible
 class DeterministicRandom(BasePythonRandom):
@@ -100,3 +107,12 @@ class FractalRandom(EntropySource):
             if r < cumulative:
                 return item
         return seq[-1]
+    
+    def shuffle(self, seq):
+        for i in reversed(range(1, len(seq))):
+            j = int(self._next() * (i + 1))
+            seq[i], seq[j] = seq[j], seq[i]
+        return seq
+    
+    def uniform(self, a, b):
+        return a + self._next() * (b - a)

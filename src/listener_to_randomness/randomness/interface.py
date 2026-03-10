@@ -18,6 +18,14 @@ class RandomInterface(ABC):
     def random(self) -> float:
         pass
 
+    @abstractmethod
+    def shuffle(self, seq):
+        pass
+
+    @abstractmethod
+    def uniform(self, a: float, b: float) -> float:
+        pass
+
 
 class EntropySource(RandomInterface):
     pass

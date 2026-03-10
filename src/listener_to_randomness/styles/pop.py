@@ -15,6 +15,11 @@ POP_STYLE = Style(
         TimeSignature("4/4", 4, 4, "binary"),
     ],
 
+    forms = [
+        [("Intro", 4), ("Verse", 8), ("Chorus", 8), ("Verse", 8), ("Chorus", 8)],
+        [("Verse", 8), ("Chorus", 8), ("Bridge", 8), ("Chorus", 8)],
+    ],
+
     roles={
 
         Role.MELODY: RoleSpec(

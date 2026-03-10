@@ -17,6 +17,11 @@ CLASSICAL_STYLE = Style(
         TimeSignature("2/4", 2, 4, "binary"),
     ],
 
+    forms = [
+        [("A", 8), ("A", 8), ("B", 8), ("A", 8)],  # AABA
+        [("A", 8), ("B", 8), ("A", 8)],            # ABA
+    ],
+
     roles={
 
         Role.MELODY: RoleSpec(

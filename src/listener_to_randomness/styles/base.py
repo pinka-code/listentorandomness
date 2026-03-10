@@ -13,6 +13,7 @@ class Style:
         pattern_length_range,
         phrase_variation_prob,
         roles,
+        forms,
         optional_roles=None,
         tempo_choices=None,
         time_signature_choices=None,
@@ -25,6 +26,7 @@ class Style:
         self.phrase_variation_prob = phrase_variation_prob
 
         self.roles = roles
+        self.forms = forms
 
         self.core_roles = list(roles.keys())
         self.optional_roles = optional_roles or {}
@@ -38,6 +40,7 @@ class Style:
             prob = base_prob * density
             if rng.random() < prob:
                 selected.append(role)
+            rng.shuffle(selected)
         return selected
 
     def choose_tempo(self, rng):

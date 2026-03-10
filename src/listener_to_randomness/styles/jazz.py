@@ -16,6 +16,10 @@ JAZZ_STYLE = Style(
         TimeSignature("3/4", 3, 4, "binary"),
     ],
 
+    forms = [
+        [("A", 8), ("A", 8), ("B", 8), ("A", 8)],  # AABA
+    ],
+
     roles={
 
         Role.MELODY: RoleSpec(
