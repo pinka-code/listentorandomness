@@ -25,6 +25,10 @@ class BiasedRandom(RandomModifier):
 
     def shuffle(self, seq):
         return self.base_rng.shuffle(seq)
+    
+    def fork(self, seed_offset=0):
+        new_base = self.base_rng.fork(seed_offset)
+        return BiasedRandom(new_base, bias_factor=self.bias_factor)
 
 
 # More probabilities to central values
@@ -56,6 +60,10 @@ class GaussianRandom(RandomModifier):
 
     def shuffle(self, seq):
         return self.base_rng.shuffle(seq)
+    
+    def fork(self, seed_offset=0):
+        new_base = self.base_rng.fork(seed_offset)
+        return GaussianRandom(new_base, mean=self.mean, std=self.std)
 
 
 # Memory of precedent state    
@@ -93,6 +101,12 @@ class MarkovRandom(RandomModifier):
     def shuffle(self, seq):
         return self.base_rng.shuffle(seq)
     
+    def fork(self, seed_offset=0):
+        new_base = self.base_rng.fork(seed_offset)
+        new_instance = MarkovRandom(new_base, self.transition_matrix)
+        new_instance.current_state = self.current_state
+        return new_instance
+    
 # Add periodicity
 class RhythmicRandom(RandomModifier):
 
@@ -124,3 +138,9 @@ class RhythmicRandom(RandomModifier):
 
     def shuffle(self, seq):
         return self.base_rng.shuffle(seq)
+    
+    def fork(self, seed_offset=0):
+        new_base = self.base_rng.fork(seed_offset)
+        new_instance = RhythmicRandom(new_base, period=self.period)
+        new_instance.counter = self.counter
+        return new_instance

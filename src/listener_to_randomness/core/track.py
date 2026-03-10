@@ -31,8 +31,10 @@ class Track:
         self.section_patterns[key] = pattern
         return pattern
 
-    def generate_section(self, section, start_bar):
-        bar_duration = section.context.bar_duration
+    def generate_section(self, section, start_bar, context=None):
+        ctx = context or section.context
+
+        bar_duration = ctx.bar_duration
         section_start = start_bar * bar_duration
 
         melodic_pattern = self._pattern_for_section(section, self.role)
@@ -48,19 +50,19 @@ class Track:
             )
 
             dynamics = Dynamics(
-                rng=self.rng,
+                rng=ctx.rng,
                 start_velocity=previous_velocity
             )
 
             phrase = Phrase(
                 config=self.config,
-                context=section.context,
+                context=ctx,
                 melodic_pattern=melodic_pattern,
                 measure_count=phrase_len,
                 role=self.role,
                 dynamics=dynamics,
                 sound_design=self.instrument.sound,
-                rng=self.rng
+                rng=ctx.rng
             )
 
             phrase_start = section_start + current_bar * bar_duration

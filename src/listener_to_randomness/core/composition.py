@@ -43,21 +43,23 @@ class Composition:
         print(f"Style: {self.style.name}, Tempo: {tempo} BPM, Time Signature: {time_signature.name}")
 
         used_instruments = set()
-        for role_name in self.style.choose_roles(self.rng, self.config.density_factor):
+        for idx, role_name in enumerate(self.style.choose_roles(self.rng, self.config.density_factor)):
             instrument = choose_instrument_for_role(self.ctx, role_name, used_instruments)
             if instrument is None:
                 continue
-            print(f"Instrument: {instrument.name}")
+            
+            instrument_rng = self.rng.fork(seed_offset=idx)
+            print(f"Instrument: {instrument.name} rng: {instrument_rng}")
 
             role = create_role(
                 role_name=role_name,
                 config=self.config,
-                rng=self.rng
+                rng=instrument_rng
             )
 
             track = Track(
                 config=self.config,
-                rng=self.rng,
+                rng=instrument_rng,
                 role=role,
                 instrument=instrument,
             )

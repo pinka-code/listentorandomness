@@ -37,8 +37,11 @@ Additional notes:
 
 class BasePythonRandom(EntropySource):
 
-    def __init__(self, random_impl):
-        self._random = random_impl
+    def __init__(self, random_impl=None, seed=None):
+        if random_impl is not None:
+            self._random = random_impl
+        else:
+            self._random = random.Random(seed)
 
     def choice(self, seq):
         return self._random.choice(seq)
@@ -58,11 +61,21 @@ class BasePythonRandom(EntropySource):
 
     def uniform(self, a, b):
         return self._random.uniform(a, b)
+    
+    def fork(self, seed_offset: int = 0):
+        base_seed = int(self.random() * 1_000_000_000)
+        new_seed = base_seed + seed_offset
+        return self.__class__(seed=new_seed)
 
 # Deterministic PRNG: fixed seed, fully reproducible
 class DeterministicRandom(BasePythonRandom):
     def __init__(self, seed):
         super().__init__(random.Random(seed))
+
+    def fork(self, seed_offset: int = 0):
+        base_seed = int(self.random() * 1_000_000_000)
+        new_seed = base_seed + seed_offset
+        return DeterministicRandom(new_seed)
 
 # Pseudo-random PRNG: seed from system time, reproducible if state known
 class TimeSeedRandom(BasePythonRandom):
@@ -116,3 +129,6 @@ class FractalRandom(EntropySource):
     
     def uniform(self, a, b):
         return a + self._next() * (b - a)
+    
+    def fork(self, seed_offset: float = 0.0):
+        return FractalRandom(seed=self._next() + seed_offset, r=self.r)
