@@ -28,15 +28,15 @@ class Track:
             return self.section_themes[section_name]
 
         if section_name == "A":
-            pattern = MelodicPattern.generate(self.config, section.context, self.rng)
+            pattern = MelodicPattern.generate(section.context, self.rng)
 
         else:
             base = self.section_themes.get("A")
 
             if base:
-                pattern = MelodicPattern.generate(self.config, section.context, self.rng)
+                pattern = MelodicPattern.generate(section.context, self.rng)
             else:
-                pattern = MelodicPattern.generate(self.config, section.context, self.rng)
+                pattern = MelodicPattern.generate(section.context, self.rng)
 
         self.section_themes[section_name] = pattern
 

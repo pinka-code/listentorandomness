@@ -35,7 +35,7 @@ class Phrase:
         articulation = Articulation(self.rng)
 
         for i in range(self.measure_count):
-            if i > 0 and self.rng.random() < self.config.phrase_variation_prob:
+            if i > 0 and self.rng.random() < self.context.style.phrase_variation_prob:
                 current_melodic_pattern = current_melodic_pattern.transform(self.rng)
 
             current_rhythmic_pattern = self.role.generate_rhythm(self.context)

@@ -38,12 +38,12 @@ class MelodicPattern:
         return MelodicPattern(pattern)
     
     @classmethod
-    def generate(cls, config, context, rng):
+    def generate(cls, context, rng):
         scale_len = len(context.scale_notes)
 
         length = rng.randint(
-            config.melodic_pattern_length_min,
-            config.melodic_pattern_length_max
+            context.style.pattern_length_min,
+            context.style.pattern_length_max
         )
 
         degrees = list(range(scale_len))
