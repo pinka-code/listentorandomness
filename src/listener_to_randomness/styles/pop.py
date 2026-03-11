@@ -20,6 +20,31 @@ POP_STYLE = Style(
         [("Verse", 8), ("Chorus", 8), ("Bridge", 8), ("Chorus", 8)],
     ],
 
+    melodic_profile={
+        "intervals": [-2, -1, 0, 1, 2],
+        "weights":   [1, 5, 2, 5, 1],
+        "start_degree_weight": {
+            0: 7,
+            4: 2,
+            2: 1
+        }
+    },
+
+    rhythmic_profile={
+        "duration_weights": {
+            0.125: 0.05,
+            0.25: 0.4,
+            0.5: 1.8,
+            0.75: 0.3,
+            1.0: 1.5,
+            1.5: 0.1,
+            2.0: 0.2,
+            4.0: 0.05
+        },
+        "rest_probability": 0.03,
+        "syncopation_prob": 0.1
+    },
+
     roles={
 
         Role.MELODY: RoleSpec(

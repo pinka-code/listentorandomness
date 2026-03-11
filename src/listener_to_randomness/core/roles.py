@@ -31,12 +31,7 @@ class RoleBehavior:
         return base_note + 12 * octave
     
     def generate_rhythm(self, context):
-        return RhythmicPattern.generate(
-            context.measure_duration,
-            self.rng,
-            rest_probability=0.0,
-            time_signature=context.time_signature
-        )
+        return RhythmicPattern.generate(context)
     
     def phrase_length(self):
         return 4
@@ -53,12 +48,7 @@ class RoleMelody(RoleBehavior):
         return min(127, velocity + 10)
     
     def generate_rhythm(self, context):
-        return RhythmicPattern.generate(
-            context.measure_duration,
-            self.rng,
-            rest_probability=0.15,
-            time_signature=context.time_signature
-        )
+        return RhythmicPattern.generate(context)
     
     def phrase_length(self):
         return 4
@@ -74,12 +64,7 @@ class RoleHarmony(RoleBehavior):
         return min(127, velocity)
 
     def generate_rhythm(self, context):
-        return RhythmicPattern.generate(
-            context.measure_duration,
-            self.rng,
-            rest_probability=0.05,
-            time_signature=context.time_signature
-        )
+        return RhythmicPattern.generate(context)
     
     def phrase_length(self):
         return 2
@@ -131,12 +116,7 @@ class RoleCountermelody(RoleBehavior):
         return min(127, velocity + 5)
     
     def generate_rhythm(self, context):
-        return RhythmicPattern.generate(
-            context.measure_duration,
-            self.rng,
-            rest_probability=0.25,
-            time_signature=context.time_signature
-        )
+        return RhythmicPattern.generate(context)
     
     def phrase_length(self):
         return 4

@@ -22,6 +22,31 @@ CLASSICAL_STYLE = Style(
         [("A", 8), ("B", 8), ("A", 8)],            # ABA
     ],
 
+    melodic_profile={
+        "intervals": [-2, -1, 0, 1, 2, 3, -3],
+        "weights":   [1, 4, 3, 4, 2, 1, 1],
+        "start_degree_weight": {
+            0: 6,
+            4: 2,
+            2: 1
+        }
+    },
+
+    rhythmic_profile={
+        "duration_weights": {
+            0.125: 0.05,
+            0.25: 0.2,
+            0.5: 1.0,
+            0.75: 0.5,
+            1.0: 1.3,
+            1.5: 0.4,
+            2.0: 0.6,
+            4.0: 0.3
+        },
+        "rest_probability": 0.05,
+        "syncopation_prob": 0.15
+    },
+
     roles={
 
         Role.MELODY: RoleSpec(

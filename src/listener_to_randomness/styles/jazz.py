@@ -20,6 +20,32 @@ JAZZ_STYLE = Style(
         [("A", 8), ("A", 8), ("B", 8), ("A", 8)],  # AABA
     ],
 
+    melodic_profile={
+        "intervals": [-3, -2, -1, 0, 1, 2, 3, 4],
+        "weights":   [2, 3, 4, 1, 4, 3, 2, 1],
+        "start_degree_weight": {
+            0: 4,
+            2: 2,
+            4: 3,
+            6: 2
+        }
+    },
+
+    rhythmic_profile={
+        "duration_weights": {
+            0.125: 0.4,
+            0.25: 0.9,
+            0.5: 1.6,
+            0.75: 1.2,
+            1.0: 0.6,
+            1.5: 0.6,
+            2.0: 0.2,
+            4.0: 0.05
+        },
+        "rest_probability": 0.12,
+        "syncopation_prob": 0.65
+    },
+
     roles={
 
         Role.MELODY: RoleSpec(

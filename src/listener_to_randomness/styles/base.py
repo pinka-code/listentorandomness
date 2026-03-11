@@ -7,6 +7,7 @@ class RoleSpec:
         self.motif_generators = motif_generators or []
 
 class Style:
+
     def __init__(
         self,
         name,
@@ -14,6 +15,8 @@ class Style:
         phrase_variation_prob,
         roles,
         forms,
+        melodic_profile,
+        rhythmic_profile,
         optional_roles=None,
         tempo_choices=None,
         time_signature_choices=None,
@@ -28,11 +31,15 @@ class Style:
         self.roles = roles
         self.forms = forms
 
+        self.melodic_profile = melodic_profile
+        self.rhythmic_profile = rhythmic_profile
+
         self.core_roles = list(roles.keys())
         self.optional_roles = optional_roles or {}
 
-        self.tempo_choices = tempo_choices  # can be None, then use global choose()
-        self.time_signature_choices = time_signature_choices  # list of TimeSignature
+        self.tempo_choices = tempo_choices
+        self.time_signature_choices = time_signature_choices
+
 
     def choose_roles(self, rng, density=1.0):
         selected = list(self.core_roles)

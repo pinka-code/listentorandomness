@@ -39,23 +39,31 @@ class MelodicPattern:
     
     @classmethod
     def generate(cls, context, rng):
+        style = context.style
+        profile = style.melodic_profile
+
         scale_len = len(context.scale_notes)
 
         length = rng.randint(
-            context.style.pattern_length_min,
-            context.style.pattern_length_max
+            style.pattern_length_min,
+            style.pattern_length_max
         )
 
         degrees = list(range(scale_len))
-        start_weights = [4 if d == 0 else 1 for d in degrees]
+
+        start_weights = [
+            profile.get("start_degree_weight", {}).get(d, 1)
+            for d in degrees
+        ]
 
         current = rng.choice_weighted(degrees, weights=start_weights)
         motif = [current]
 
-        interval_choices = [-2, -1, 0, 1, 2, 3, -3]
-        interval_weights = [1, 4, 3, 4, 2, 1, 1]
+        interval_choices = profile["intervals"]
+        interval_weights = profile["weights"]
 
         for _ in range(length - 1):
+
             interval = rng.choice_weighted(
                 interval_choices,
                 weights=interval_weights

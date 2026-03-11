@@ -17,17 +17,20 @@ class RhythmicPattern:
         return sum(duration for duration, _ in self.pattern)
 
     @classmethod
-    def generate(cls, total_beats, rng, rest_probability=0.0, time_signature=None, syncopation_prob=0.2):
+    def generate(cls, context):
         pattern = []
-        remaining = total_beats
+        remaining = context.measure_duration
         beat_position = 0.0  # track position within the measure for syncopation
 
         durations = list(DURATIONS.values())
 
-        base_weights = {
-            0.125: 0.1, 0.25: 0.2, 0.5: 1.0, 0.75: 0.5,
-            1.0: 1.0, 1.5: 0.3, 2.0: 0.2, 4.0: 0.1
-        }
+        style = context.style
+        profile = style.rhythmic_profile
+        time_signature = context.time_signature
+
+        base_weights = profile["duration_weights"]
+        rest_probability = profile.get("rest_probability", 0.0)
+        syncopation_prob = profile.get("syncopation_prob", 0.2)
 
         max_consecutive_rests = 2
         rest_streak = 0
@@ -54,17 +57,17 @@ class RhythmicPattern:
                 break
             possible_weights = [base_weights[d] for d in possible]
 
-            if time_signature is not None and rng.random() < syncopation_prob:
+            if time_signature is not None and context.rng.random() < syncopation_prob:
                 if time_signature.type == "binary" and (beat_position % 1.0 != 0):
                     possible_weights = [w * 1.5 if d <= 0.5 else w for d, w in zip(possible, possible_weights)]
                 elif time_signature.type == "ternary" and (beat_position % 1.5 != 0):
                     possible_weights = [w * 1.5 if d <= 0.5 else w for d, w in zip(possible, possible_weights)]
 
-            duration = rng.choice_weighted(possible, possible_weights)
+            duration = context.rng.choice_weighted(possible, possible_weights)
             if rest_streak >= max_consecutive_rests:
                 is_rest = False
             else:
-                is_rest = rng.random() < rest_probability
+                is_rest = context.rng.random() < rest_probability
 
             if is_rest:
                 rest_streak += 1
@@ -78,7 +81,7 @@ class RhythmicPattern:
             beat_position += duration
 
         if not has_note and pattern:
-            idx = rng.randint(0, len(pattern) - 1)
+            idx = context.rng.randint(0, len(pattern) - 1)
             duration, _ = pattern[idx]
             pattern[idx] = (duration, False)
 
