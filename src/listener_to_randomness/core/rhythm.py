@@ -1,3 +1,5 @@
+from listener_to_randomness.utils.music_profiles import merge_profiles
+
 DURATIONS = {
     "THIRTY_SECOND_NOTE": 0.125,
     "SIXTEENTH_NOTE": 0.25,
@@ -17,16 +19,19 @@ class RhythmicPattern:
         return sum(duration for duration, _ in self.pattern)
 
     @classmethod
-    def generate(cls, context):
+    def generate(cls, context, role=None):
         pattern = []
         remaining = context.measure_duration
         beat_position = 0.0  # track position within the measure for syncopation
 
         durations = list(DURATIONS.values())
 
-        style = context.style
-        profile = style.rhythmic_profile
         time_signature = context.time_signature
+
+        style_profile = context.style.rhythmic_profile
+        role_profile = role.rhythm_profile if role else {}
+
+        profile = merge_profiles(style_profile, role_profile)
 
         base_weights = profile["duration_weights"]
         rest_probability = profile.get("rest_probability", 0.0)

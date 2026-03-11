@@ -27,7 +27,7 @@ class Track:
         if key in self.section_patterns:
             return self.section_patterns[key]
 
-        pattern = MelodicPattern.generate(section.context, self.rng)
+        pattern = MelodicPattern.generate(section.context, self.rng, role=self.role)
         self.section_patterns[key] = pattern
         return pattern
 

@@ -1,3 +1,5 @@
+from listener_to_randomness.utils.music_profiles import merge_profiles
+
 class MelodicPattern:
 
     def __init__(self, degrees):
@@ -38,9 +40,12 @@ class MelodicPattern:
         return MelodicPattern(pattern)
     
     @classmethod
-    def generate(cls, context, rng):
+    def generate(cls, context, rng, role=None):
         style = context.style
-        profile = style.melodic_profile
+        style_profile = style.melodic_profile
+        role_profile = role.melodic_profile if role else {}
+
+        profile = merge_profiles(style_profile, role_profile)
 
         scale_len = len(context.scale_notes)
 
@@ -63,7 +68,6 @@ class MelodicPattern:
         interval_weights = profile["weights"]
 
         for _ in range(length - 1):
-
             interval = rng.choice_weighted(
                 interval_choices,
                 weights=interval_weights

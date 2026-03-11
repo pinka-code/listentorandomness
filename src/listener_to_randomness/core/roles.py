@@ -10,6 +10,8 @@ class RoleBehavior:
     """
 
     name = "default"
+    rhythm_profile = {}
+    melodic_profile = {}
 
     def __init__(self, config, rng):
         self.config = config
@@ -31,7 +33,7 @@ class RoleBehavior:
         return base_note + 12 * octave
     
     def generate_rhythm(self, context):
-        return RhythmicPattern.generate(context)
+        return RhythmicPattern.generate(context, role=self)
     
     def phrase_length(self):
         return 4
@@ -39,6 +41,19 @@ class RoleBehavior:
 
 class RoleMelody(RoleBehavior):
     name = Role.MELODY
+    rhythm_profile = {
+        "duration_weights": {
+            0.25: 1.3,
+            0.5: 1.4,
+            1.0: 0.7
+        },
+        "syncopation_prob": 1.2
+    }
+
+    melodic_profile = {
+        "intervals": [-3,-2,-1,0,1,2,3],
+        "weights":   [1,2,4,2,4,2,1]
+    }
 
     def choose_octave(self):
         oct = [octaves.Octave.OCTAVE_4, octaves.Octave.OCTAVE_5]
@@ -48,13 +63,26 @@ class RoleMelody(RoleBehavior):
         return min(127, velocity + 10)
     
     def generate_rhythm(self, context):
-        return RhythmicPattern.generate(context)
+        return RhythmicPattern.generate(context, role=self)
     
     def phrase_length(self):
         return 4
 
 class RoleHarmony(RoleBehavior):
     name = Role.HARMONY
+    rhythm_profile = {
+        "duration_weights": {
+            1.0: 1.4,
+            2.0: 1.6,
+            4.0: 1.2,
+            0.25: 0.3
+        }
+    }
+
+    melodic_profile = {
+        "intervals": [-1,0,1],
+        "weights":   [1,6,1]
+    }
 
     def choose_octave(self):
         oct = [octaves.Octave.OCTAVE_3, octaves.Octave.OCTAVE_4]
@@ -64,13 +92,30 @@ class RoleHarmony(RoleBehavior):
         return min(127, velocity)
 
     def generate_rhythm(self, context):
-        return RhythmicPattern.generate(context)
+        return RhythmicPattern.generate(context, role=self)
     
     def phrase_length(self):
         return 2
 
 class RoleBass(RoleBehavior):
     name = Role.BASS
+    rhythm_profile = {
+        "duration_weights": {
+            0.5: 1.6,
+            1.0: 1.5,
+            2.0: 0.5,
+            4.0: 0.2
+        },
+        "syncopation_prob": 1.3
+    }
+
+    melodic_profile = {
+        "intervals": [-1,0,1],
+        "weights":   [2,5,2],
+        "start_degree_weight": {
+            0: 10
+        }
+    }
 
     def choose_octave(self):
         oct = [octaves.Octave.OCTAVE_1, octaves.Octave.OCTAVE_2]
@@ -89,6 +134,19 @@ class RoleBass(RoleBehavior):
 
 class RolePad(RoleBehavior):
     name = Role.PAD
+    rhythm_profile = {
+        "duration_weights": {
+            2.0: 2.0,
+            4.0: 3.0,
+            0.5: 0.1
+        },
+        "rest_probability": 0.0
+    }
+
+    melodic_profile = {
+        "intervals": [0,1,-1],
+        "weights":   [10,1,1]
+    }
 
     def choose_octave(self):
         oct = [octaves.Octave.OCTAVE_3, octaves.Octave.OCTAVE_4]
@@ -107,6 +165,19 @@ class RolePad(RoleBehavior):
 
 class RoleCountermelody(RoleBehavior):
     name = Role.COUNTERMELODY
+    rhythm_profile = {
+        "duration_weights": {
+            0.25: 0.8,
+            0.5: 1.3,
+            1.0: 1.1
+        },
+        "syncopation_prob": 1.1
+    }
+
+    melodic_profile = {
+        "intervals": [-2,-1,0,1,2],
+        "weights":   [1,4,2,4,1]
+    }
 
     def choose_octave(self):
         oct = [octaves.Octave.OCTAVE_3, octaves.Octave.OCTAVE_4]
@@ -116,7 +187,7 @@ class RoleCountermelody(RoleBehavior):
         return min(127, velocity + 5)
     
     def generate_rhythm(self, context):
-        return RhythmicPattern.generate(context)
+        return RhythmicPattern.generate(context, role=self)
     
     def phrase_length(self):
         return 4
