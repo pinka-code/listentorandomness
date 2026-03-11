@@ -31,7 +31,7 @@ class Composition:
         tempo = self.style.choose_tempo(self.rng)
         time_signature = self.style.choose_time_signature(self.rng)
 
-        self.ctx = MusicalContext(
+        base_ctx = MusicalContext(
             rng=self.rng,
             style=self.style,
             key_signature=self.form.sections[0].context.key_signature,
@@ -41,26 +41,42 @@ class Composition:
 
         midi = pretty_midi.PrettyMIDI(initial_tempo=tempo)
 
-        print(f"Style: {self.style.name}, Tempo: {tempo} BPM, Time Signature: {time_signature.name}")
+        print(
+            f"Style: {self.style.name}, "
+            f"Tempo: {tempo} BPM, "
+            f"Time Signature: {time_signature.name}"
+        )
 
         used_instruments = set()
-        for idx, role_name in enumerate(self.style.choose_roles(self.rng, self.config.density_factor)):
-            instrument = choose_instrument_for_role(self.ctx, role_name, used_instruments)
+
+        roles = self.style.choose_roles(
+            base_ctx.rng,
+            self.config.density_factor
+        )
+
+        for idx, role_name in enumerate(roles):
+            track_ctx = copy.deepcopy(base_ctx)
+            track_ctx.rng = base_ctx.rng.fork(seed_offset=idx)
+
+            instrument = choose_instrument_for_role(
+                track_ctx,
+                role_name,
+                used_instruments
+            )
+
             if instrument is None:
                 continue
 
-            instrument_rng = self.rng.fork(seed_offset=idx)
             print(f"Instrument: {instrument.name}")
 
             role = create_role(
                 role_name=role_name,
                 config=self.config,
-                rng=instrument_rng
+                rng=track_ctx.rng
             )
 
             track = Track(
                 config=self.config,
-                rng=instrument_rng,
                 role=role,
                 instrument=instrument,
             )
@@ -69,18 +85,20 @@ class Composition:
             last_note_end = 0.0
 
             for section_idx, section in enumerate(self.form.sections):
-                section_rng = instrument_rng.fork(seed_offset=section_idx + 1000)
-                section_context = copy.deepcopy(section.context)
-                section_context.rng = section_rng
+                section_ctx = copy.deepcopy(track_ctx)
+                section_ctx.rng = track_ctx.rng.fork(seed_offset=1000 + section_idx)
+
+                section_instance = copy.deepcopy(section)
+                section_instance.context = section_ctx
 
                 last_note_end = track.generate_section(
-                    section=section,
+                    section=section_instance,
                     start_bar=current_bar,
-                    context=section_context,
                     last_note_end=last_note_end
                 )
 
                 current_bar += section.bars
+
 
             self.tracks.append(track)
             midi.instruments.append(instrument.midi)

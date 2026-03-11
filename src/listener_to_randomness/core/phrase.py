@@ -17,7 +17,6 @@ class Phrase:
         role,
         dynamics,
         sound_design,
-        rng,
     ):
         self.config = config
         self.context = context
@@ -26,17 +25,16 @@ class Phrase:
         self.role = role
         self.dynamics = dynamics
         self.sound_design = sound_design
-        self.rng = rng
 
     def play(self, start_time: float):
         notes = []
         current_time = start_time
         current_melodic_pattern = self.melodic_pattern
-        articulation = Articulation(self.rng)
+        articulation = Articulation(self.context.rng)
 
         for i in range(self.measure_count):
-            if i > 0 and self.rng.random() < self.context.style.phrase_variation_prob:
-                current_melodic_pattern = current_melodic_pattern.transform(self.rng)
+            if i > 0 and self.context.rng.random() < self.context.style.phrase_variation_prob:
+                current_melodic_pattern = current_melodic_pattern.transform(self.context.rng)
 
             current_rhythmic_pattern = self.role.generate_rhythm(self.context)
             

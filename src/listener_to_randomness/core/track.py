@@ -12,12 +12,10 @@ class Track:
     def __init__(
         self,
         config,
-        rng,
         role,
         instrument,
     ):
         self.config = config
-        self.rng = rng
         self.role = role
         self.instrument = instrument
         self.section_patterns = {}
@@ -27,12 +25,12 @@ class Track:
         if key in self.section_patterns:
             return self.section_patterns[key]
 
-        pattern = MelodicPattern.generate(section.context, self.rng, role=self.role)
+        pattern = MelodicPattern.generate(section.context, role=self.role)
         self.section_patterns[key] = pattern
         return pattern
 
-    def generate_section(self, section, start_bar, context=None, last_note_end=0.0):
-        ctx = context or section.context
+    def generate_section(self, section, start_bar, last_note_end=0.0):
+        ctx = section.context
         bar_duration = ctx.bar_duration
 
         section_start = max(start_bar * bar_duration, last_note_end)
@@ -54,7 +52,6 @@ class Track:
                 role=self.role,
                 dynamics=dynamics,
                 sound_design=self.instrument.sound,
-                rng=ctx.rng
             )
 
             phrase_start = section_start + current_bar * bar_duration

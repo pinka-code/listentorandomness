@@ -40,7 +40,8 @@ class MelodicPattern:
         return MelodicPattern(pattern)
     
     @classmethod
-    def generate(cls, context, rng, role=None):
+    def generate(cls, context, role=None):
+        rng = context.rng
         style = context.style
         style_profile = style.melodic_profile
         role_profile = role.melodic_profile if role else {}
