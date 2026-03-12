@@ -91,6 +91,7 @@ python -m pip install -e .
 ▶️ Usage
 
 ```bash
+python -m listener_to_randomness.cli.generate_rng_demo --generator default --seed 42
 python -m listener_to_randomness.cli.generate_midi
 ltr-generate-midi # post install
 python -m listener_to_randomness.cli.visualize generative_structured.mid src/listener_to_randomness/visualisation/plots --mode timeline

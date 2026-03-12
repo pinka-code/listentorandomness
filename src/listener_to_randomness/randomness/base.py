@@ -36,7 +36,6 @@ Additional notes:
 """
 
 class BasePythonRandom(EntropySource):
-
     def __init__(self, random_impl=None, seed=None):
         if random_impl is not None:
             self._random = random_impl
@@ -67,6 +66,29 @@ class BasePythonRandom(EntropySource):
         new_seed = base_seed + seed_offset
         return self.__class__(seed=new_seed)
 
+# Very small linear congruential generator (intentionally bad for demonstration)
+class TinyRandom(BasePythonRandom):
+    MODULUS = 64
+    MULTIPLIER = 5
+    INCREMENT = 1
+
+    period = MODULUS
+
+    def __init__(self, seed: int = 1):
+        self.state = seed % self.MODULUS
+        super().__init__(random.Random(seed))
+
+    def random(self) -> float:
+        self.state = (
+            self.state * self.MULTIPLIER + self.INCREMENT
+        ) % self.MODULUS
+
+        return self.state / self.MODULUS
+
+    def fork(self, seed_offset: int = 0):
+        new_seed = (self.state + seed_offset) % self.MODULUS
+        return TinyRandom(new_seed)
+
 # Deterministic PRNG: fixed seed, fully reproducible
 class DeterministicRandom(BasePythonRandom):
     def __init__(self, seed):
@@ -89,7 +111,6 @@ class SecureRandom(BasePythonRandom):
 
 # Simple deterministic chaos (logistic map), predictable if initial seed known
 class FractalRandom(EntropySource):
-
     def __init__(self, seed=0.5, r=3.99):
         self.x = seed
         self.r = r

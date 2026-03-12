@@ -1,7 +1,7 @@
 from typing import Optional, Callable, Dict
 
 from .interface import RandomInterface
-from .base import DeterministicRandom, TimeSeedRandom, SecureRandom, FractalRandom
+from .base import TinyRandom, DeterministicRandom, TimeSeedRandom, SecureRandom, FractalRandom
 from .strategies import (
     BiasedRandom,
     GaussianRandom,
@@ -41,7 +41,8 @@ def create_random(
             kwargs.get("fractal_seed", 0.5),
             kwargs.get("r", 3.99),
         ),
-    }
+        "tiny": lambda: TinyRandom(seed if seed is not None else 1),
+}
 
     try:
         return registry[mode]()

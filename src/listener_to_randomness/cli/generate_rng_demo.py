@@ -1,15 +1,20 @@
 import argparse
 
-from listener_to_randomness.core import generate_structure, Composition
-from listener_to_randomness.utils import debug_notes
 from listener_to_randomness.randomness import create_random
+from listener_to_randomness.core.rng_demo import generate_rng_demo
+
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate a structured random MIDI composition."
+        description="Generate a simple MIDI demonstrating random generator sequences."
     )
 
-    parser.add_argument("--seed", type=int, default=42, help="Random seed")
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=42,
+        help="Random seed",
+    )
 
     parser.add_argument(
         "--generator",
@@ -29,33 +34,35 @@ def main():
     )
 
     parser.add_argument(
+        "--notes",
+        type=int,
+        default=120,
+        help="Number of notes to generate",
+    )
+
+    parser.add_argument(
         "--output",
         type=str,
-        default="generative_structured.mid",
+        default="rng_demo.mid",
         help="Output MIDI file",
     )
 
     args = parser.parse_args()
 
-    random_generator = create_random(
+    rng = create_random(
         seed=args.seed,
         mode=args.generator,
     )
 
-    cfg = generate_structure(random_generator)
-
-    print("===== COMPOSITION CONFIGURATION =====")
-    print(f"Orchestration density: {cfg.orchestration_density}")
-    print("=====================================")
-
-    part = Composition(cfg, random_generator)
-    midi = part.generate()
-
-    # debug_notes(midi)
+    midi = generate_rng_demo(
+        rng=rng,
+        note_count=args.notes,
+        cycle_length=getattr(rng, "period", None),
+    )
 
     midi.write(args.output)
 
-    print("MIDI generated ! 🎶")
+    print("RNG demo MIDI generated 🎶")
 
 
 if __name__ == "__main__":
