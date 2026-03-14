@@ -8,7 +8,7 @@ import networkx as nx
 from collections import Counter
 
 
-def plot_midi_pitch_time_velocity(midi_path, output_dir="src/listener_to_randomness/visualisation/plots", tracks_per_fig=2, track_height=4, y_margin=5):
+def plot_midi_pitch_time_velocity(midi_path, output_dir="src/listener_to_randomness/visualisation/plots", filename="", tracks_per_fig=2, track_height=4, y_margin=5):
     """
     Visualize MIDI composition and save figures:
         - Multiple figures if tracks > tracks_per_fig
@@ -88,7 +88,10 @@ def plot_midi_pitch_time_velocity(midi_path, output_dir="src/listener_to_randomn
         cbar.ax.yaxis.set_ticks_position('left')
         cbar.ax.yaxis.set_tick_params(pad=5)
 
-        file_path = os.path.join(output_dir, f"midi_plot_{fig_count}.png")
+        if filename == "":
+            file_path = os.path.join(output_dir, f"midi_plot_{fig_count}.png")
+        else:
+            file_path = os.path.join(output_dir, f"{filename}.png")
         fig.savefig(file_path, bbox_inches="tight", dpi=150)
         plt.close(fig)
         print(f"Saved {file_path}")

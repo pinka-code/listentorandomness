@@ -180,8 +180,16 @@ class RhythmicRandom(RandomModifier):
         return self._next_value(seq)
 
     def random(self):
-        # Map the choice to a [0,1) float (assuming seq numeric or ordinal)
-        return self.counter / max(self.period, 1)
+        """
+        Return a float in [0,1) that represents the "position" of the
+        current choice in the sequence, while respecting the periodic accent.
+        """
+        if self.counter % self.period == 0:
+            value = 0.0
+        else:
+            value = self.base_rng.random()
+        self.counter += 1
+        return value
 
     def randint(self, a, b):
         r = self.random()

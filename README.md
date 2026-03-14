@@ -93,6 +93,10 @@ python -m pip install -e .
 ```bash
 python -m listener_to_randomness.cli.generate_rng_demo --generator default --seed 42
 python -m listener_to_randomness.cli.generate_midi
+
+python -m listener_to_randomness.cli.generate_rng_demo src/listener_to_randomness/visualisation/plots/demo
+python -m listener_to_randomness.cli.visualize --mode rng src/listener_to_randomness/visualisation/plots/rng
+
 ltr-generate-midi # post install
 python -m listener_to_randomness.cli.visualize generative_structured.mid src/listener_to_randomness/visualisation/plots --mode timeline
 python -m listener_to_randomness.cli.visualize generative_structured.mid src/listener_to_randomness/visualisation/plots/midi_analysis --mode analysis

@@ -95,7 +95,7 @@ def plot_random_distributions(output_dir):
 
     plot_random_distribution(
         output_file=output_dir+"/time_seed_rng.png",
-        generator="default",
+        generator="time_seed",
         count=5000,
     )
 
@@ -148,7 +148,7 @@ def plot_random_distributions(output_dir):
 
 def plot_rng_correlations(output_dir):
     plot_rng_correlation(output_dir+"/default_corr.png", seed=42, generator="default", count=5000)
-    plot_rng_correlation(output_dir+"/time_seed_corr.png", generator="default", count=5000)
+    plot_rng_correlation(output_dir+"/time_seed_corr.png", generator="time_seed", count=5000)
     plot_rng_correlation(output_dir+"/secure_corr.png", generator="secure", count=5000)
     plot_rng_correlation(output_dir+"/fractal_corr.png", seed=42, generator="fractal", count=5000)
     plot_rng_correlation(output_dir+"/biased_corr.png", seed=42, generator="biased", count=5000, bias_factor=3)

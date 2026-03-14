@@ -21,7 +21,8 @@ def create_random(
         base = TimeSeedRandom()
 
     registry: Dict[str, Callable[[], RandomInterface]] = {
-        "default": lambda: base,
+        "default": lambda: DeterministicRandom(seed),
+        "time_seed": lambda: TimeSeedRandom(),
         "secure": lambda: SecureRandom(),
         "biased": lambda: BiasedRandom(base, kwargs["bias_factor"]),
         "gaussian": lambda: GaussianRandom(
