@@ -3,7 +3,7 @@ import math
 
 # Add global biais to some values
 class BiasedRandom(RandomModifier):
-    def __init__(self, base_rng, bias_factor=5):
+    def __init__(self, base_rng, bias_factor):
         self.base_rng = base_rng
         self.bias_factor = bias_factor
 
@@ -104,37 +104,42 @@ class MarkovRandom(RandomModifier):
     def __init__(self, base_rng, transition_matrix):
         self.base_rng = base_rng
         self.transition_matrix = transition_matrix
+        self.states = sorted(transition_matrix.keys())  # liste des états existants
         self.current_state = None
 
-    def _next_state(self, seq):
-        """Compute the next state following the transition matrix."""
+    def _next_state(self):
         if self.current_state is None:
-            self.current_state = self.base_rng.choice(seq)
+            self.current_state = self.base_rng.choice(self.states)
             return self.current_state
 
         weights = self.transition_matrix.get(self.current_state)
         if not weights:
-            self.current_state = self.base_rng.choice(seq)
+            self.current_state = self.base_rng.choice(self.states)
         else:
+            seq = self.states
+            if len(weights) != len(seq):
+                raise ValueError(
+                    f"Transition weights for state {self.current_state} "
+                    f"have length {len(weights)}, expected {len(seq)}"
+                )
             self.current_state = self.base_rng.choice_weighted(seq, weights)
+
         return self.current_state
 
+    def random(self):
+        state = self._next_state()
+        bucket_size = 1.0 / len(self.states)
+        start = self.states.index(state) * bucket_size
+        return start + self.base_rng.random() * bucket_size
+
     def choice(self, seq):
-        return self._next_state(seq)
+        r = self.random()
+        idx = int(r * len(seq))
+        idx = min(idx, len(seq) - 1)
+        return seq[idx]
 
     def choice_weighted(self, seq, weights):
-        # Optionally, apply weights on top of Markov
-        state = self._next_state(seq)
-        return state
-
-    def random(self):
-        # If states are numeric, pick a float from [0,1) using weighted state
-        if self.current_state is None:
-            self.current_state = self._next_state(list(self.transition_matrix.keys()))
-        # Map state index to float
-        keys = list(self.transition_matrix.keys())
-        idx = keys.index(self.current_state)
-        return idx / max(len(keys)-1, 1)
+        return self.base_rng.choice_weighted(seq, weights)
 
     def randint(self, a, b):
         r = self.random()
@@ -149,7 +154,7 @@ class MarkovRandom(RandomModifier):
 
     def fork(self, seed_offset=0):
         new_base = self.base_rng.fork(seed_offset)
-        new_instance = MarkovRandom(new_base, self.transition_matrix)
+        new_instance = MarkovRandom(new_base, self.transition_matrix, self.states)
         new_instance.current_state = self.current_state
         return new_instance
     

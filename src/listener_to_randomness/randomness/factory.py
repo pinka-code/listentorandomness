@@ -23,7 +23,7 @@ def create_random(
     registry: Dict[str, Callable[[], RandomInterface]] = {
         "default": lambda: base,
         "secure": lambda: SecureRandom(),
-        "biased": lambda: BiasedRandom(base, kwargs.get("bias_factor", 1.5)),
+        "biased": lambda: BiasedRandom(base, kwargs["bias_factor"]),
         "gaussian": lambda: GaussianRandom(
             base,
             kwargs.get("mean", 0.5),

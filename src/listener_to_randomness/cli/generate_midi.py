@@ -1,4 +1,5 @@
 import argparse
+import json
 
 from listener_to_randomness.core import generate_structure, Composition
 from listener_to_randomness.utils import debug_notes
@@ -29,6 +30,13 @@ def main():
     )
 
     parser.add_argument(
+        "--bias-factor",
+        type=float,
+        default=1.5,
+        help="Bias factor (used by biased RNG)",
+    )
+
+    parser.add_argument(
         "--output",
         type=str,
         default="generative_structured.mid",
@@ -37,9 +45,15 @@ def main():
 
     args = parser.parse_args()
 
+    transition_matrix = None
+    if args.transition_matrix:
+        transition_matrix = json.loads(args.transition_matrix)
+
     random_generator = create_random(
         seed=args.seed,
         mode=args.generator,
+        bias_factor=args.bias_factor,
+        transition_matrix=transition_matrix,
     )
 
     cfg = generate_structure(random_generator)

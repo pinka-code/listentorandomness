@@ -1,4 +1,5 @@
 import argparse
+import json
 
 from listener_to_randomness.randomness import create_random
 from listener_to_randomness.core.rng_demo import generate_rng_demo
@@ -34,6 +35,19 @@ def main():
     )
 
     parser.add_argument(
+        "--bias-factor",
+        type=float,
+        default=1.5,
+        help="Bias factor (used by biased RNG)",
+    )
+
+    parser.add_argument(
+        "--transition-matrix",
+        type=str,
+        help="Transition matrix for Markov RNG (JSON)",
+    )
+
+    parser.add_argument(
         "--notes",
         type=int,
         default=120,
@@ -49,9 +63,15 @@ def main():
 
     args = parser.parse_args()
 
+    transition_matrix = None
+    if args.transition_matrix:
+        transition_matrix = json.loads(args.transition_matrix)
+
     rng = create_random(
         seed=args.seed,
         mode=args.generator,
+        bias_factor=args.bias_factor,
+        transition_matrix=transition_matrix,
     )
 
     midi = generate_rng_demo(

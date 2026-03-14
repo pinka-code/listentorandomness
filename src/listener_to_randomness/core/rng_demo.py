@@ -38,8 +38,7 @@ def generate_rng_demo(rng, note_count=120, cycle_length=None):
         )
 
         instrument.notes.append(note.to_midi())
-
-        print(f"{i:03d} random={r:.5f} pitch={pitch} velocity={velocity}")
+        #print(f"{i:03d} random={r:.5f} pitch={pitch}")
 
     midi.instruments.append(instrument)
 

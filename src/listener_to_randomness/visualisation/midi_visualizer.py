@@ -6,8 +6,6 @@ from matplotlib import gridspec
 import os
 import networkx as nx
 from collections import Counter
-from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
 
 
 def plot_midi_pitch_time_velocity(midi_path, output_dir="src/listener_to_randomness/visualisation/plots", tracks_per_fig=2, track_height=4, y_margin=5):
