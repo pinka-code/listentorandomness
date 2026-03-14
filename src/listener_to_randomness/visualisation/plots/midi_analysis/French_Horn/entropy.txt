@@ -1,6 +1,6 @@
 Entropy analysis - French Horn
 
-Pitch entropy: 3.4326
-Interval entropy: 4.4306
-Duration entropy: 2.8616
-Transition entropy: 3.4300
+Pitch entropy: 3.4044
+Interval entropy: 4.2186
+Duration entropy: 3.0474
+Transition entropy: 3.4079

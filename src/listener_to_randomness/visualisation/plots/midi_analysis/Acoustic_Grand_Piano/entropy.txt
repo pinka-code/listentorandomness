@@ -1,6 +1,6 @@
 Entropy analysis - Acoustic Grand Piano
 
-Pitch entropy: 2.8277
-Interval entropy: 3.9241
-Duration entropy: 3.3589
-Transition entropy: 2.8268
+Pitch entropy: 2.8863
+Interval entropy: 3.2071
+Duration entropy: 3.6740
+Transition entropy: 2.8876

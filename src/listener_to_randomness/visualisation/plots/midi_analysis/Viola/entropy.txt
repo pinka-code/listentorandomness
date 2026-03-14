@@ -1,6 +1,6 @@
 Entropy analysis - Viola
 
-Pitch entropy: 3.7163
-Interval entropy: 4.7241
-Duration entropy: 2.7433
-Transition entropy: 3.7061
+Pitch entropy: 2.6749
+Interval entropy: 3.8161
+Duration entropy: 3.4517
+Transition entropy: 2.6717

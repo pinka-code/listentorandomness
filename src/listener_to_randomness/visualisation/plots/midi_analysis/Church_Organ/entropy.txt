@@ -1,6 +1,0 @@
-Entropy analysis - Church Organ
-
-Pitch entropy: 3.3242
-Interval entropy: 4.5227
-Duration entropy: 2.8487
-Transition entropy: 3.3236

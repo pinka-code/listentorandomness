@@ -1,6 +1,0 @@
-Entropy analysis - Trumpet
-
-Pitch entropy: 3.5011
-Interval entropy: 4.5878
-Duration entropy: 2.8367
-Transition entropy: 3.4981

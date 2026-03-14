@@ -7,11 +7,6 @@ from listener_to_randomness.visualisation.midi_visualizer import (
     analyze_midi_tracks,
     plot_phrase_clustering
 )
-from listener_to_randomness.visualisation.rng_visualisation import (
-    plot_random_distributions,
-    plot_rng_correlations
-)
-
 
 def main():
     parser = argparse.ArgumentParser(
@@ -35,7 +30,7 @@ def main():
         "--mode",
         type=str,
         default="timeline",
-        choices=["timeline", "analysis", "rng", "todo"],
+        choices=["timeline", "analysis", "todo"],
         help="Visualization mode"
     )
 
@@ -60,10 +55,6 @@ def main():
             n_clusters=4,
             pause_threshold=0.5
         )
-
-    elif args.mode == "rng":
-        plot_random_distributions(str(output_path))
-        plot_rng_correlations(str(output_path))
 
     elif args.mode == "todo":
         print("Not implemented yet.")

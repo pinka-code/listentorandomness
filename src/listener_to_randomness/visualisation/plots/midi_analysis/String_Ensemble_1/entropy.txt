@@ -1,6 +1,6 @@
 Entropy analysis - String Ensemble 1
 
-Pitch entropy: 4.3956
-Interval entropy: 5.2551
-Duration entropy: 2.7450
-Transition entropy: 4.4018
+Pitch entropy: 1.9648
+Interval entropy: 1.7746
+Duration entropy: 1.9772
+Transition entropy: 1.9179

@@ -1,6 +1,0 @@
-Entropy analysis - Contrabass
-
-Pitch entropy: 3.7360
-Interval entropy: 4.5796
-Duration entropy: 0.3313
-Transition entropy: 3.7423

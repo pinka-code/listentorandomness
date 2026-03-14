@@ -1,0 +1,6 @@
+Entropy analysis - Clarinet
+
+Pitch entropy: 2.5614
+Interval entropy: 3.3728
+Duration entropy: 3.5568
+Transition entropy: 2.5654

@@ -1,0 +1,6 @@
+Entropy analysis - Bassoon
+
+Pitch entropy: 2.8209
+Interval entropy: 2.5980
+Duration entropy: 1.3126
+Transition entropy: 2.8286
