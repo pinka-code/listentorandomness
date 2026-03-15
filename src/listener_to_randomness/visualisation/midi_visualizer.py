@@ -91,7 +91,7 @@ def plot_midi_pitch_time_velocity(midi_path, output_dir="src/listener_to_randomn
         if filename == "":
             file_path = os.path.join(output_dir, f"midi_plot_{fig_count}.png")
         else:
-            file_path = os.path.join(output_dir, f"{filename}.png")
+            file_path = os.path.join(output_dir, f"{filename}_{fig_count}.png")
         fig.savefig(file_path, bbox_inches="tight", dpi=150)
         plt.close(fig)
         print(f"Saved {file_path}")

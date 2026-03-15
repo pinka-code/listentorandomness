@@ -1,3 +1,5 @@
+import copy
+
 class MusicalContext:
     def __init__(
         self,
@@ -22,6 +24,18 @@ class MusicalContext:
             f"tempo={self.tempo_bpm}, "
             f"scale={self.scale_notes})"
         )
+    
+    def __deepcopy__(self, memo):
+        new = self.__class__.__new__(self.__class__)
+        memo[id(self)] = new
+
+        for k, v in self.__dict__.items():
+            if k == "rng":
+                setattr(new, k, v)  # ne pas copier le RNG
+            else:
+                setattr(new, k, copy.deepcopy(v, memo))
+
+        return new
 
     @property
     def scale_notes(self):

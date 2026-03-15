@@ -94,16 +94,16 @@ python -m pip install -e .
 ltr-generate-midi # post install
 
 # launch a random composition
-python -m listener_to_randomness.cli.generate_midi
+python -m listener_to_randomness.cli.generate_midi --output output.mid
 
-# launch demo script that shows influence of randomness to music pitches
-python -m listener_to_randomness.cli.generate_rng_demo src/listener_to_randomness/visualisation/plots/demo
+# launch main demo script that shows influence of randomness to music pitches
+python -m listener_to_randomness.cli.generate_rng_demo demo
 
 # launch data visualisation (music over time)
-python -m listener_to_randomness.cli.visualize --midi_file generative_structured.mid src/listener_to_randomness/visualisation/plots --mode timeline
+python -m listener_to_randomness.cli.visualize --midi_file output.mid src/listener_to_randomness/visualisation/plots --mode timeline
 
 # launch data visualisation music analysis
-python -m listener_to_randomness.cli.visualize --midi_file generative_structured.mid src/listener_to_randomness/visualisation/plots/midi_analysis --mode analysis
+python -m listener_to_randomness.cli.visualize --midi_file output.mid src/listener_to_randomness/visualisation/plots/midi_analysis --mode analysis
 ```
 
 Launch unit tests
@@ -115,4 +115,4 @@ python -m pytest
 🎹 Example Output
 
 - MID: generative_structured.mid
-- Visualisation: ![Visualisation](src/listener_to_randomness/visualisation/plots/midi_plot_2.png)
+- Visualisation: ![Visualisation](demo/default_composition_timeline_1.png)

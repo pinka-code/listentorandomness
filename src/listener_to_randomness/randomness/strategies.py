@@ -154,7 +154,7 @@ class MarkovRandom(RandomModifier):
 
     def fork(self, seed_offset=0):
         new_base = self.base_rng.fork(seed_offset)
-        new_instance = MarkovRandom(new_base, self.transition_matrix, self.states)
+        new_instance = MarkovRandom(new_base, self.transition_matrix)
         new_instance.current_state = self.current_state
         return new_instance
     

@@ -2,6 +2,8 @@ import argparse
 import json
 from typing import Dict, Any
 from listener_to_randomness.randomness import create_random
+from listener_to_randomness.core import generate_structure, Composition
+from listener_to_randomness.core.rng_demo import generate_rng_demo
 
 def parse_common_args(description: str) -> argparse.Namespace:
     """
@@ -70,3 +72,22 @@ def create_rng_from_args(args: argparse.Namespace) -> Any:
         mode=getattr(args, "generator", "default"),
         **rng_kwargs
     )
+
+def generate_demo_midi(rng, output_file, note_count):
+    midi = generate_rng_demo(
+        rng=rng,
+        note_count=note_count,
+        cycle_length=getattr(rng, "period", None),
+    )
+    midi.write(output_file)
+
+def generate_composition_midi(rng, output_file):
+    cfg = generate_structure(rng)
+
+    print("===== COMPOSITION CONFIGURATION =====")
+    print(f"Orchestration density: {cfg.orchestration_density}")
+    print("=====================================")
+
+    composition = Composition(cfg, rng)
+    midi = composition.generate()
+    midi.write(output_file)

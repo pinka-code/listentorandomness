@@ -101,12 +101,12 @@ class DeterministicRandom(BasePythonRandom):
 
 # Pseudo-random PRNG: seed from system time, reproducible if state known
 class TimeSeedRandom(BasePythonRandom):
-    def __init__(self):
+    def __init__(self, seed=None):
         super().__init__(random.Random())
 
 # Cryptographically secure PRNG (CSPRNG): unpredictable, safe for security purposes
 class SecureRandom(BasePythonRandom):
-    def __init__(self):
+    def __init__(self, seed=None):
         super().__init__(random.SystemRandom())
 
 # Simple deterministic chaos (logistic map), predictable if initial seed known

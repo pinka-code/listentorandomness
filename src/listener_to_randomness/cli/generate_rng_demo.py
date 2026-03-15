@@ -1,13 +1,14 @@
 from pathlib import Path
 from listener_to_randomness.randomness import create_random
-from listener_to_randomness.core.rng_demo import generate_rng_demo
 from listener_to_randomness.visualisation.midi_visualizer import plot_midi_pitch_time_velocity
 from listener_to_randomness.visualisation.rng_visualisation import (
     plot_random_distribution,
     plot_rng_correlation,
 )
+from .common import generate_composition_midi, generate_demo_midi
 
 RNG_CONFIGS = [
+    ("tiny", {}),
     ("default", {}),
     ("time_seed", {"seed": None}),
     ("secure", {}),
@@ -44,20 +45,29 @@ def generate_and_visualize_all(output_dir, note_count=120, seed=42):
             **params,
         )
 
-        midi_file = output_path / f"{name}.mid"
-
-        midi = generate_rng_demo(
+        midi_demo_file = output_path / f"{name}_demo.mid"
+        generate_demo_midi(
             rng=rng,
+            output_file=midi_demo_file,
             note_count=note_count,
-            cycle_length=getattr(rng, "period", None),
         )
 
-        midi.write(midi_file)
+        midi_composition_file = output_path / f"{name}_composition.mid"
+        generate_composition_midi(
+            rng=rng,
+            output_file=midi_composition_file,
+        )
 
         plot_midi_pitch_time_velocity(
-            str(midi_file),
+            str(midi_demo_file),
             str(output_path),
             f"{name}_timeline",
+        )
+
+        plot_midi_pitch_time_velocity(
+            str(midi_composition_file),
+            str(output_path),
+            f"{name}_composition_timeline",
         )
 
         plot_random_distribution(
