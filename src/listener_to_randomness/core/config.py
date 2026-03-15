@@ -1,7 +1,5 @@
 from dataclasses import dataclass
 
-
-
 @dataclass(frozen=True)
 class MusicConfig:
     orchestration_density: int

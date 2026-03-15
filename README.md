@@ -48,24 +48,23 @@ Here is what can be set as random in music:
 | Tempo         | 60–180 BPM, or variations               |
 | Musical Form  | AABA, ABA, etc.                         |
 
-🛠️ Roadmap / TODO
+🛠️ Roadmap
+
+📊 Visualization
+
+- [x] Graphical representation of melodic or rhythmic patterns
+- [x] Phrase and motif diagrams
+- [x] Structural analysis visual output
+
+🎼 Styles
+
+- [x] Support for different musical styles (Classical, Jazz, Pop)
+- [x] Style-specific motifs and role behaviors
 
 📜 Score Generation (Partition)
 
 - [ ] Generate sheet music (standard notation and/or neumatic-style notation)
 - [ ] Separate tracks by musical role (melody, harmony, rhythm, bass, etc.)
-
-📊 Visualization
-
-- [ ] Graphical representation of melodic or rhythmic patterns
-- [ ] Phrase and motif diagrams
-- [ ] Structural analysis visual output
-
-🎼 Styles
-
-- [ ] Support for different musical styles (Classical, Jazz, Pop)
-- [ ] Style-specific motifs and role behaviors
-- [ ] Harmonic and rhythmic constraints per genre
 
 🧠 Philosophy
 
@@ -114,5 +113,5 @@ python -m pytest
 
 🎹 Example Output
 
-- MID: generative_structured.mid
+- MID: output.mid
 - Visualisation: ![Visualisation](demo/default_composition_timeline_1.png)

@@ -1,6 +1,4 @@
-from . import tempo
 from .key_signature import KeySignature
-from .time_signature import TimeSignature
 from .musical_context import MusicalContext
 from .musical_section import MusicalSection
 
@@ -20,7 +18,7 @@ class MusicalForm:
         section_key_signatures = {}
         previous_key_signature = None
 
-        for i, (name, bars) in enumerate(form):
+        for (name, bars) in enumerate(form):
             if name not in section_tempos:
                 section_tempos[name] = self.style.choose_tempo(self.rng)
             tempo_bpm = section_tempos[name]
